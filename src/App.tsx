@@ -1,15 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { Fragment } from "react";
+import { Col, DatePicker } from "antd";
+import { Text } from "./components/text";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <div className="App">
-      <h1 className='text-red !text-lg'>hello word</h1>
-    </div>
-  )
-}
+    <h2 className="text-red-800 text-center">Hello DATN</h2>
+  );
+};
 
-export default App
+export default App;
