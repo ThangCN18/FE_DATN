@@ -15,3 +15,13 @@
 .anticon-menu-fold, .anticon-menu-unfold{
     @apply text-xl
 }
+.ant-dropdown-menu-item{
+    @apply !p-0 !my-0 !border-opacity-0
+
+}
+.ant-dropdown-menu-item:hover{
+    @apply !bg-white
+}
+.cart-item-menu > .ant-card-body{
+    @apply p-3 px-0 flex items-center justify-between
+}
