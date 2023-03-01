@@ -1,10 +1,16 @@
 import { Fragment } from "react";
 import { Col, DatePicker } from "antd";
-import { Text } from "./components/text";
+import { Routes, Route } from 'react-router-dom'
+
+import HomePage from "./pages/HomePage";
 
 const App = () => {
   return (
-    <h2 className="text-red-800 text-center">Hello DATN</h2>
+    // Set Up Routes for website.
+    <Routes>
+      <Route path='/' element={<HomePage />} />
+    
+  </Routes>
   );
 };
 
