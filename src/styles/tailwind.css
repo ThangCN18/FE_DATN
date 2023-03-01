@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.ant-menu-light{
+    @apply !bg-[#00000000] text-zinc-700
+}
+.ant-menu-light .ant-menu-item-selected{
+    @apply !bg-[#0000000f] !text-black font-bold
+}
+.ant-menu-light .ant-menu-item{
+    @apply text-gray-500 
+}
+.anticon-menu-fold, .anticon-menu-unfold{
+    @apply text-xl
+}
