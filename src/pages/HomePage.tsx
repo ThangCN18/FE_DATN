@@ -10,17 +10,13 @@ function HomePage() {
       } = theme.useToken();
     
       return (
-        <Layout className="layout">
+        <Layout className="layout bg-white">
             <HeaderComponent/>
 
          
-          <Content style={{ padding: '0 50px' }}>
-            <Breadcrumb style={{ margin: '16px 0' }}>
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-              <Breadcrumb.Item>List</Breadcrumb.Item>
-              <Breadcrumb.Item>App</Breadcrumb.Item>
-            </Breadcrumb>
-            <div className="site-layout-content" style={{ background: colorBgContainer }}>
+          <Content className="pt-[70px]">
+            
+            <div className="site-layout-content max-w-[1400px] h-[2000px] mx-auto px-4 max-sm:px-1 " style={{ background: colorBgContainer }}>
               Content
             </div>
           </Content>

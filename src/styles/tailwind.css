@@ -25,3 +25,24 @@
 .cart-item-menu > .ant-card-body{
     @apply p-3 px-0 flex items-center justify-between
 }
+.user-item-menu > .ant-card-body{
+    @apply p-3 px-0 flex items-center justify-between 
+}
+.user-item-menu{
+    @apply border-none
+}
+.user-item-menu > .ant-card-body > .ant-card-meta{
+    @apply flex justify-start items-center
+}
+.cart-item-menu > .ant-card-body > .ant-card-meta{
+    @apply flex justify-start items-center
+}
+.user-list-action:hover{
+    @apply !text-blue-500 space-x-3 
+}
+.user-list-action-sign-out:hover{
+    @apply !text-red-500
+}
+.active-menu{
+    @apply text-blue-600
+}
