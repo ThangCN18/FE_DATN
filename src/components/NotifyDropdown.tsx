@@ -18,11 +18,11 @@ function NotifyDropdown() {
     {
       key: 'card1',
       label: (
-        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1">
+        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
-            title={<h5 className="truncate w-[230px] ">Đăng ký tai khoản</h5>}
-            description={<p className="truncate w-[230px]">Bạn đã đk tk thành công</p>}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
+            description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
         </Card>
       ),
@@ -30,11 +30,11 @@ function NotifyDropdown() {
     {
       key: 'card2',
       label: (
-        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1">
+        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
-            title={<h5 className="truncate w-[230px] ">Đăng ký tai khoản</h5>}
-            description={<p className="truncate w-[230px]">Bạn đã đk tk thành công</p>}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
+            description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
         </Card>
       ),
@@ -42,11 +42,11 @@ function NotifyDropdown() {
     {
       key: 'card3',
       label: (
-        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1">
+        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
-            title={<h5 className="truncate w-[230px] ">Đăng ký tai khoản</h5>}
-            description={<p className="truncate w-[230px]">Bạn đã đk tk thành công</p>}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
+            description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
         </Card>
       ),
@@ -54,11 +54,11 @@ function NotifyDropdown() {
     {
       key: 'card4',
       label: (
-        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1">
+        <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
-            title={<h5 className="truncate w-[230px] ">Đăng ký tai khoản</h5>}
-            description={<p className="truncate w-[230px]">Bạn đã đk tk thành công</p>}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
+            description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
         </Card>
       ),
@@ -66,8 +66,8 @@ function NotifyDropdown() {
   ];
 
     return ( 
-        <Dropdown menu={{items}} placement="bottomRight" arrow>
-      <Button className="!p-0 border-none bg-gray-200 !min-w-[40px] !h-[40px] rounded-full flex justify-center items-center">
+        <Dropdown menu={{items}} placement="bottomRight"  className="max-sm:hidden" arrow>
+      <Button className="!p-0 border-none bg-gray-200 !min-w-[40px] !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
         <div className="text-base"><BsBell/></div></Button>
     </Dropdown>
      );
