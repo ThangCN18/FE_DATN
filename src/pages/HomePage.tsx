@@ -1,28 +1,40 @@
 import React from "react";
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 import HeaderComponent from "../components/HeaderComponent";
-
+import SlideBanner from "../components/SlideBanner";
+import SliderRoadmap from "../components/SliderRoadmap";
+import TabsCoursesComponent from "../components/TabsCoursesComponent";
+import LoadingComponent from "../components/LoadingComponent";
+import { useSelector } from 'react-redux'
+import { RootState } from "../store/types";
 const { Header, Content, Footer } = Layout;
 
 function HomePage() {
-    const {
-        token: { colorBgContainer },
-      } = theme.useToken();
-    
-      return (
-        <Layout className="layout bg-white">
-            <HeaderComponent/>
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+  const loading =  useSelector((state: RootState) => state.root.load)
 
-         
-          <Content className="pt-[70px]">
-            
-            <div className="site-layout-content max-w-[1400px] h-[2000px] mx-auto px-4 max-sm:px-1 " style={{ background: colorBgContainer }}>
-              Content
-            </div>
-          </Content>
-          <Footer style={{ textAlign: 'center' }}>Ant Design ©2023 Created by Ant UED</Footer>
-        </Layout>
-      );
+  return (
+    <Layout className="layout bg-white">
+      <HeaderComponent />
+      <Content className="pt-[70px]">
+
+        <div className="site-layout-content w-[100%] h-[2000px] " style={{ background: colorBgContainer }}>
+          <SlideBanner/>
+          <SliderRoadmap/>
+          <TabsCoursesComponent/>
+        </div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Copyright ©2023 Wizcove IT</Footer>
+      {
+        loading.isLoading?
+        <LoadingComponent/>:null
+      }
+      
+    </Layout>
+    
+  );
 }
 
 export default HomePage;

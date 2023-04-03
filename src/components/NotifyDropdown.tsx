@@ -1,17 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import type { MenuProps } from 'antd';
 import { Button, Dropdown } from 'antd';
-import { Avatar, Card, Skeleton} from 'antd';
-import {BsBell} from 'react-icons/bs'
-import {FaRegTrashAlt} from "react-icons/fa"
+import { Avatar, Card, Skeleton } from 'antd';
+import { BsBell } from 'react-icons/bs'
+import { FaRegTrashAlt } from "react-icons/fa"
 
 const { Meta } = Card;
 
 
 function NotifyDropdown() {
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const items: MenuProps['items'] = [
@@ -65,12 +65,12 @@ function NotifyDropdown() {
     },
   ];
 
-    return ( 
-        <Dropdown menu={{items}} placement="bottomRight"  className="max-sm:hidden" arrow>
+  return (
+    <Dropdown menu={{ items }} placement="bottomRight" className="max-sm:hidden" arrow>
       <Button className="!p-0 border-none bg-gray-200 !min-w-[40px] !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
-        <div className="text-base"><BsBell/></div></Button>
+        <div className="text-base"><BsBell /></div></Button>
     </Dropdown>
-     );
+  );
 }
 
 export default NotifyDropdown;

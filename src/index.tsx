@@ -1,14 +1,19 @@
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import {BrowserRouter} from "react-router-dom"
+import { BrowserRouter } from "react-router-dom"
 import App from "./App";
 import "./styles/tailwind.css";
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
+import store, { persistor } from './store'
 
 ReactDOM.render(
-  <StrictMode>
-    <BrowserRouter>
-    <App />
-    </BrowserRouter>
-  </StrictMode>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>,
   document.getElementById("root")
 );
