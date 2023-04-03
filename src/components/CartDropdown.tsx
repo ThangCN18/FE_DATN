@@ -1,17 +1,17 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import type { MenuProps } from 'antd';
 import { Button, Dropdown } from 'antd';
-import { Avatar, Card, Skeleton} from 'antd';
-import {MdOutlineShoppingCart} from 'react-icons/md'
-import {FaRegTrashAlt} from "react-icons/fa"
+import { Avatar, Card, Skeleton } from 'antd';
+import { MdOutlineShoppingCart } from 'react-icons/md'
+import { FaRegTrashAlt } from "react-icons/fa"
 
 const { Meta } = Card;
 
 
 function CartDropdown() {
 
-    const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   const items: MenuProps['items'] = [
@@ -24,7 +24,7 @@ function CartDropdown() {
             title={<h5 className="truncate w-[170px] max-sm:w-[100px] max-sm:text-xs">HTMLádasdasdasádasdsa</h5>}
             description={<p className="max-sm:text-xs">499.000 đ</p>}
           />
-          <Button type="text"><div><FaRegTrashAlt/></div></Button>
+          <Button type="text"><div><FaRegTrashAlt /></div></Button>
         </Card>
       ),
     },
@@ -37,27 +37,27 @@ function CartDropdown() {
             title={<h5 className="truncate w-[170px] max-sm:w-[100px] max-sm:text-xs">HTMLádasdasdasádasdsa</h5>}
             description={<p className="max-sm:text-xs">499.000 đ</p>}
           />
-          <Button type="text"><div><FaRegTrashAlt/></div></Button>
+          <Button type="text"><div><FaRegTrashAlt /></div></Button>
         </Card>
       ),
     },
-      {
-        key: 'card3',
-        label: (
-            <div className="flex justify-between items-center my-2">
+    {
+      key: 'card3',
+      label: (
+        <div className="flex justify-between items-center my-2">
           <p className="max-sm:text-xs">Total: 998.000 đ</p>
-            <Link to={"/cart?select=all"}><Button type="primary" className="!bg-blue-500 max-sm:text-xs">Buy now</Button></Link>
-            </div>
-        ),
-      },
+          <Link to={"/cart?select=all"}><Button type="primary" className="!bg-blue-500 max-sm:text-xs">Buy now</Button></Link>
+        </div>
+      ),
+    },
   ];
 
-    return ( 
-        <Dropdown menu={{items}} placement="bottomRight" className="max-sm:hidden" arrow>
+  return (
+    <Dropdown menu={{ items }} placement="bottomRight" className="max-sm:hidden" arrow>
       <Button className="!p-0 border-none bg-gray-200 !min-w-[40px] !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
-        <div className="text-base"><MdOutlineShoppingCart/></div></Button>
+        <div className="text-base"><MdOutlineShoppingCart /></div></Button>
     </Dropdown>
-     );
+  );
 }
 
 export default CartDropdown;
