@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UploadImageComponent from '../UploadImageComponent';
 import TextArea from 'antd/es/input/TextArea';
 import Carousel from 'react-multi-carousel';
+import {GrFormAdd} from "react-icons/gr"
 const { Option } = Select;
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
@@ -111,8 +112,9 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
             <Panel header={<div className='flex justify-between items-center'>
                 <h5 className='text-base font-semibold truncate'>{section.name}</h5>
                 <div>
-                    <Button size="small"  onClick={()=>{setshowmodaledit(true)}}  className='text-blue-600 border-blue-600 mx-2'><BiEdit /></Button>
-                    <Button size="small" onClick={()=>{setshowmodaldelete(true)}}  className='text-red-600 border-red-600'><MdDeleteForever /></Button>
+                    <Button size="small"  onClick={()=>{setshowmodaledit(true)}}  className='text-blue-600 border-blue-600 '><BiEdit /></Button>
+                    <Button size="small" onClick={()=>{setshowmodaldelete(true)}}  className='text-red-600 border-red-600 mx-2'><MdDeleteForever /></Button>
+                    <Button size="small"  className='text-green-600 border-green-600 '><GrFormAdd /></Button>
                 </div>
             </div>}  key="1">
 
