@@ -6,30 +6,33 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import {useNavigate} from 'react-router-dom';
-import { Layout, Menu, theme, Spin } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
+import {useNavigate} from 'react-router-dom'
+import { Layout, Menu, theme, Spin, Modal } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
-import AdminUserComponent from '../components/adminComponent/AdminUserComponent';
 import { FaRoute } from 'react-icons/fa';
-import AdminRoadmapComponent from '../components/adminComponent/AdminRoadmapComponent';
 import { RiDashboardLine } from 'react-icons/ri';
 import { HiOutlineBookOpen } from 'react-icons/hi';
-import UserDropdown from '../components/UserDropdown';
+import LoadingComponent from '../components/LoadingComponent';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
+import UserDropdown from '../components/UserDropdown';
+import AdminCourseComponent from '../components/adminComponent/AdminCourseComponent';
+import AdminDetailCourseComponent from '../components/adminComponent/AdminDetailCourseComponent';
 
 const { Header, Sider, Content } = Layout;
 
 
-function AdminHomePage() {
+function AdminCourseDetailPage() {
 
-  const [selectedMenu, setSelectedMenu] = useState('1');
+  const [selectedMenu, setSelectedMenu] = useState('4');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
-  const [loading, setLoadding] = useState(true);
+  const [loadingaa, setLoaddingaa] = useState(true);
   const navigate = useNavigate()
+  const loading =  useSelector((state: RootState) => state.root.load)
+
   const dispatch = useDispatch();
 
   const handelLogout = async () =>{
@@ -54,17 +57,16 @@ function AdminHomePage() {
     })
     
 }
-
   const {
     token: { colorBgContainer },
   } = theme.useToken();
 
   useEffect(() => {
-    setLoadding(false)
-},[])
+      setLoaddingaa(false)
+  },[])
 
   return (
-    loading ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
+    loadingaa ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
       <Layout className='h-[100vh]' >
         <Sider trigger={null} collapsible collapsed={collapsed} className="!bg-gray-100">
           {
@@ -141,8 +143,8 @@ function AdminHomePage() {
           }
           />
         </Sider>
-        <Layout className="site-layout min-w-[1000px] h-[100vh]">
-          <Header className="!bg-white !px-5 flex justify-between items-center" >
+        <Layout className="site-layout min-w-[1000px] max-w-[1800px] h-[100vh]">
+        <Header className="!bg-white !px-5 flex justify-between items-center" >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),
@@ -160,16 +162,20 @@ function AdminHomePage() {
             }}
           >
             {
-             
-              <h1>Dashboard</h1>
-             
+              
+              <AdminDetailCourseComponent/>
 
             }
             
           </Content>
         </Layout>
+        {
+        loading.isLoading?
+        <LoadingComponent/>:null
+      }
+        
       </Layout>
   );
 }
 
-export default AdminHomePage;
+export default AdminCourseDetailPage;

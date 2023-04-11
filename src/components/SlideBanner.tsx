@@ -35,7 +35,7 @@ function SlideBanner() {
                 <div className="w-[95%] max-sm:!w-[90%] h-[80%] max-sm:!h-[60%] bg-white rounded-3xl shadow-lg shadow-sky-400 flex justify-center items-center">
                 <div className="w-[95%] h-[90%] bg-gradient-to-r from-[#01a1fa] to-[#1dbfdb] rounded-3xl flex justify-center items-center overflow-hidden">
                 <div className="w-[95%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
-                <video autoPlay  loop className="h-[100%] w-[100%] object-cover">
+                <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
                 <source src="/src/assets/videos/video-fullstack.mp4" type="video/mp4"/>
                 </video>
                 </div>
@@ -104,7 +104,7 @@ function SlideBanner() {
               <Col span={13} className="flex justify-end items-center relative">
                 
                 <div className="w-[95%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
-                <video autoPlay loop className="h-[100%] w-[100%] object-cover">
+                <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
                 <source src="/src/assets/videos/graphic-maker.mp4" type="video/mp4"/>
                 </video>
                 </div>

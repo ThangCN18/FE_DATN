@@ -6,26 +6,26 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom'
 import { Layout, Menu, theme, Spin } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
 import AdminUserComponent from '../components/adminComponent/AdminUserComponent';
 import { FaRoute } from 'react-icons/fa';
 import AdminRoadmapComponent from '../components/adminComponent/AdminRoadmapComponent';
 import { RiDashboardLine } from 'react-icons/ri';
 import { HiOutlineBookOpen } from 'react-icons/hi';
-import UserDropdown from '../components/UserDropdown';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
+import UserDropdown from '../components/UserDropdown';
 
 const { Header, Sider, Content } = Layout;
 
 
-function AdminHomePage() {
+function AdminUserPage() {
 
-  const [selectedMenu, setSelectedMenu] = useState('1');
+  const [selectedMenu, setSelectedMenu] = useState('2');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoadding] = useState(true);
@@ -60,8 +60,8 @@ function AdminHomePage() {
   } = theme.useToken();
 
   useEffect(() => {
-    setLoadding(false)
-},[])
+      setLoadding(false)
+  },[])
 
   return (
     loading ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
@@ -83,66 +83,66 @@ function AdminHomePage() {
             mode="inline"
             selectedKeys={[selectedMenu]}
             items = {auth.user.role === "admin"? [
-              {
-                key: '1',
-                icon: <RiDashboardLine />,
-                label: 'Dashboard',
-                onClick: ()=>{
-                  navigate('/admin')
-                }
-              },
-              {
-                key: '2',
-                icon: <UserOutlined />,
-                label: 'Users',
-                onClick: ()=>{
-                  navigate('/admin/user')
-                }
-              },
-              {
-                key: '3',
-                icon: <FaRoute />,
-                label: 'Roadmaps',
-                onClick: ()=>{
-                  navigate('/admin/roadmap')
-                }
-              },
-              {
-                key: '4',
-                icon: <HiOutlineBookOpen />,
-                label: 'Courses',
-                onClick: ()=>{
-                  navigate('/admin/course')
-                }
-              },
-            ]:
-            [
-              
-              {
-                key: '1',
-                icon: <RiDashboardLine />,
-                label: 'Dashboard',
-              },
-              {
-                key: '3',
-                icon: <FaRoute />,
-                label: 'Roadmaps',
-              },
-              {
-                key: '4',
-                icon: <HiOutlineBookOpen />,
-                label: 'Courses',
-                onClick: ()=>{
-                  navigate('/admin/course')
-                }
-              },
-            ]
+                {
+                    key: '1',
+                    icon: <RiDashboardLine />,
+                    label: 'Dashboard',
+                    onClick: ()=>{
+                      navigate('/admin')
+                    }
+                  },
+                  {
+                    key: '2',
+                    icon: <UserOutlined />,
+                    label: 'Users',
+                    onClick: ()=>{
+                      navigate('/admin/user')
+                    }
+                  },
+                  {
+                    key: '3',
+                    icon: <FaRoute />,
+                    label: 'Roadmaps',
+                    onClick: ()=>{
+                      navigate('/admin/roadmap')
+                    }
+                  },
+                  {
+                    key: '4',
+                    icon: <HiOutlineBookOpen />,
+                    label: 'Courses',
+                    onClick: ()=>{
+                      navigate('/admin/course')
+                    }
+                  },
+                ]:
+                [
+                  
+                  {
+                    key: '1',
+                    icon: <RiDashboardLine />,
+                    label: 'Dashboard',
+                  },
+                  {
+                    key: '3',
+                    icon: <FaRoute />,
+                    label: 'Roadmaps',
+                  },
+                  {
+                    key: '4',
+                    icon: <HiOutlineBookOpen />,
+                    label: 'Courses',
+                    onClick: ()=>{
+                      navigate('/admin/course')
+                    }
+                  },
+                ]
           
           }
           />
         </Sider>
         <Layout className="site-layout min-w-[1000px] h-[100vh]">
-          <Header className="!bg-white !px-5 flex justify-between items-center" >
+        <Header className="!bg-white !px-5 flex justify-between items-center" >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),
@@ -161,8 +161,8 @@ function AdminHomePage() {
           >
             {
              
-              <h1>Dashboard</h1>
-             
+              <AdminUserComponent  />
+           
 
             }
             
@@ -172,4 +172,4 @@ function AdminHomePage() {
   );
 }
 
-export default AdminHomePage;
+export default AdminUserPage;

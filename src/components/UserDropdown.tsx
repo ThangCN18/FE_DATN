@@ -96,8 +96,8 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
 
   return (
     <Dropdown menu={{ items }} placement="bottomRight" className="max-sm:hidden" arrow>
-      <Button className="!p-0 border-none bg-gray-200 !min-w-[40px] max-sm:text-xs !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
-        <div className="text-base"><FaRegUser /></div></Button>
+      <Button className="!p-0 border-none bg-gray-100 !min-w-[40px] max-sm:text-xs !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
+        <div className="text-base">{auth.user.avatar? <Avatar src={auth.user.avatar}/> :<FaRegUser />}</div></Button>
     </Dropdown>
   );
 }
