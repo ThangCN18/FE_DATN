@@ -26,16 +26,16 @@ export default defineConfig({
       libList: [
         {
           libName: "antd",
-          style: (name) => {
-            if (name === "col" || name === "row") {
-              return "antd/lib/style/index.js";
-            }
-            return `antd/es/${name}/index.js`;
-          },
+          style: (name) => `antd/es/${name}/style`,
         },
       ],
     }),
   ],
+  resolve: {
+    alias: [
+      { find: /^~/, replacement: '' },
+    ],
+  },
   css: {
     preprocessorOptions: {
       less: {
