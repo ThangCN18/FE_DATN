@@ -1,4 +1,4 @@
-import { Button, Collapse, Skeleton, Space } from 'antd'
+import { Button, Collapse, Form, Input, Modal, Skeleton, Space } from 'antd'
 import api from '../../configs/axiosConfig'
 import React, {useEffect, useState} from 'react'
 import {useLocation} from 'react-router-dom'
@@ -12,6 +12,7 @@ const AdminDetailCourseComponent: React.FC  = () => {
     const [loadinga, setLoadinga] = useState(false)
     const location = useLocation()
     const [course, setcourse] = useState<any>(null)
+    const [showmodalcreatnew, setshowmodalcreatnew] = useState(false)
 
     const location_id = location.pathname.split('/')[3]
 
@@ -30,6 +31,58 @@ const AdminDetailCourseComponent: React.FC  = () => {
     })
     
       }
+      
+      const [form] = Form.useForm();
+      const headers = {
+          Accept: '*/*',
+        //   Authorization: 'Bearer ' + auth.user.accessToken,
+        };
+    
+    //   const handleCreateNewCourse = async (inputData: any) =>{
+    //       dispatch(setLoading({}))
+    //       await api.post('/courses/',
+    //           inputData,
+    //           {
+    //               headers
+    //             },
+         
+    //       ).then((response:any)=>{
+    //           if (response.status === 201){
+    //               form.resetFields()
+    //               handelGetDataCourse(1)
+    //               dispatch(setNotify({typeNotify: "success", titleNotify: "Create new course successful!", messageNotify: 'You Create new course successful'}))
+    //               dispatch(unsetLoading({}))
+    //               setshowmodalcreatnew(false)
+    //           }
+    //       }).catch((error: any)=>{
+    //           console.log(error)
+    //           dispatch(setNotify({typeNotify: "error", titleNotify: "Create new course unsuccessful!", messageNotify: error.response.data.message}))
+    //           dispatch(unsetLoading({}))
+    //       })
+    
+    //   }
+    
+    //   const onFinish = (values: any) => {
+          
+    //           const requirements = values.requirements.split('\n');
+    //           const benefits = values.benefits.split('\n');
+    //           const inputData = {
+    //               name: values.name, 
+    //               description: values.description, 
+                 
+    //               headline: values.headline,
+    //               price: values.price? Number(values.price): 0,
+    //               level: Number(values.level),
+    //               discount: values.discount? Number(values.discount): 0,
+    //               language: "VN",
+    //               requirements: requirements,
+    //               benefits: benefits
+    //           }
+    //           handleCreateNewCourse(inputData)
+    
+          
+          
+    //     };
     
 
     useEffect(() => {
@@ -43,7 +96,7 @@ const AdminDetailCourseComponent: React.FC  = () => {
             <Space direction="vertical" className='w-[100%]'>
                 <div className='flex justify-between items-center'>
                 <h5 className='mb-4 text-lg font-bold truncate'>{course.name}</h5>
-                <Button>Add Section</Button>
+                <Button onClick={()=>{setshowmodalcreatnew(true)}}>Add Section</Button>
                 </div>
                 
                 {
@@ -96,6 +149,36 @@ const AdminDetailCourseComponent: React.FC  = () => {
             </>
         }
         
+        <Modal open={showmodalcreatnew} onCancel={()=>{setshowmodalcreatnew(false)}} footer={null}>
+        <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create new section</h4>
+            <hr className='my-3'></hr>
+         
+          
+          <Form
+            name="basic"
+            layout="vertical"
+            style={{ maxWidth: 600 }}
+            initialValues={{ remember: true }}
+            className='mt-8'
+        >
+            
+                <Form.Item
+                    label="Name"
+                    name="name"
+                    className='mb-4'
+                    rules={[{ required: true, message: 'Please input name!', type: "string" }]}
+                >
+                    <Input className='font-normal text-base'/>
+                </Form.Item>
+
+            <Form.Item className='mb-4 mt-7 text-center' >
+                <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
+                    Add
+                </Button>
+            </Form.Item>
+        </Form>
+          
+        </Modal>
 
   </>
 
