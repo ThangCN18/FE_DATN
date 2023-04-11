@@ -7,6 +7,8 @@ import TabsCoursesComponent from "../components/TabsCoursesComponent";
 import LoadingComponent from "../components/LoadingComponent";
 import { useSelector } from 'react-redux'
 import { RootState } from "../store/types";
+import AboutUsHomeComponent from "../components/AboutUsHomeComponent";
+import FooterComponent from "../components/FooterComponent";
 const { Header, Content, Footer } = Layout;
 
 function HomePage() {
@@ -20,17 +22,20 @@ function HomePage() {
       <HeaderComponent />
       <Content className="pt-[70px]">
 
-        <div className="site-layout-content w-[100%] h-[2000px] " style={{ background: colorBgContainer }}>
+        <div className="site-layout-content w-[100%] pb-10 " style={{ background: colorBgContainer }}>
           <SlideBanner/>
           <SliderRoadmap/>
           <TabsCoursesComponent/>
+          <AboutUsHomeComponent/>
         </div>
       </Content>
+      <FooterComponent/>
       <Footer style={{ textAlign: 'center' }}>Copyright ©2023 Wizcove IT</Footer>
       {
         loading.isLoading?
         <LoadingComponent/>:null
       }
+
       
     </Layout>
     

@@ -54,7 +54,7 @@ function CartDropdown() {
 
   return (
     <Dropdown menu={{ items }} placement="bottomRight" className="max-sm:hidden" arrow>
-      <Button className="!p-0 border-none bg-gray-200 !min-w-[40px] !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
+      <Button className="!p-0 border-none bg-none shadow-none rounded-full flex justify-center items-center">
         <div className="text-base"><MdOutlineShoppingCart /></div></Button>
     </Dropdown>
   );

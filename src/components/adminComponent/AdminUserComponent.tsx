@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import { Avatar, InputRef, Modal, Spin } from 'antd';
+import { Avatar, InputRef, Modal, Spin, Tag } from 'antd';
 import { Button, Input, Space, Table } from 'antd';
 import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { FilterConfirmProps } from 'antd/es/table/interface';
@@ -14,6 +14,11 @@ import SkeletonNode from 'antd/es/skeleton/Node';
 import SkeletonAvatar from 'antd/es/skeleton/Avatar';
 import { LoadingOutlined } from '@ant-design/icons';
 import AdminUserShowComponent from './AdminUserShowComponent';
+import AdminUserEditComponent from './AdminUserEditComponent';
+import AdminUserDeleteComponent from './AdminUserDeleteComponent';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/types';
+import api from '../../configs/axiosConfig';
 
 
 interface UserType {
@@ -25,6 +30,8 @@ interface UserType {
   avatar: string
   phoneNumber: string
 }
+
+
 
 type DataIndex = keyof UserType;
 
@@ -109,32 +116,31 @@ let datave: UserType[] = [
     role: "user",
     avatar: null,
     phoneNumber: "0357863600"
-  },
-  {
-    key: "10",
-    email: "nct@gmail.com",
-    lastName: "Nguyen",
-    firstName: "thăng",
-    role: "user",
-    avatar: null,
-    phoneNumber: "0357863601"
-  },
+  }
 ];
 
 
 
 const AdminUserComponent: React.FC = () => {
+
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const [loadingSkeleton, setloadingSkeleton] = useState(false);
-  const [data, setData] = useState(null)
+  const [data, setData] = useState(datave)
   const searchInput = useRef<InputRef>(null);
   const [scrolltable, setscrolltable] = useState(false)
   const [scrolltableheight, setscrolltableheight] = useState(600)
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalEdit, setIsModalEdit] = useState(false);
   const [userselect, setuserselect] = useState<any>(null);
+  const [userselectedit, setuserselectedit] = useState<any>(null);
+  const [isModalDelete, setIsModalDelete] = useState(false);
+    const [pageusers, setpageusers] = useState<number>(1);
+    const contentRef = useRef(null);
 
-
+  const [userselectDelete, setuserselectDelete] = useState<any>(null);
+  
+  const auth = useSelector((state: RootState) => state.root.auth)
   const handelshowview = (key: string)=>{
     for (var i = 0; i < data.length; i++) {
       if (data[i].key == key) {
@@ -142,13 +148,78 @@ const AdminUserComponent: React.FC = () => {
         break;
       }
     }
+  }
+
+  const handelshowdelete = (key: string)=>{
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].key == key) {
+         setuserselectDelete(data[i])
+        break;
+      }
+    }
+  }
+  const handelshowedit = (key: string)=>{
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].key == key) {
+         setuserselectedit(data[i])
+        break;
+      }
+    }
     
+  }
+  const headers = {
+    Accept: '*/*',
+    Authorization: 'Bearer ' + auth.user.accessToken,
+  };
+const handelGetDataUsers = async (page: number) => {
+  setscrolltable(true)
+    await api.get(`/users?perPage=10&page=${page}`,
+    {
+        headers
+      },
+).then((response:any)=>{
+    if (response.status === 200){
+      const datares: any[] = response.data.items; // assume datares is an array of any objects
+      const dataset: UserType[] = datares.map((item: any) => {
+        return {
+          key: item.id,
+          email: item.email,
+          lastName: item.lastName,
+          firstName: item.firstName,
+          role: item.role,
+          avatar: item.avatar,
+          phoneNumber: item.phoneNumber,
+        };
+      });
+      if(page == 1){
+        setData(dataset)
+        setscrolltable(false)
+      }else{
+        setData(data.concat(dataset))
+        setscrolltable(false)
+      }
+      setloadingSkeleton(false)
+      const npage = pageusers + 1
+      setpageusers(npage)
+      setscrolltable(false)
+    }
+}).catch((error: any)=>{
+    console.log(error)
+    setscrolltable(false)
+})
+
   }
   useEffect(()=>{
     if(userselect){
       setIsModalOpen(true)
     }
-  },[userselect])
+    if(userselectedit){
+      setIsModalEdit(true)
+    }
+    if(userselectDelete){
+      setIsModalDelete(true)
+    }
+  },[userselect, userselectedit, userselectDelete])
 
   const handleSearch = (
     selectedKeys: string[],
@@ -291,7 +362,7 @@ const AdminUserComponent: React.FC = () => {
         loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />
           :
-          <>{text}</>
+          <>{text== "admin"? <Tag color="green">{text}</Tag>: text== "user"? <Tag color="blue">{text}</Tag>: <Tag color="cyan">staff</Tag>}</>
       }</>,
       ...getColumnSearchProps('role'),
       sorter: (a, b) => a.role.length - b.role.length,
@@ -308,8 +379,8 @@ const AdminUserComponent: React.FC = () => {
           :
           <>
             <Button size="small" onClick={()=>handelshowview(text)} className='text-blue-600 border-blue-600'><BsFillEyeFill /></Button>
-            <Button size="small" className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
-            <Button size="small" className='text-red-600 border-red-600'><MdDeleteForever /></Button>
+            <Button size="small" onClick={()=>handelshowedit(text)} className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
+            <Button size="small" onClick={()=>handelshowdelete(text)} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
           </>
         }
       </>
@@ -318,178 +389,29 @@ const AdminUserComponent: React.FC = () => {
   ];
 
   useEffect(() => {
-    setData(datave)
     setloadingSkeleton(true)
-    setTimeout(() => {
-
-      setloadingSkeleton(false)
-    }, 1000)
-    
+    handelGetDataUsers(1)
+    setpageusers(2)
   }, [])
-  const tableRef = useRef(null);
+
 
   useEffect(() => {
-    
-    const tableBody = tableRef.current.querySelector('.ant-table-body');
-    tableBody.addEventListener('scroll', handleScroll);
-    
-    return () => {
-      tableBody.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      const contentEl = contentRef.current;
+      if (contentEl.scrollTop + contentEl.clientHeight === contentEl.scrollHeight) {
+        handelGetDataUsers(pageusers)
+      }
     };
-  }, []);
+    contentRef.current.addEventListener('scroll', handleScroll);
+    return () => {
+      contentRef.current.removeEventListener('scroll', handleScroll);
+    };
+  }, [data]);
   
-
-  const handleScroll = () => {
-    const tableBody = tableRef.current.querySelector('.ant-table-body');
-    console.log(tableBody.clientHeight, tableBody.scrollTop, tableBody.scrollHeight)
-    if (tableBody.scrollTop >= (tableBody.scrollHeight - tableBody.clientHeight)) {
-      setscrolltableheight(tableRef.current.querySelector('.ant-table-body').scrollHeight)
-      console.log('Scrolled to bottom');
-      setscrolltable(true)
-      setTimeout(()=>{
-        setData([
-          {
-            key: "1",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "admin",
-            avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/50b44393-1768-4b4d-8797-6f29296c07a4-96956a604c54950acc45.jpg",
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "2",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "admin",
-            avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/50b44393-1768-4b4d-8797-6f29296c07a4-96956a604c54950acc45.jpg",
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "3",
-            email: "nct@gmail.comádadsasdsdssdadsasdaddas",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/50b44393-1768-4b4d-8797-6f29296c07a4-96956a604c54950acc45.jpg",
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "4",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "5",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "6",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "7",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "8",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "9",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "10",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "17",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "18",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "19",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-          {
-            key: "110",
-            email: "nct@gmail.com",
-            lastName: "Nguyen",
-            firstName: "thăng",
-            role: "user",
-            avatar: null,
-            phoneNumber: "0357863600"
-          },
-        ])
-        setscrolltable(false)
-      },1500)
-      
-      
-    }else{
-      setscrolltable(false)
-    }
-  };
-
 
   return <>
-  
+   <div ref={contentRef} style={{ height: "78vh", overflowY: 'scroll' }} >
   <Table columns={columns}
-    scroll={{y: "70vh"}}
-    ref={tableRef}
     dataSource={data} pagination={false} className='shadow-md'
     footer={() => (<>
     {scrolltable? 
@@ -499,20 +421,49 @@ const AdminUserComponent: React.FC = () => {
      </>)}
     >
     </Table>
+    </div>
 
     {/* modal view */}
     {
-      userselect?
-      <Modal title={""} open={isModalOpen} footer={false} 
+      userselect?<>
+      <Modal title={""} width={300} open={isModalOpen} footer={false} 
       onCancel={()=>{setIsModalOpen(false)
         setuserselect(null)
       }} >
           <AdminUserShowComponent user={userselect} />
-        </Modal>
+        
+          </Modal>
+          </>
       :null
+
+      
     }
-   
-    
+    <>
+    {
+      userselectedit?
+      <Modal title={""} width={450} open={isModalEdit} footer={false} 
+      onCancel={()=>{setIsModalEdit(false)
+        setuserselectedit(null)
+      }} >
+          <AdminUserEditComponent user={userselectedit} />
+          </Modal>
+          :null
+    }
+    </>
+
+    <>
+    {
+      userselectDelete?
+      <Modal title={""} width={300} open={isModalDelete} footer={false} 
+      onCancel={()=>{setIsModalDelete(false)
+        setuserselectDelete(null)
+      }} >
+          <AdminUserDeleteComponent user={userselectDelete} />
+          </Modal>
+          :null
+    }
+    </>
+
     </>;
 };
 

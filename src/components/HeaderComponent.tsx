@@ -67,14 +67,14 @@ function HeaderComponent() {
             <h4 className="text-black text-lg !leading-4 font-bold !py-0 max-lg:hidden ">Wizcove IT</h4>
           </div>
         </Link>
-        <div className="flex justify-between items-center w-auto space-x-5 max-lg:space-x-2  max-sm:space-x-1">
-          <Input placeholder="Search Courses" className="text-base max-sm:text-xs" size="large"
+        <div className="flex justify-between items-center w-auto space-x-4 max-lg:space-x-2  max-sm:space-x-1">
+          <Input placeholder="Search Courses" className="text-base max-sm:text-xs w-[400px] max-lg:w-[250px] max-sm:w-[270px] max-xs:w-[250px]" size="large"
             prefix={<div><RiSearchLine className="text-base text-gray-400 " /></div>}
           />
-          <Link to="/" className="block text-sm font-medium  flex justify-start items-center !space-x-1 active-menu max-sm:hidden"><IoHome /><p>Home</p></Link>
-          <Link to="/courses" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><HiOutlineBookOpen /><p>Courses</p></Link>
-          <Link to="/roadmap" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><FaRoute /><p>Roadmap</p></Link>
-          <Link to="/block" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><HiOutlineNewspaper /><p>Block</p></Link>
+          <Link to="/" className="block text-sm font-medium  flex justify-start items-center !space-x-1 active-menu max-sm:hidden"><p>Home</p></Link>
+          <Link to="/courses" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Courses</p></Link>
+          <Link to="/roadmap" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Roadmap</p></Link>
+          <Link to="/block" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Block</p></Link>
           {
             auth.isAuthenticated ? <>
               <CartDropdown />

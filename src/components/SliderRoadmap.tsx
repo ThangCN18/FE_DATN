@@ -49,7 +49,7 @@ const SliderRoadmap: React.FC = () => {
                          <p className="text-black text-sm flex max-sm:text-[10px] justify-start items-center leading-3 space-x-1"><BsCheck className="!text-lg text-green-600"/>
                          <span>Redux</span></p>
                          </div>
-                         <Button type="primary" className="bg-blue-600 max-sm:text-xs ">See more</Button>
+                         <Button type="primary" className="bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold max-sm:text-xs ">See more</Button>
                     </div>
                 </div>
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
@@ -70,7 +70,7 @@ const SliderRoadmap: React.FC = () => {
                          <p className="text-black text-sm flex max-sm:text-[10px] justify-start items-center leading-3 space-x-1"><BsCheck className="!text-lg text-green-600"/>
                          <span>Server-side rendering</span></p>
                          </div>
-                         <Button type="primary" className="bg-blue-600 max-sm:text-xs ">See more</Button>
+                         <Button type="primary" className="bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold max-sm:text-xs ">See more</Button>
                     </div>
                 </div>
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
@@ -90,7 +90,7 @@ const SliderRoadmap: React.FC = () => {
                          <span>DevOP</span></p>
                         
                          </div>
-                         <Button type="primary" className="bg-blue-600 max-sm:text-xs ">See more</Button>
+                         <Button type="primary" className="bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold max-sm:text-xs ">See more</Button>
                     </div>
                 </div>
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
@@ -110,7 +110,7 @@ const SliderRoadmap: React.FC = () => {
                          <span>Automation Test</span></p>
                          
                          </div>
-                         <Button type="primary" className="bg-blue-600 max-sm:text-xs ">See more</Button>
+                         <Button type="primary" className="bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold max-sm:text-xs ">See more</Button>
                     </div>
                 </div>
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
@@ -129,7 +129,7 @@ const SliderRoadmap: React.FC = () => {
                          <p className="text-black text-sm flex max-sm:text-[10px] justify-start items-center leading-3 space-x-1"><BsCheck className="!text-lg text-green-600"/>
                          <span>Firebase</span></p>
                          </div>
-                         <Button type="primary" className="bg-blue-600 max-sm:text-xs ">See more</Button>
+                         <Button type="primary" className="bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold max-sm:text-xs ">See more</Button>
                     </div>
                 </div>
 

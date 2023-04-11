@@ -155,8 +155,7 @@
     display: none!important;
 }
 .ant-space.css-dev-only-do-not-override-1km3mtt.ant-space-horizontal.ant-space-align-center{
-    display: flex;
-    justify-content: end;
+    @apply flex justify-end
 }
 .ant-table-footer{
     @apply !bg-white !py-1 text-center
@@ -168,4 +167,18 @@
 #basic > div.ant-space.css-dev-only-do-not-override-1km3mtt.ant-space-horizontal.ant-space-align-center{
     display: flex;
     justify-content: space-between;
+}
+.ant-table-thead{
+    position: sticky;
+    top: 0;
+    background-color: gainsboro;
+    z-index: 1000;
+}
+
+.text-webkit-line-clamp-3{
+        display: -webkit-box;
+        max-width: 250px;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden; 
 }

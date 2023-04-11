@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { Button, Modal, Checkbox, Form, Input, Space } from 'antd';
+import { Button, Modal, Checkbox, Form, Input, Space, Avatar } from 'antd';
 import { FaApple, FaFacebookF, FaRegUser, FaTwitter } from 'react-icons/fa';
 import { FcGoogle } from "react-icons/fc"
 import { Link } from 'react-router-dom';
@@ -29,54 +29,21 @@ const AdminUserShowComponent: React.FC<props>= ({user}) => {
     
     return (
 
-            <Form
+            <Form 
             name="basic"
             layout="vertical"
             style={{ maxWidth: 600 }}
             initialValues={{ remember: true }}
             className='mt-8'
         >
-            <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Edit your information</h4>
-            <hr className='my-3'></hr>
-            <Space>
-            <Form.Item
-
-                    label="First name"
-                    name="firstName"
-                    initialValue={"ádadsas"}
-                    className='mb-4'
-                    >
-                    <Input className='font-normal text-base'  disabled/>
-                </Form.Item>
-                <Form.Item
-
-                    label="Last name"
-                    name="lastname"
-                    initialValue={user? user.lastName: ""}
-                    className='mb-4'
-                >
-                    <Input className='font-normal text-base' disabled/>
-                </Form.Item>
-            </Space>
-            <Form.Item
-                label="Email"
-                name="email"
-                className='mb-4'
-                initialValue={user? user.email: ""}
-
-            >
-                <Input className='font-normal text-base' disabled/>
-            </Form.Item>
-
-            <Form.Item
-                label="Phone Number"
-                name="phoneNumber"
-                className='mb-4'
-                initialValue={user? user.phoneNumber: ""}
-
-            >
-                <Input className='font-normal text-base' disabled/>
-            </Form.Item>
+           
+            <Avatar size={"large"} className='w-[100px] h-[100px] mx-auto block mb-3' src={user.avatar}/>
+            <h4 className='text-base font-semibold text-center  '>{user.lastName+" "+user.firstName}</h4>
+            <p className='text-xs text-gray-600 text-center truncate'>{"Id user: "+user.key}</p>
+            <hr className='my-3 mb-4'></hr>
+            <p className='text-sm my-2'><span className="font-medium">Email: </span><span>{user.email}</span></p>
+            <p className='text-sm my-2'><span className="font-medium">Role: </span><span>{user.role}</span></p>
+            <p className='text-sm my-2'><span className="font-medium">Phone Number: </span><span>{user.phoneNumber}</span></p>
             </Form>
 
 
