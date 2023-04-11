@@ -12,7 +12,10 @@ import UploadImageComponent from '../UploadImageComponent';
 import TextArea from 'antd/es/input/TextArea';
 import Carousel from 'react-multi-carousel';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {GrFormAdd} from "react-icons/gr"
+=======
+>>>>>>> f6ab0f3 (fix bug deploy next)
 =======
 >>>>>>> f6ab0f3 (fix bug deploy next)
 const { Option } = Select;
@@ -116,9 +119,14 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
                 <h5 className='text-base font-semibold truncate'>{section.name}</h5>
                 <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <Button size="small"  onClick={()=>{setshowmodaledit(true)}}  className='text-blue-600 border-blue-600 '><BiEdit /></Button>
                     <Button size="small" onClick={()=>{setshowmodaldelete(true)}}  className='text-red-600 border-red-600 mx-2'><MdDeleteForever /></Button>
                     <Button size="small"  className='text-green-600 border-green-600 '><GrFormAdd /></Button>
+=======
+                    <Button size="small"  onClick={()=>{setshowmodaledit(true)}}  className='text-blue-600 border-blue-600 mx-2'><BiEdit /></Button>
+                    <Button size="small" onClick={()=>{setshowmodaldelete(true)}}  className='text-red-600 border-red-600'><MdDeleteForever /></Button>
+>>>>>>> f6ab0f3 (fix bug deploy next)
 =======
                     <Button size="small"  onClick={()=>{setshowmodaledit(true)}}  className='text-blue-600 border-blue-600 mx-2'><BiEdit /></Button>
                     <Button size="small" onClick={()=>{setshowmodaldelete(true)}}  className='text-red-600 border-red-600'><MdDeleteForever /></Button>
@@ -184,6 +192,7 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
             <Form.Item className='mb-4 mt-7 text-center' >
                 <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
 <<<<<<< HEAD
+<<<<<<< HEAD
                     Edit
                 </Button>
             </Form.Item>
@@ -217,6 +226,8 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
 
             <Form.Item className='mb-4 mt-7 text-center' >
                 <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
+=======
+>>>>>>> f6ab0f3 (fix bug deploy next)
 =======
 >>>>>>> f6ab0f3 (fix bug deploy next)
                     Save
