@@ -181,6 +181,39 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
         </Form>
           
         </Modal>
+
+
+        <Modal open={showmodaledit} onCancel={()=>{setshowmodaledit(false)}} footer={null}>
+        <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create New Section</h4>
+            <hr className='my-3'></hr>
+         
+          
+          <Form
+            name="basic"
+            layout="vertical"
+            style={{ maxWidth: 600 }}
+            initialValues={{ remember: true }}
+            className='mt-8'
+            onFinish={onFinish}
+        >
+                <Form.Item
+                    label="Name"
+                    name="name"
+                    className='mb-4'
+                    rules={[{ required: true, message: 'Please input name!', type: "string" }]}
+                    initialValue={section.name}
+                >
+                    <Input className='font-normal text-base'/>
+                </Form.Item>
+
+            <Form.Item className='mb-4 mt-7 text-center' >
+                <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
+                    Save
+                </Button>
+            </Form.Item>
+        </Form>
+          
+        </Modal>
          
 
 
