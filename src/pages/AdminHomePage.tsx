@@ -2,23 +2,20 @@ import React, { useState, useEffect } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined
+  UserOutlined
 } from '@ant-design/icons';
 import {useNavigate} from 'react-router-dom';
 import { Layout, Menu, theme, Spin } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/types';
-import AdminUserComponent from '../components/adminComponent/AdminUserComponent';
 import { FaRoute } from 'react-icons/fa';
-import AdminRoadmapComponent from '../components/adminComponent/AdminRoadmapComponent';
 import { RiDashboardLine } from 'react-icons/ri';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import UserDropdown from '../components/UserDropdown';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
+
 
 const { Header, Sider, Content } = Layout;
 

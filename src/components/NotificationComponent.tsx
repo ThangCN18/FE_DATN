@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { Button, notification, Space } from 'antd';
+import { notification } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
 import { unsetNotify } from '../store/notifycationSlide';
