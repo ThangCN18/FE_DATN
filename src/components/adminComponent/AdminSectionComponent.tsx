@@ -175,7 +175,7 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
 
             <Form.Item className='mb-4 mt-7 text-center' >
                 <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
-                    Save
+                    Edit
                 </Button>
             </Form.Item>
         </Form>
