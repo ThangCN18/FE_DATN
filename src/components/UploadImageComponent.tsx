@@ -95,7 +95,7 @@ const UploadImageComponent: React.FC<propsUpload> = ({url_image, seturl_image}) 
         </div>
     );
 
-    const getImage = async (id: String) => {
+    const getImage = async (id: string) => {
 
         await api.put('/upload/update-acl',
             {

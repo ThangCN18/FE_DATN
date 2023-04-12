@@ -92,7 +92,7 @@ const UploadAvatar: React.FC = () => {
         </div>
     );
 
-    const getImage = async (id: String) => {
+    const getImage = async (id: string) => {
 
         await api.put('/upload/update-acl',
             {
@@ -119,7 +119,7 @@ const UploadAvatar: React.FC = () => {
     }
 
 
-    const handelEditUser = async (data: {avatar: String}) =>{
+    const handelEditUser = async (data: {avatar: string}) =>{
         dispatch(setLoading({}))
         await api.put('/users/profile',
             data,
@@ -132,7 +132,7 @@ const UploadAvatar: React.FC = () => {
        
         ).then((response:any)=>{
             if (response.status === 204){
-                dispatch(editUser({avatar: data.avatar}))
+                dispatch(editUser(response.data))
                 dispatch(setNotify({ typeNotify: "success", titleNotify: "Edit avatar successful!", messageNotify: "You Edited avatar successful" }))
                 dispatch(unsetLoading({}))
             }

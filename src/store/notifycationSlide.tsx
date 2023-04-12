@@ -3,14 +3,14 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 interface NotifyState {
   isNotify: boolean;
   typeNotify: 'success' | 'info' | 'warning' | 'error';
-  titleNotify: String,
-  messageNotify: String
+  titleNotify: string,
+  messageNotify: string
 }
 
 interface NotifyAction {
   typeNotify: 'success' | 'info' | 'warning' | 'error';
-  titleNotify: String;
-  messageNotify: String
+  titleNotify: string;
+  messageNotify: string
 }
 
 const initialState: NotifyState = {

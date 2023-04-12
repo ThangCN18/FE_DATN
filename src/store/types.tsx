@@ -20,13 +20,13 @@ export interface LoadState {
 interface NotifyState {
   isNotify: boolean;
   typeNotify: 'success' | 'info' | 'warning' | 'error';
-  titleNotify: String,
-  messageNotify: String
+  titleNotify: string,
+  messageNotify: string
 }
 
 
 export interface User {
-  id: string
+  id: any
   email: string
   lastName: string
   firstName: string
