@@ -398,14 +398,18 @@ const handelGetDataUsers = async (page: number) => {
   useEffect(() => {
     const handleScroll = () => {
       const contentEl = contentRef.current;
-      if (contentEl.scrollTop + contentEl.clientHeight === contentEl.scrollHeight) {
-        handelGetDataUsers(pageusers)
+      if (contentEl) {
+        if (contentEl.scrollTop + contentEl.clientHeight === contentEl.scrollHeight) {
+          handelGetDataUsers(pageusers)
+        }
+        contentEl.addEventListener('scroll', handleScroll);
+      return () => {
+        contentEl.removeEventListener('scroll', handleScroll);
+      };
+      };
+      
       }
-    };
-    contentRef.current.addEventListener('scroll', handleScroll);
-    return () => {
-      contentRef.current.removeEventListener('scroll', handleScroll);
-    };
+     
   }, [data]);
   
 
