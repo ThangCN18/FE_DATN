@@ -317,7 +317,7 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
                     <TextArea rows={4} className='font-normal text-base'/>
                 </Form.Item>
                 </Space>
-                <Form.List name="courses" initialValue={roadmap.courses}>
+                <Form.List name="courses" initialValue={roadmap.courses || []}>
       {(fields, { add, remove }) => (
         
         <div>
