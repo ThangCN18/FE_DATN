@@ -21,7 +21,7 @@ const VerifyEmailPage: React.FC = () => {
     console.log(queryParamValue)
 
 
-    const handelVerify = async (data: { token: String }) => {
+    const handelVerify = async (data: { token: string }) => {
         dispatch(setLoading({}))
         await api.put('/auth/verify-email', data).then((response: any) => {
             if (response.status === 204) {

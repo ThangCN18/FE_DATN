@@ -12,8 +12,8 @@ interface props {
     setcontentModal: React.Dispatch<React.SetStateAction<number>>
 };
 interface RegisterData {
-    firstName: String
-    lastName: String
+    firstName: string
+    lastName: string
     email: string
     password: string
   }

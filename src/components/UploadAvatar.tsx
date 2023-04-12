@@ -92,7 +92,7 @@ const UploadAvatar: React.FC = () => {
         </div>
     );
 
-    const getImage = async (id: String) => {
+    const getImage = async (id: string) => {
 
         await api.put('/upload/update-acl',
             {
@@ -119,7 +119,7 @@ const UploadAvatar: React.FC = () => {
     }
 
 
-    const handelEditUser = async (data: {avatar: String}) =>{
+    const handelEditUser = async (data: {avatar: string}) =>{
         dispatch(setLoading({}))
         await api.put('/users/profile',
             data,

@@ -14,9 +14,9 @@ interface props {
     setcontentModal: React.Dispatch<React.SetStateAction<number>>
 };
 interface EditData {
-    firstName: String
-    lastName: String
-    phoneNumber: String
+    firstName: string
+    lastName: string
+    phoneNumber: string
   }
 
 const EditUserComponent: React.FC= () => {
