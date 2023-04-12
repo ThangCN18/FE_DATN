@@ -64,7 +64,7 @@ const UploadImageComponent: React.FC<propsUpload> = ({url_image, seturl_image}) 
 
             const headers = {
                 Accept: '*/*',
-                Authorization: 'Bearer ' + auth.user.accessToken,
+                Authorization: 'Bearer ' + auth.user?.accessToken,
                 'content-type': 'multipart/form-data'
             };
 
@@ -104,7 +104,7 @@ const UploadImageComponent: React.FC<propsUpload> = ({url_image, seturl_image}) 
             {
                 headers: {
                     Accept: '*/*',
-                    Authorization: 'Bearer ' + auth.user.accessToken,
+                    Authorization: 'Bearer ' + auth.user?.accessToken,
                 }
             },
 

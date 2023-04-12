@@ -35,7 +35,7 @@ const AdminCourseItemComponent:  React.FC<propstype>= ({course, handelGetDataCou
     const navigate = useNavigate()
     const headers = {
         Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.accessToken,
+        Authorization: 'Bearer ' + auth.user?.accessToken,
       };
 
     const handleDeleteCourse = async () =>{

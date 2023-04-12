@@ -40,7 +40,7 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
     const navigate = useNavigate()
     const headers = {
         Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.accessToken,
+        Authorization: 'Bearer ' + auth.user?.accessToken,
       };
 
 

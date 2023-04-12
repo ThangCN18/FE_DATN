@@ -34,7 +34,7 @@ const EditUserComponent: React.FC= () => {
 
       const headers = {
         Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.accessToken,
+        Authorization: 'Bearer ' + auth.user?.accessToken,
       };
     const handelEditUser = async (data: EditData) =>{
         dispatch(setLoading({}))
@@ -77,7 +77,7 @@ const EditUserComponent: React.FC= () => {
                 <Form.Item
                     label="First name"
                     name="firstname"
-                    initialValue={auth.user.firstName}
+                    initialValue={auth.user?.firstName}
                     className='mb-4'
                     rules={[{ required: true, message: 'Please input your first name!', type: "string" }]}
                 >
@@ -87,7 +87,7 @@ const EditUserComponent: React.FC= () => {
 
                     label="Last name"
                     name="lastname"
-                    initialValue={auth.user.lastName}
+                    initialValue={auth.user?.lastName}
                     className='mb-4'
                     rules={[{ required: true, message: 'Please input your last name!', type: "string" }]}
                 >
@@ -98,7 +98,7 @@ const EditUserComponent: React.FC= () => {
                 label="Email"
                 name="email"
                 className='mb-4'
-                initialValue={auth.user.email}
+                initialValue={auth.user?.email}
             >
                 <Input className='font-normal text-base' disabled/>
             </Form.Item>
@@ -107,7 +107,7 @@ const EditUserComponent: React.FC= () => {
                 label="Phone Number"
                 name="phoneNumber"
                 className='mb-4'
-                initialValue={auth.user.phoneNumber}
+                initialValue={auth.user?.phoneNumber}
                 rules={[{ required: true, message: 'Please input your Phone Number!', type: "string" }]}
             >
                 <Input className='font-normal text-base'/>

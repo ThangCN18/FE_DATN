@@ -42,7 +42,7 @@ const AdminDetailCourseComponent: React.FC  = () => {
       const [form] = Form.useForm();
       const headers = {
           Accept: '*/*',
-          Authorization: 'Bearer ' + auth.user.accessToken,
+          Authorization: 'Bearer ' + auth.user?.accessToken,
         };
     
       const handleCreateNewCourse = async (inputData: any) =>{

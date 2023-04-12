@@ -41,7 +41,7 @@ function ProfilePage() {
             setemail(auth.user.email)
             setfirstName(auth.user.firstName)
             setlastName(auth.user.lastName)
-            setid(auth.user.id)
+            setid(auth.user?.id)
             
         }
         setTimeout(() => {
@@ -58,7 +58,7 @@ function ProfilePage() {
     {
       headers: {
         accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.refreshToken,
+        Authorization: 'Bearer ' + auth.user?.refreshToken,
 
       },
     }

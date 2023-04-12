@@ -8,7 +8,17 @@
 
   const initialState: AuthState = {
     isAuthenticated: false,
-    user: null
+    user:  {
+      id: "",
+      email: "",
+      lastName: "",
+      firstName: "",
+      role: "",
+      avatar: "",
+      phoneNumber: "",
+      accessToken: "",
+      refreshToken: ""
+    }
   }
 
   const authSlice = createSlice({

@@ -56,7 +56,7 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
 
     const headers = {
         Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.accessToken,
+        Authorization: 'Bearer ' + auth.user?.accessToken,
       };
 
     const handleDeleteRoadmap = async () =>{
