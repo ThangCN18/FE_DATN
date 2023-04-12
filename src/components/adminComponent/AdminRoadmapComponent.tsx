@@ -256,22 +256,22 @@ const AdminRoadmapComponent: React.FC = () => {
                     <TextArea rows={3} className='font-normal text-base'/>
                 </Form.Item>
 
-                <Space>
+                <Space className='flex !justify-between'>
                 <Form.Item
                     label="Requirements"
                     name="requirements"
-                    className='mb-4'
+                    className='mb-4 !w-[100%]'
                     rules={[{ required: true, message: 'Please input requirements!', type: "string" }]}
                 >
-                    <TextArea rows={4} className='font-normal text-base'/>
+                    <TextArea rows={4} className='font-normal text-base !w-[100%]'/>
                 </Form.Item>
                 <Form.Item
                     label="Benefits"
                     name="benefits"
-                    className='mb-4'
+                    className='mb-4 '
                     rules={[{ required: true, message: 'Please input benefits!', type: "string" }]}
                 >
-                    <TextArea rows={4} className='font-normal text-base'/>
+                    <TextArea rows={4} className='font-normal text-base !w-[100%]' />
                 </Form.Item>
                 </Space>
               

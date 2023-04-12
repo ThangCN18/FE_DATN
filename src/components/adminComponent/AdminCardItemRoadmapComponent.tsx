@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import UploadImageComponent from '../UploadImageComponent';
 import TextArea from 'antd/es/input/TextArea';
 import Carousel from 'react-multi-carousel';
-
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
 import { Select } from 'antd';
 import type { SelectProps } from 'antd';
 
@@ -45,14 +45,13 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
     const [datacoursechange, setdatacoursechange] = useState([])
     const [url_image, seturl_image] = useState(roadmap.image)
     const arrayNameCourse = dataCourse.map(course=>{
-        return {value: course.name,
+        return {value: course.id,
             label: course.name
         }
     })
     const options: SelectProps['options'] = arrayNameCourse;
 
     const [form] = Form.useForm();
-
 
 
     const headers = {
@@ -113,7 +112,6 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
        
         ).then((response:any)=>{
             if (response.status === 204){
-                
                 form.resetFields()
                 console.log(response)
                 getDataRoadmap()
@@ -139,8 +137,10 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
                 description: values.description, 
                 image: url_image,
                 requirements: requirements,
-                benefits: benefits
+                benefits: benefits,
+                courses: values.courses
             }
+            console.log(inputData)
             handleUpdateRoadmap(inputData)
 
         }
@@ -234,7 +234,7 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
             
 
             </div>
-            <h5 className='font-bold mb-2'>List courses:</h5>
+            {/* <h5 className='font-bold mb-2'>List courses:</h5>
             <Carousel responsive={responsive}>
 
             {
@@ -245,7 +245,7 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
                      }</>: <div></div>
                 }
 
-            </Carousel>
+            </Carousel> */}
            
             
             
@@ -297,7 +297,7 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
                     <Input className='font-normal text-base'/>
                 </Form.Item>
 
-                <Space>
+                <Space className='flex !justify-between'>
                 <Form.Item
                     label="Requirements"
                     name="requirements"
@@ -317,6 +317,52 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
                     <TextArea rows={4} className='font-normal text-base'/>
                 </Form.Item>
                 </Space>
+                <Form.List name="courses" initialValue={roadmap.courses}>
+      {(fields, { add, remove }) => (
+        
+        <div>
+          {fields.map(({ key, name, ...restField }) => (
+            <div className='flex justify-between space-x-2 bg-gray-50 py-4 px-3 my-3 rounded-md'>
+                <div className='!w-[95%] '>
+            <Form.Item
+                {...restField}
+                name={[name, 'courseId']}
+                rules={[{ required: true, message: 'Missing course name' }]}
+              >
+               <Select
+                        style={{ width: '100%' }}
+                        options={options}
+                    />
+              </Form.Item>
+            
+              <Form.Item
+                {...restField}
+                name={[name, 'title']}
+                rules={[{ required: true, message: 'Missing title' }]}
+              >
+                <Input placeholder="Title" />
+              </Form.Item>
+              <Form.Item
+                {...restField}
+                name={[name, 'description']}
+                className='!pb-0 !mb-0'
+                rules={[{ required: true, message: 'Missing description' }]}
+              >
+                <TextArea placeholder="Description" />
+              </Form.Item>
+              </div>
+              <MinusCircleOutlined onClick={() => remove(name)} />
+            
+            </div>
+          ))}
+          <Form.Item>
+            <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+              Add Course
+            </Button>
+          </Form.Item>
+        </div>
+      )}
+    </Form.List>
 
                 
               
@@ -329,6 +375,8 @@ const AdminCardItemRoadmapComponent:  React.FC<propstype>= ({roadmap, getDataRoa
         </Form>
           
         </Modal>
+
+
 
     
     </>
