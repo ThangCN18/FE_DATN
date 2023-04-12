@@ -70,19 +70,19 @@ export default defineConfig({
     ViteAliases({}),
     reactJsx(),
     reactRefresh(),
-    vitePluginImp({
-      libList: [
-        {
-          libName: "antd",
-          style: (name) => {
-            if (name === "col" || name === "row") {
-              return "antd/lib/style/index.js";
-            }
-            return `antd/es/${name}/index.js`;
-          },
-        },
-      ],
-    }),
+    // vitePluginImp({
+    //   libList: [
+    //     {
+    //       libName: "antd",
+    //       style: (name) => {
+    //         if (name === "col" || name === "row") {
+    //           return "antd/lib/style/index.js";
+    //         }
+    //         return `antd/es/${name}/index.js`;
+    //       },
+    //     },
+    //   ],
+    // }),
   ],
   css: {
     preprocessorOptions: {
@@ -92,15 +92,15 @@ export default defineConfig({
       },
     },
   },
-  build: {
-    rollupOptions: {
-        output:{
-            manualChunks(id) {
-                if (id.includes('node_modules')) {
-                    return id.toString().split('node_modules/')[1].split('/')[0].toString();
-                }
-            }
-        }
-    }
-}
+//  build: {
+//   rollupOptions: {
+//     output: {
+//       manualChunks(id) {
+//         if (id.includes('node_modules')) {
+//           return id.toString().split('node_modules/')[1].split('/')[0].toString();
+//         }
+//       }
+//     }
+//   }
+// }
 });

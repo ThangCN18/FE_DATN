@@ -20,7 +20,7 @@ function NotifyDropdown() {
       label: (
         <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="/https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
             title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
             description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
@@ -32,7 +32,7 @@ function NotifyDropdown() {
       label: (
         <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="/https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
             title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
             description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
@@ -44,7 +44,7 @@ function NotifyDropdown() {
       label: (
         <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="/https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
             title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
             description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
@@ -56,7 +56,7 @@ function NotifyDropdown() {
       label: (
         <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="/https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
             title={<h5 className="truncate w-[230px]  max-sm:w-[150px] max-sm:text-xs">Đăng ký tai khoản</h5>}
             description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs">Bạn đã đk tk thành công</p>}
           />
