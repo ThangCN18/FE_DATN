@@ -395,22 +395,21 @@ const handelGetDataUsers = async (page: number) => {
   }, [])
 
 
-  const handleScroll = () => {
-    const contentEl = contentRef.current;
-    if (contentEl) {
-      if (contentEl.scrollTop + contentEl.clientHeight === contentEl.scrollHeight) {
-        handelGetDataUsers(pageusers);
-      }
-    }
-  };
-  
   useEffect(() => {
-    const contentEl = contentRef.current;
-    contentEl?.addEventListener('scroll', handleScroll);
-  
-    return () => {
-      contentEl?.removeEventListener('scroll', handleScroll);
-    };
+    const handleScroll = () => {
+      const contentEl = contentRef.current;
+      if (contentEl) {
+        if (contentEl.scrollTop + contentEl.clientHeight === contentEl.scrollHeight) {
+          handelGetDataUsers(pageusers)
+        }
+        contentEl.addEventListener('scroll', handleScroll);
+      return () => {
+        contentEl.removeEventListener('scroll', handleScroll);
+      };
+      };
+      
+      }
+     
   }, [data]);
   
 

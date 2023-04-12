@@ -52,7 +52,7 @@ const UploadAvatar: React.FC = () => {
         setFileList(newFileList);
         if (fileList.length < 1) {
             newFileList.forEach((file) => {
-                formData.append('file', file.originFileObj);
+                formData.append('file', file.originFileObj!);
             });
 
             const headers = {
