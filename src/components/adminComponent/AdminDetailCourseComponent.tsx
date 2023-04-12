@@ -11,6 +11,11 @@ import { setLoading, unsetLoading } from '../../store/loadSlice';
 import { setNotify } from '../../store/notifycationSlide';
 import AdminSectionComponent from './AdminSectionComponent';
 const { Panel } = Collapse;
+
+interface coursetype {
+
+}
+
  
 const AdminDetailCourseComponent: React.FC  = () => {
 
