@@ -39,7 +39,7 @@ const AdminLectureComponent:  React.FC<propstype>= ({section, lecture, handelGet
     const navigate = useNavigate()
     const headers = {
         Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.accessToken,
+        Authorization: 'Bearer ' + auth.user?.accessToken,
       };
 
 
@@ -176,7 +176,7 @@ const AdminLectureComponent:  React.FC<propstype>= ({section, lecture, handelGet
                 </Form.Item>
                 <div className='bg-gray-200 rounded-md w-100% h-[200px]'>
                     {videoUrl? <>{videoUrl.split("/")[3]?<>
-                    <iframe width="270" height="200" src={"https://www.youtube.com/embed/"+videoUrl.split("/")[3]} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="270" height="200" src={"https://www.youtube.com/embed/"+videoUrl.split("/")[3]} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
                     </>:null}</>: null}
                 </div>
 

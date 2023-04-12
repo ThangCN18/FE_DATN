@@ -57,7 +57,7 @@ const UploadAvatar: React.FC = () => {
 
             const headers = {
                 Accept: '*/*',
-                Authorization: 'Bearer ' + auth.user.accessToken,
+                Authorization: 'Bearer ' + auth.user?.accessToken,
                 'content-type': 'multipart/form-data'
             };
 
@@ -101,7 +101,7 @@ const UploadAvatar: React.FC = () => {
             {
                 headers: {
                     Accept: '*/*',
-                    Authorization: 'Bearer ' + auth.user.accessToken,
+                    Authorization: 'Bearer ' + auth.user?.accessToken,
                 }
             },
 
@@ -126,7 +126,7 @@ const UploadAvatar: React.FC = () => {
             {
                 headers: {
                     Accept: '*/*',
-                    Authorization: 'Bearer ' + auth.user.accessToken,
+                    Authorization: 'Bearer ' + auth.user?.accessToken,
                 }
               },
        
@@ -145,13 +145,13 @@ const UploadAvatar: React.FC = () => {
     }
 
     useEffect(() => {
-        if (auth.user.avatar) {
+        if (auth.user?.avatar) {
             setFileList([
                 {
                     uid: '-1',
                     name: 'avartar.png',
                     status: 'success',
-                    url: auth.user.avatar,
+                    url: auth.user?.avatar,
                 }
             ])
         }

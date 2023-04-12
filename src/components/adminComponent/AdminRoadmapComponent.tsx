@@ -70,7 +70,7 @@ const AdminRoadmapComponent: React.FC = () => {
     const [form] = Form.useForm();
     const headers = {
         Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.accessToken,
+        Authorization: 'Bearer ' + auth.user?.accessToken,
       };
 
     const handleCreateNewRoadmap = async (inputData: any) =>{

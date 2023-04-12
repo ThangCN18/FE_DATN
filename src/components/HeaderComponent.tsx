@@ -41,7 +41,7 @@ function HeaderComponent() {
     {
       headers: {
         accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.refreshToken,
+        Authorization: 'Bearer ' + auth.user?.refreshToken,
 
       },
     }

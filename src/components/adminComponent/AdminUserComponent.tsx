@@ -69,7 +69,7 @@ let datave: UserType[] = [
     lastName: "Nguyen",
     firstName: "thăng",
     role: "user",
-    avatar: null,
+    avatar: "",
     phoneNumber: "0357863600"
   },
   {
@@ -78,7 +78,7 @@ let datave: UserType[] = [
     lastName: "Nguyen",
     firstName: "thăng",
     role: "user",
-    avatar: null,
+    avatar: "",
     phoneNumber: "0357863600"
   },
   {
@@ -87,7 +87,7 @@ let datave: UserType[] = [
     lastName: "Nguyen",
     firstName: "thăng",
     role: "user",
-    avatar: null,
+    avatar: "",
     phoneNumber: "0357863600"
   },
   {
@@ -96,7 +96,7 @@ let datave: UserType[] = [
     lastName: "Nguyen",
     firstName: "thăng",
     role: "user",
-    avatar: null,
+    avatar: "",
     phoneNumber: "0357863600"
   },
   {
@@ -105,7 +105,7 @@ let datave: UserType[] = [
     lastName: "Nguyen",
     firstName: "thăng",
     role: "user",
-    avatar: null,
+    avatar: "",
     phoneNumber: "0357863600"
   },
   {
@@ -114,7 +114,7 @@ let datave: UserType[] = [
     lastName: "Nguyen",
     firstName: "thăng",
     role: "user",
-    avatar: null,
+    avatar: "",
     phoneNumber: "0357863600"
   }
 ];
@@ -169,7 +169,7 @@ const AdminUserComponent: React.FC = () => {
   }
   const headers = {
     Accept: '*/*',
-    Authorization: 'Bearer ' + auth.user.accessToken,
+    Authorization: 'Bearer ' + auth.user?.accessToken,
   };
 const handelGetDataUsers = async (page: number) => {
   setscrolltable(true)

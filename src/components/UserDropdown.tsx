@@ -8,7 +8,7 @@ import { TbLogout } from "react-icons/tb"
 import { FiHelpCircle } from "react-icons/fi"
 import { HiOutlineNewspaper, HiOutlineBookOpen } from "react-icons/hi"
 import { useSelector } from "react-redux";
-import { RootState } from "@src/store/types";
+import { RootState } from "../store/types";
 
 const { Meta } = Card;
 
@@ -28,8 +28,8 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
       label: (
         <Card style={{ width: 230 }} loading={loading} className="user-item-menu m-2  max-sm:!w-[150px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[50px] h-[50px] max-sm:!w-[40px] max-sm:!h-[40px]" src={auth.user.avatar? auth.user.avatar: '/src/assets/images/default-avatar-profile.png'} />}
-            title={<h5 className="truncate w-[180px] max-sm:!w-[100px] max-sm:text-xs">{auth.user.lastName+" "+auth.user.firstName}</h5>}
+            avatar={<Avatar className="!rounded-full w-[50px] h-[50px] max-sm:!w-[40px] max-sm:!h-[40px]" src={auth.user?.avatar? auth.user?.avatar: '/src/assets/images/default-avatar-profile.png'} />}
+            title={<h5 className="truncate w-[180px] max-sm:!w-[100px] max-sm:text-xs">{auth.user?.lastName+" "+auth.user?.firstName}</h5>}
             description={<Link to={"/profile"}><p className="truncate w-[180px] max-sm:!w-[100px] max-sm:text-xs">Manage Profile</p></Link>}
           />
         </Card>
@@ -97,7 +97,7 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
   return (
     <Dropdown menu={{ items }} placement="bottomRight" className="max-sm:hidden" arrow>
       <Button className="!p-0 border-none bg-gray-100 !min-w-[40px] max-sm:text-xs !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
-        <div className="text-base">{auth.user.avatar? <Avatar src={auth.user.avatar}/> :<FaRegUser />}</div></Button>
+        <div className="text-base">{auth.user?.avatar? <Avatar src={auth.user?.avatar}/> :<FaRegUser />}</div></Button>
     </Dropdown>
   );
 }

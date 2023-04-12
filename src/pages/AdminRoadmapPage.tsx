@@ -41,7 +41,7 @@ function AdminRoadmapPage() {
     {
       headers: {
         accept: '*/*',
-        Authorization: 'Bearer ' + auth.user.refreshToken,
+        Authorization: 'Bearer ' + auth.user?.refreshToken,
 
       },
     }
@@ -84,7 +84,7 @@ function AdminRoadmapPage() {
             theme='light'
             mode="inline"
             selectedKeys={[selectedMenu]}
-            items = {auth.user.role === "admin"? [
+            items = {auth.user?.role === "admin"? [
               {
                 key: '1',
                 icon: <RiDashboardLine />,
