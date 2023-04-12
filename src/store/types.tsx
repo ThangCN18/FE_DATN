@@ -26,7 +26,7 @@ interface NotifyState {
 
 
 export interface User {
-  id: string
+  id: any
   email: string
   lastName: string
   firstName: string

@@ -46,7 +46,7 @@ const EditUserComponent: React.FC= () => {
        
         ).then((response:any)=>{
             if (response.status === 204){
-                dispatch(editUser({firstName: data.firstName, lastName: data.lastName, phoneNumber: data.phoneNumber}))
+                dispatch(editUser(response.data))
                 form.resetFields()
                 dispatch(setNotify({typeNotify: "success", titleNotify: "Edit User successful!", messageNotify: 'You Edited User successful'}))
                 dispatch(unsetLoading({}))

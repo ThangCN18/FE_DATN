@@ -132,7 +132,7 @@ const UploadAvatar: React.FC = () => {
        
         ).then((response:any)=>{
             if (response.status === 204){
-                dispatch(editUser({avatar: data.avatar}))
+                dispatch(editUser(response.data))
                 dispatch(setNotify({ typeNotify: "success", titleNotify: "Edit avatar successful!", messageNotify: "You Edited avatar successful" }))
                 dispatch(unsetLoading({}))
             }
