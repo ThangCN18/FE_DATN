@@ -241,7 +241,7 @@ const AdminSectionComponent:  React.FC<propstype>= ({section, course, handelGetD
                 </Form.Item>
                 <div className='bg-gray-200 rounded-md w-100% h-[200px]'>
                     {videoUrl? <>{videoUrl.split("/")[3]?<>
-                    <iframe width="270" height="200" src={"https://www.youtube.com/embed/"+videoUrl.split("/")[3]} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe width="270" height="200" src={"https://www.youtube.com/embed/"+videoUrl.split("/")[3]} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
                     </>:null}</>: null}
                 </div>
 

@@ -1,5 +1,5 @@
 
-import { RootState } from '@src/store/types';
+import { RootState } from '../store/types';
 import api from '../configs/axiosConfig';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import { setNotify } from '../store/notifycationSlide';

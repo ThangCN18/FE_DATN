@@ -10,12 +10,12 @@ const ItemCourseComponent: React.FC = ()=>{
          <Col xs={24} sm={24} md={12} lg={12} xl={6}>
       <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
     hoverable
-    cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src="https://cphinf.pstatic.net/mooc/20181107_43/15415645512142Dd3u_PNG/____HTML__CSS__.png" />}
+    cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src="/https://cphinf.pstatic.net/mooc/20181107_43/15415645512142Dd3u_PNG/____HTML__CSS__.png" />}
   >
     <Meta className="text-left text-title-course" title="Europe Street beat jajsajasj Europe Street beat jajsajasj"/>
     <Meta
     className="justify-start items-center text-left !py-3 text-avatar-course"
-          avatar={<Avatar src="https://joesch.moe/api/v1/random?key=1" />}
+          avatar={<Avatar src="/https://joesch.moe/api/v1/random?key=1" />}
           title="Nguyen Chi Thang"
         />
         <Space className="!flex !justify-between mt-2">

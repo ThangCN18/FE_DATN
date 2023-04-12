@@ -9,7 +9,7 @@ const AboutUsHomeComponent: React.FC = () => {
             <div className='flex flex-col justify-center items-start px-10 max-md:px-0 max-md:py-5 space-y-2'>
                 <h4 className='text-sm text-gray-800 font-bold'>About Us</h4>
                 <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
-                    <img className="w-[45px] max-lg:w-[25px]" src="./src/assets/images/logo-learning.png" alt="logo"/>
+                    <img className="w-[45px] max-lg:w-[25px]" src="/./src/assets/images/logo-learning.png" alt="logo"/>
                     <h4 className="text-black text-2xl !leading-4 font-bold !py-0 max-lg:text-base max-md:text-sm">Wizcove IT <span>specialize in providing IT courses.</span></h4>
                     
                 </div>
