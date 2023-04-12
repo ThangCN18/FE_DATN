@@ -3,7 +3,7 @@ import { Col, DatePicker } from "antd";
 import { Routes, Route, useLocation  } from 'react-router-dom'
 
 import AdminHomePage from "./pages/AdminHomePage";
-import HomePage from "./pages/Homepage";
+import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import { useSelector } from "react-redux";
 import { RootState } from "./store/types";
