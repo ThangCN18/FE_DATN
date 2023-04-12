@@ -38,13 +38,13 @@ const App = () => {
         auth.user?<>
         <Route path='/profile' element={<ProfilePage />} />
         {
-        auth.user?.role != "user"?<>
+        auth.user.role != "user"?<>
         <Route path='/admin' element={<AdminHomePage/>} />
         <Route path='/admin/roadmap' element={<AdminRoadmapPage />} />
         <Route path='/admin/course/:id' element={<AdminCourseDetailPage/>} />
         <Route path='/admin/course' element={<AdminCoursePage/>} />
         {
-        auth.user?.role == "admin"?<>
+        auth.user.role == "admin"?<>
         <Route path='/admin/user' element={<AdminUserPage />} />
        
         </>
