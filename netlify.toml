@@ -1,0 +1,7 @@
+[build]
+    publish = "build"
+    functions = "./functions/"
+[[redirects]]
+    from = "/*"
+    to = "/imdex.html"
+    status = 200
