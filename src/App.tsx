@@ -5,7 +5,7 @@ import { Routes, Route, useLocation  } from 'react-router-dom'
 import AdminHomePage from "./pages/AdminHomePage";
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "./store/types";
 import NotificationComponent from "./components/NotificationComponent";
 import VerifyEmailPage from "./pages/VerifyEmailPage";
@@ -17,6 +17,7 @@ import AdminCoursePage from "./pages/AdminCoursePage";
 import AdminCourseDetailPage from "./pages/AdminCourseDetailPage";
 import CoursesPage from "./pages/CoursesPage";
 import DetailCoursesPage from "./pages/DetailCoursePage";
+import { unsetLoading } from "./store/loadSlice";
 
 
 
@@ -24,11 +25,15 @@ const App = () => {
 
   const auth = useSelector((state: RootState) => state.root.auth)
   const location = useLocation();
-
+  const dispatch = useDispatch()
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 
   }, [location.pathname])
+
+  useEffect(()=>{
+    dispatch(unsetLoading({}))
+  }, [])
   
 
 
