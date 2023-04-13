@@ -9,6 +9,7 @@ import { FiHelpCircle } from "react-icons/fi"
 import { HiOutlineNewspaper, HiOutlineBookOpen } from "react-icons/hi"
 import { useSelector } from "react-redux";
 import { RootState } from "../store/types";
+import { RiDashboardLine } from "react-icons/ri";
 
 const { Meta } = Card;
 
@@ -39,6 +40,21 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
       key: 'card2',
       label: (<hr />
       ),
+    },
+    { 
+      key: 'card323',
+      label: (<>
+      {
+        auth.user.role != "user"?
+        <Link to={"/admin"} className={"!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450 "}>
+          <RiDashboardLine className="w-[16px] h-[16px]" />
+          <p>Admin</p>
+
+        </Link>:null
+      }
+      </>
+        
+      )
     },
     {
       key: 'card3',

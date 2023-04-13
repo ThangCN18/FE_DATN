@@ -6,7 +6,7 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { Layout, Menu, theme, Spin, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
@@ -28,7 +28,7 @@ function AdminCoursePage() {
   const [selectedMenu, setSelectedMenu] = useState('4');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
-  const [loadingaa, setLoaddingaa] = useState(true);
+  const [loadingaa, setLoaddingaa] = useState(false);
   const navigate = useNavigate()
   const loading =  useSelector((state: RootState) => state.root.load)
 
@@ -60,14 +60,13 @@ function AdminCoursePage() {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  useEffect(() => {
-      setLoaddingaa(false)
-  },[])
+
 
   return (
     loadingaa ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
       <Layout className='h-[100vh]' >
         <Sider trigger={null} collapsible collapsed={collapsed} className="!bg-gray-100">
+        <Link to="/">
           {
             !collapsed ?
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
@@ -79,6 +78,7 @@ function AdminCoursePage() {
 
               </div>
           }
+          </Link>
           <Menu
             theme='light'
             mode="inline"
@@ -124,14 +124,7 @@ function AdminCoursePage() {
                 icon: <RiDashboardLine />,
                 label: 'Dashboard',
               },
-              {
-                key: '2',
-                icon: <UserOutlined />,
-                label: 'Users',
-                onClick: ()=>{
-                  navigate('/admin/user')
-                }
-              },
+              
               {
                 key: '3',
                 icon: <FaRoute />,

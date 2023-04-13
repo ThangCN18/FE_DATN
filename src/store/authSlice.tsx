@@ -29,9 +29,12 @@
         state.isAuthenticated = true
         state.user = action.payload
       },
-      editUser(state, action: PayloadAction<User>) {
+      editUser(state, action: PayloadAction<Partial<User>>) {
         state.isAuthenticated = true
-        state.user = action.payload
+        state.user = {
+          ...state.user,
+          ...action.payload
+        }
       },
       logout(state) {
         state.isAuthenticated = false

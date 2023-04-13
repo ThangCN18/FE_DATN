@@ -6,7 +6,7 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import { Layout, Menu, theme, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
@@ -28,7 +28,7 @@ const AdminUserPage: React.FC = () => {
   const [selectedMenu, setSelectedMenu] = useState('2');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
-  const [loading, setLoadding] = useState(true);
+  const [loading, setLoadding] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
@@ -59,14 +59,13 @@ const AdminUserPage: React.FC = () => {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  useEffect(() => {
-      setLoadding(false)
-  },[])
+
 
   return (
     loading ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
       <Layout className='h-[100vh]' >
         <Sider trigger={null} collapsible collapsed={collapsed} className="!bg-gray-100">
+          <Link to="/">
           {
             !collapsed ?
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
@@ -78,6 +77,8 @@ const AdminUserPage: React.FC = () => {
 
               </div>
           }
+          </Link>
+          
            <Menu
             theme='light'
             mode="inline"

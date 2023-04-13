@@ -4,7 +4,7 @@ import {
   MenuUnfoldOutlined,
   UserOutlined
 } from '@ant-design/icons';
-import {useNavigate} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import { Layout, Menu, theme, Spin } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/types';
@@ -25,7 +25,7 @@ function AdminHomePage() {
   const [selectedMenu, setSelectedMenu] = useState('1');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
-  const [loading, setLoadding] = useState(true);
+  const [loading, setLoadding] = useState(false);
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
@@ -56,14 +56,13 @@ function AdminHomePage() {
     token: { colorBgContainer },
   } = theme.useToken();
 
-  useEffect(() => {
-    setLoadding(false)
-},[])
+
 
   return (
     loading ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
       <Layout className='h-[100vh]' >
         <Sider trigger={null} collapsible collapsed={collapsed} className="!bg-gray-100">
+        <Link to="/">
           {
             !collapsed ?
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
@@ -75,6 +74,7 @@ function AdminHomePage() {
 
               </div>
           }
+          </Link>
           <Menu
             theme='light'
             mode="inline"
@@ -120,14 +120,7 @@ function AdminHomePage() {
                 icon: <RiDashboardLine />,
                 label: 'Dashboard',
               },
-              {
-                key: '2',
-                icon: <UserOutlined />,
-                label: 'Users',
-                onClick: ()=>{
-                  navigate('/admin/user')
-                }
-              },
+              
               {
                 key: '3',
                 icon: <FaRoute />,

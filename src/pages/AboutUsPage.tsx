@@ -11,7 +11,7 @@ const AboutUsPage: React.FC = () => {
     const loading = useSelector((state: RootState) => state.root.load)
     return (
         <Layout className="layout bg-white">
-            <HeaderComponent />
+            <HeaderComponent item=""/>
             <Content className="pt-[70px]">
                 <div className='mx-auto text-center text-2xl max-lg:text-xl max-md:text-base font-semibold py-16  max-lg:py-10 max-md:py-6' style={{backgroundImage: "url('/src/assets/images/bg-slide-banner.png')", backgroundSize: "100% 100%"}}>
                     <h1 className='text-4xl max-lg:text-3xl my-5 max-md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r text-slide-how-to from-[#0160fa] to-[#1ddbb7]'>Wizcove IT We specialize in <br/> providing IT courses</h1>

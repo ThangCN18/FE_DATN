@@ -19,7 +19,7 @@ function HomePage() {
 
   return (
     <Layout className="layout bg-white">
-      <HeaderComponent />
+      <HeaderComponent item="home"/>
       <Content className="pt-[70px]">
 
         <div className="site-layout-content w-[100%] pb-10 " style={{ background: colorBgContainer }}>

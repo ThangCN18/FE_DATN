@@ -16,7 +16,7 @@ const AboutUsHomeComponent: React.FC = () => {
                 <p className='text-base max-lg:text-sm  font-semibold text-gray-800 max-md:text-xs'>We want to share this passion with everyone by providing high-quality programming courses and helping students develop the necessary skills to become successful programmers.</p>
                 <Link to="about-us"><Button type='primary' className='bg-blue-100 text-base font-medium h-10 max-md:text-sm max-md:h-7 max-md:w-[230px] max-md:!mt-5 !mt-8 w-[300px] text-zinc-800'>See more information about us</Button></Link>
             </div>
-            <img className='h-[100%] max-lg:h-[90%] max-md:h-[160px]' src='https://hrcdn.net/fcore/assets/dashboard/hackerresume-card-dd9b01fcd2.svg'/>
+            <img className='h-[100%] max-lg:h-[90%] max-md:h-[160px] max-md:hidden' src='https://hrcdn.net/fcore/assets/dashboard/hackerresume-card-dd9b01fcd2.svg'/>
             
         </div>
      );

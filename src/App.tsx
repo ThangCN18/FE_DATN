@@ -15,6 +15,8 @@ import AdminUserPage from "./pages/AdminUserPage"
 import AdminRoadmapPage from "./pages/AdminRoadmapPage"
 import AdminCoursePage from "./pages/AdminCoursePage";
 import AdminCourseDetailPage from "./pages/AdminCourseDetailPage";
+import CoursesPage from "./pages/CoursesPage";
+import DetailCoursesPage from "./pages/DetailCoursePage";
 
 
 
@@ -55,6 +57,8 @@ const App = () => {
         : null
       }
       <Route path='/about-us' element={<AboutUsPage />} />
+      <Route path='/course/:id' element={<DetailCoursesPage />} />
+      <Route path='/courses' element={<CoursesPage />} />
       <Route path='/verify-email' element={<VerifyEmailPage />} />
       <Route path='/' element={<HomePage />} />
       <Route path='/*' element={<ErrorPage />} />

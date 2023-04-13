@@ -49,7 +49,7 @@ function ProfilePage() {
         }, 500)
 
 
-    }, [])
+    }, [auth.user])
 
     
   const handelLogout = async () =>{
@@ -79,7 +79,7 @@ function ProfilePage() {
 
     return (
         <Layout className="layout bg-white">
-            <HeaderComponent />
+            <HeaderComponent item=""/>
             <Content className="">
 
                 <div className="site-layout-content w-[100%] h-[700px] text-center  flex justify-center items-center flex-col " >
