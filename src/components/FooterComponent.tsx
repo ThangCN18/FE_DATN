@@ -14,7 +14,7 @@ const FooterComponent: React.FC = () => {
             <Row gutter={[24, 16]} >
                 <Col lg={8} xl={6} md={12} sm={12} xs={12} className='mx-auto flex flex-col justify-center items-start space-y-3 px-2'>
                 <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
-                    <img className="w-[45px] max-lg:w-[25px]" src="/./src/assets/images/logo-learning.png" alt="logo"/>
+                    <img className="w-[45px] max-lg:w-[25px]" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png" alt="logo"/>
                     <h4 className="text-black text-2xl !leading-4 font-bold !py-0 max-lg:text-base max-md:text-sm">Wizcove IT</h4>
                     
                 </div>

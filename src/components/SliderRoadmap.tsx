@@ -33,7 +33,7 @@ const SliderRoadmap: React.FC = () => {
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
                     <div className="bg-white w-100 h-[270px] max-sm:h-[220px] !border border-inherit rounded-md shadow-xl text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px]"
-                         src="/src/assets/images/frontenddev.png"/>
+                         src="https://live.staticflickr.com/65535/52813965190_1b4a15fe98_w.jpg"/>
                          <h4 className="mt-5 mb-3 max-sm:mt-2 text-base max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center"><FaRoute /> <span>Front-End Developer</span></h4>
                          <div className=" mb-3 ml-5 h-[120px] max-sm:h-[105px] flex space-y-1 flex-col">
                          
@@ -55,7 +55,7 @@ const SliderRoadmap: React.FC = () => {
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
                     <div className="bg-white w-100 h-[270px] max-sm:h-[220px] !border border-inherit rounded-md shadow-xl text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px]"
-                         src="/src/assets/images/backend.png"/>
+                         src="https://live.staticflickr.com/65535/52814007818_9d5ab6cd16_w.jpg"/>
                          <h4 className="mt-5 mb-3 max-sm:mt-2 text-base max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center"><FaRoute /> <span>Back-End Developer</span></h4>
                          <div className=" mb-3 ml-5 h-[120px] max-sm:h-[105px] flex space-y-1 flex-col">
                          
@@ -76,7 +76,7 @@ const SliderRoadmap: React.FC = () => {
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
                     <div className="bg-white w-100 h-[270px] max-sm:h-[220px] !border border-inherit rounded-md shadow-xl text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px]"
-                         src="/src/assets/images/fullstack.png"/>
+                         src="https://live.staticflickr.com/65535/52814007738_7eb2ffc91e_w.jpg"/>
                          <h4 className="mt-5 mb-3 max-sm:mt-2 text-base max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center"><FaRoute /> <span>FullStack Developer</span></h4>
                          <div className=" mb-3 ml-5 h-[120px] max-sm:h-[105px] flex space-y-1 flex-col">
                          
@@ -96,7 +96,7 @@ const SliderRoadmap: React.FC = () => {
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
                     <div className="bg-white w-100 h-[270px] max-sm:h-[220px] !border border-inherit rounded-md shadow-xl text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px]"
-                         src="/src/assets/images/testter.png"/>
+                         src="https://live.staticflickr.com/65535/52813552276_faaabf6424_w.jpg"/>
                          <h4 className="mt-5 mb-3 max-sm:mt-2 text-base max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center"><FaRoute /> <span>Tester</span></h4>
                          <div className=" mb-3 ml-5 h-[120px] max-sm:h-[105px] flex space-y-1 flex-col">
                          
@@ -116,7 +116,7 @@ const SliderRoadmap: React.FC = () => {
                 <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
                     <div className="bg-white w-100 h-[270px] max-sm:h-[220px] !border border-inherit rounded-md shadow-xl text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px]"
-                         src="/src/assets/images/mobile.png"/>
+                         src="https://live.staticflickr.com/65535/52813965115_b442877523_w.jpg"/>
                          <h4 className="mt-5 mb-3 max-sm:mt-2 text-base max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center"><FaRoute /> <span>Mobile Developer</span></h4>
                          <div className=" mb-3 ml-5 h-[120px] max-sm:h-[105px] flex space-y-1 flex-col">
                          

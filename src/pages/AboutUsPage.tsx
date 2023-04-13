@@ -25,19 +25,19 @@ const AboutUsPage: React.FC = () => {
                     <Row className='my-auto'>
                         <Col xl={8} lg={12} sm={24} xs={24} md={24} className='my-auto mx-auto max-w-[300px]' >
                             <div>
-                                <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='/src/assets/images/avatar/ron.jpg'/>
+                                <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='https://live.staticflickr.com/65535/52813748689_96da48e8b9_w.jpg'/>
                                 <p className='text-xl max-lg:text-base max-md:text-sm text-gray-600 mt-3'>Nguyen Hoang Ron</p>
                             </div>
                         </Col>
                         <Col xl={8} lg={12} sm={24} xs={24} md={24} className='my-auto mx-auto max-w-[300px]' >
                             <div>
-                                <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='/src/assets/images/avatar/thang.jpg'/>
+                                <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='https://live.staticflickr.com/65535/52812995482_bd1c548048_w.jpg'/>
                                 <p className='text-xl max-lg:text-base max-md:text-sm text-gray-600 mt-3'>Nguyen Chi Thang</p>
                             </div>
                         </Col>
                         <Col xl={8} lg={12} sm={24} xs={24} md={24} className='my-auto mx-auto max-w-[300px]' >
                             <div>
-                                <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='/src/assets/images/avatar/huan.jpg'/>
+                                <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='https://live.staticflickr.com/65535/52813552511_f7da62c185_w.jpg'/>
                                 <p className='text-xl max-lg:text-base max-md:text-sm text-gray-600 mt-3'>Luong Van Huan</p>
                             </div>
                         </Col>
@@ -56,7 +56,7 @@ const AboutUsPage: React.FC = () => {
                             </div>
                         </Col>
                         <Col lg={10} sm={24} xs={24} md={24}>
-                            <img className="mx-auto w-[60%]" src='/src/assets/images/aboutpage-02.png'/>
+                            <img className="mx-auto w-[60%]" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/775b7eca-733e-436d-b711-14a7f7a49dea-aboutpage-02.png'/>
                         </Col>
 
                     </Row>

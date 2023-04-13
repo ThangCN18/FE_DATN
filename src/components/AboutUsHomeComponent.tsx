@@ -9,14 +9,14 @@ const AboutUsHomeComponent: React.FC = () => {
             <div className='flex flex-col justify-center items-start px-10 max-md:px-0 max-md:py-5 space-y-2'>
                 <h4 className='text-sm text-gray-800 font-bold'>About Us</h4>
                 <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
-                    <img className="w-[45px] max-lg:w-[25px]" src="/./src/assets/images/logo-learning.png" alt="logo"/>
+                    <img className="w-[45px] max-lg:w-[25px]" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png" alt="logo"/>
                     <h4 className="text-black text-2xl !leading-4 font-bold !py-0 max-lg:text-base max-md:text-sm">Wizcove IT <span>specialize in providing IT courses.</span></h4>
                     
                 </div>
                 <p className='text-base max-lg:text-sm  font-semibold text-gray-800 max-md:text-xs'>We want to share this passion with everyone by providing high-quality programming courses and helping students develop the necessary skills to become successful programmers.</p>
                 <Link to="about-us"><Button type='primary' className='bg-blue-100 text-base font-medium h-10 max-md:text-sm max-md:h-7 max-md:w-[230px] max-md:!mt-5 !mt-8 w-[300px] text-zinc-800'>See more information about us</Button></Link>
             </div>
-            <img className='h-[100%] max-lg:h-[90%] max-md:h-[160px]' src='/src/assets/images/wicoveitcard-dd9b01fcd2.svg'/>
+            <img className='h-[100%] max-lg:h-[90%] max-md:h-[160px]' src='https://hrcdn.net/fcore/assets/dashboard/hackerresume-card-dd9b01fcd2.svg'/>
             
         </div>
      );

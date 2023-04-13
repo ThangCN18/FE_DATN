@@ -123,8 +123,6 @@ let datave: UserType[] = [
 
 const AdminUserComponent: React.FC = () => {
 
-  const [searchText, setSearchText] = useState('');
-  const [searchedColumn, setSearchedColumn] = useState('');
   const [loadingSkeleton, setloadingSkeleton] = useState(false);
   const [data, setData] = useState(datave)
   const searchInput = useRef<InputRef>(null);
@@ -135,6 +133,8 @@ const AdminUserComponent: React.FC = () => {
   const [userselect, setuserselect] = useState<any>(null);
   const [userselectedit, setuserselectedit] = useState<any>(null);
   const [isModalDelete, setIsModalDelete] = useState(false);
+  const [searchText, setSearchText] = useState('');
+  const [searchedColumn, setSearchedColumn] = useState('');
     const [pageusers, setpageusers] = useState<number>(1);
     const contentRef = useRef(null);
 
@@ -287,7 +287,7 @@ const handelGetDataUsers = async (page: number) => {
           <SkeletonAvatar active size='small' />
           :
           <>{text ? <Avatar src={text}></Avatar> :
-            <Avatar src='/src/assets/images/default-avatar-profile.png'></Avatar>
+            <Avatar src='https://live.staticflickr.com/65535/52813965210_ca9d9cd3a9_w.jpg'></Avatar>
           }</>
       }</>,
 

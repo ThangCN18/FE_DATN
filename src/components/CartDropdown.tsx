@@ -20,7 +20,7 @@ function CartDropdown() {
       label: (
         <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-sm w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="/https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            avatar={<Avatar className="!rounded-sm w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
             title={<h5 className="truncate w-[170px] max-sm:w-[100px] max-sm:text-xs">HTMLádasdasdasádasdsa</h5>}
             description={<p className="max-sm:text-xs">499.000 đ</p>}
           />
@@ -33,7 +33,7 @@ function CartDropdown() {
       label: (
         <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-sm w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="/https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
+            avatar={<Avatar className="!rounded-sm w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
             title={<h5 className="truncate w-[170px] max-sm:w-[100px] max-sm:text-xs">HTMLádasdasdasádasdsa</h5>}
             description={<p className="max-sm:text-xs">499.000 đ</p>}
           />

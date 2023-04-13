@@ -190,7 +190,7 @@ const AdminRoadmapComponent: React.FC = () => {
                                 //         <p className='text-webkit-line-clamp-3 '>{roadmap.description}</p>
                                 //         <div className='flex justify-end mt-2'>
                                 //         <Avatar.Group maxCount={2} size={"small"} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
-                                //             <Avatar src="/https://joesch.moe/api/v1/random?key=2" />
+                                //             <Avatar src="https://joesch.moe/api/v1/random?key=2" />
                                 //             <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
                                 //             <Tooltip title="Ant User" placement="top">
                                                 

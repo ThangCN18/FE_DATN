@@ -36,12 +36,12 @@ function SlideBanner() {
                 <div className="w-[95%] h-[90%] bg-gradient-to-r from-[#01a1fa] to-[#1dbfdb] rounded-3xl flex justify-center items-center overflow-hidden">
                 <div className="w-[95%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="/src/assets/videos/video-fullstack.mp4" type="video/mp4"/>
+                <source src="https://live.staticflickr.com/video/52813964825/7a062ce0d6/360p.mp4?s=eyJpIjo1MjgxMzk2NDgyNSwiZSI6MTY4MTM1ODgxMSwicyI6IjY2MDMxYWZjYTRkZGFhY2FhNzk0NzIxZTQ3MjY4ODg4ZGM3N2QzMWQiLCJ2IjoxfQ" type="video/mp4"/>
                 </video>
                 </div>
                 </div>
                
-                <img className="max-lg:w-[115px] max-sm:w-[70px] max-sm:left-[10px]  absolute z-1 left-[-30px] bottom-5" src="/src/assets/images/illustration_header_left.png"/>
+                <img className="max-lg:w-[115px] max-sm:w-[70px] max-sm:left-[10px]  absolute z-1 left-[-30px] bottom-5" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/6eb83c59-dbae-4e80-97d1-7a7d81f7bcb7-illustration_header_left.png"/>
 
                 </div>
               </Col>
@@ -72,7 +72,7 @@ function SlideBanner() {
                 
                 <div className="w-[100%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="/src/assets/videos/website-maker.mp4" type="video/mp4"/>
+                <source src="https://live.staticflickr.com/video/52813551836/36a4386c8f/360p.mp4?s=eyJpIjo1MjgxMzU1MTgzNiwiZSI6MTY4MTM1ODkyNCwicyI6IjRhMWVmZGZlNmUyMjFmN2VlNjc3NDBiNjhhNjYzZjM5ZGUyZTMyOTMiLCJ2IjoxfQ" type="video/mp4"/>
                 </video>
                 </div>
                 
@@ -105,7 +105,7 @@ function SlideBanner() {
                 
                 <div className="w-[95%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="/src/assets/videos/graphic-maker.mp4" type="video/mp4"/>
+                <source src="https://live.staticflickr.com/video/52813748209/112b410edc/360p.mp4?s=eyJpIjo1MjgxMzc0ODIwOSwiZSI6MTY4MTM1ODkyMSwicyI6ImIxZGFkYTc3NjdhODUwODUzZjdiMmNjMGNhOWI2MWNkYmZlN2UxMzMiLCJ2IjoxfQ" type="video/mp4"/>
                 </video>
                 </div>
                 

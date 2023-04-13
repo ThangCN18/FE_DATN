@@ -23,7 +23,7 @@ import UserDropdown from '../components/UserDropdown';
 const { Header, Sider, Content } = Layout;
 
 
-function AdminUserPage() {
+const AdminUserPage: React.FC = () => {
 
   const [selectedMenu, setSelectedMenu] = useState('2');
   const auth = useSelector((state: RootState) => state.root.auth)
@@ -70,73 +70,81 @@ function AdminUserPage() {
           {
             !collapsed ?
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
-                <img className="h-[35px] mr-2" src='/src/assets/images/logo-learning.png' />
+                <img className="h-[35px] mr-2" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
                 <h4 className='text-black text-lg font-bold'>Wizcove IT</h4>
               </div> :
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
-                <img className="h-[35px]" src='/src/assets/images/logo-learning.png' />
+                <img className="h-[35px]" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
 
               </div>
           }
-          <Menu
+           <Menu
             theme='light'
             mode="inline"
             selectedKeys={[selectedMenu]}
             items = {auth.user?.role === "admin"? [
-                {
-                    key: '1',
-                    icon: <RiDashboardLine />,
-                    label: 'Dashboard',
-                    onClick: ()=>{
-                      navigate('/admin')
-                    }
-                  },
-                  {
-                    key: '2',
-                    icon: <UserOutlined />,
-                    label: 'Users',
-                    onClick: ()=>{
-                      navigate('/admin/user')
-                    }
-                  },
-                  {
-                    key: '3',
-                    icon: <FaRoute />,
-                    label: 'Roadmaps',
-                    onClick: ()=>{
-                      navigate('/admin/roadmap')
-                    }
-                  },
-                  {
-                    key: '4',
-                    icon: <HiOutlineBookOpen />,
-                    label: 'Courses',
-                    onClick: ()=>{
-                      navigate('/admin/course')
-                    }
-                  },
-                ]:
-                [
-                  
-                  {
-                    key: '1',
-                    icon: <RiDashboardLine />,
-                    label: 'Dashboard',
-                  },
-                  {
-                    key: '3',
-                    icon: <FaRoute />,
-                    label: 'Roadmaps',
-                  },
-                  {
-                    key: '4',
-                    icon: <HiOutlineBookOpen />,
-                    label: 'Courses',
-                    onClick: ()=>{
-                      navigate('/admin/course')
-                    }
-                  },
-                ]
+              {
+                key: '1',
+                icon: <RiDashboardLine />,
+                label: 'Dashboard',
+                onClick: ()=>{
+                  navigate('/admin')
+                }
+              },
+              {
+                key: '2',
+                icon: <UserOutlined />,
+                label: 'Users',
+                onClick: ()=>{
+                  navigate('/admin/user')
+                }
+              },
+              {
+                key: '3',
+                icon: <FaRoute />,
+                label: 'Roadmaps',
+                onClick: ()=>{
+                  navigate('/admin/roadmap')
+                }
+              },
+              {
+                key: '4',
+                icon: <HiOutlineBookOpen />,
+                label: 'Courses',
+                onClick: ()=>{
+                  navigate('/admin/course')
+                }
+              },
+            ]:
+            [
+              
+              {
+                key: '1',
+                icon: <RiDashboardLine />,
+                label: 'Dashboard',
+              },
+              {
+                key: '2',
+                icon: <UserOutlined />,
+                label: 'Users',
+                onClick: ()=>{
+                  navigate('/admin/user')
+                }
+              },
+              {
+                key: '3',
+                icon: <FaRoute />,
+                label: 'Roadmaps',
+              },
+              {
+                key: '4',
+                icon: <HiOutlineBookOpen />,
+                label: 'Courses',
+                onClick: ()=>{
+                  navigate('/admin/course')
+                }
+              },
+            ]
           
           }
           />

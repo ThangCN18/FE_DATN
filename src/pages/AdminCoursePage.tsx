@@ -71,11 +71,11 @@ function AdminCoursePage() {
           {
             !collapsed ?
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
-                <img className="h-[35px] mr-2" src='/src/assets/images/logo-learning.png' />
+                <img className="h-[35px] mr-2" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
                 <h4 className='text-black text-lg font-bold'>Wizcove IT</h4>
               </div> :
               <div className="logo flex pt-4 mb-8 justify-center items-center" >
-                <img className="h-[35px]" src='/src/assets/images/logo-learning.png' />
+                <img className="h-[35px]" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
 
               </div>
           }
@@ -123,6 +123,14 @@ function AdminCoursePage() {
                 key: '1',
                 icon: <RiDashboardLine />,
                 label: 'Dashboard',
+              },
+              {
+                key: '2',
+                icon: <UserOutlined />,
+                label: 'Users',
+                onClick: ()=>{
+                  navigate('/admin/user')
+                }
               },
               {
                 key: '3',
