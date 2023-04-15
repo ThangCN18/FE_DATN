@@ -47,10 +47,10 @@ const AboutUsPage: React.FC = () => {
                     
                 </div>
 
-                <div className='mx-auto text-left font-semibold py-5 mb-20 max-md:text-center  max-lg:py-2  max-w-[1400px] bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4'>
+                <div className='text-left font-semibold py-5 mb-20 max-md:text-center  max-lg:py-2  max-w-[1400px] bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4'>
                     <Row className='my-auto'>
                         <Col lg={14} sm={24} xs={24} md={24} className='my-auto' >
-                            <div className='flex flex-col justify-center'>
+                            <div className='flex flex-col justify-center px-10'>
                                 <h1 className='text-4xl max-lg:text-3xl my-5 max-md:text-xl font-bold' >Who are we?</h1>
                                 <p className='text-2xl max-lg:text-xl max-md:text-base'>We are students majoring in Information Technology at Dong A University. With a passion and love for programming, we have created programming courses on "Wizcove IT" with the aim of sharing the knowledge we have learned with young people who share the same passion for technology as we do.</p>
                             </div>

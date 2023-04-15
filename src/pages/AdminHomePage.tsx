@@ -15,6 +15,8 @@ import UserDropdown from '../components/UserDropdown';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
+import AdminDashboardComponent from '../components/adminComponent/AdminDashboardComponent';
+import { MdOutlineReviews } from 'react-icons/md';
 
 
 const { Header, Sider, Content } = Layout;
@@ -112,6 +114,14 @@ function AdminHomePage() {
                   navigate('/admin/course')
                 }
               },
+              {
+                key: '5',
+                icon: <MdOutlineReviews />,
+                label: 'Reviews',
+                onClick: ()=>{
+                  navigate('/admin/review')
+                }
+              },
             ]:
             [
               
@@ -120,7 +130,14 @@ function AdminHomePage() {
                 icon: <RiDashboardLine />,
                 label: 'Dashboard',
               },
-              
+              {
+                key: '2',
+                icon: <UserOutlined />,
+                label: 'Users',
+                onClick: ()=>{
+                  navigate('/admin/user')
+                }
+              },
               {
                 key: '3',
                 icon: <FaRoute />,
@@ -132,6 +149,14 @@ function AdminHomePage() {
                 label: 'Courses',
                 onClick: ()=>{
                   navigate('/admin/course')
+                }
+              },
+              {
+                key: '5',
+                icon: <MdOutlineReviews />,
+                label: 'Reviews',
+                onClick: ()=>{
+                  navigate('/admin/review')
                 }
               },
             ]
@@ -159,7 +184,8 @@ function AdminHomePage() {
           >
             {
              
-              <h1>Dashboard</h1>
+              
+             <AdminDashboardComponent/>
              
 
             }

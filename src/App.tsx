@@ -18,6 +18,7 @@ import AdminCourseDetailPage from "./pages/AdminCourseDetailPage";
 import CoursesPage from "./pages/CoursesPage";
 import DetailCoursesPage from "./pages/DetailCoursePage";
 import { unsetLoading } from "./store/loadSlice";
+import AdminReviewPage from "./pages/AdminReviewPage";
 
 
 
@@ -50,6 +51,7 @@ const App = () => {
         <Route path='/admin/roadmap' element={<AdminRoadmapPage />} />
         <Route path='/admin/course/:id' element={<AdminCourseDetailPage/>} />
         <Route path='/admin/course' element={<AdminCoursePage/>} />
+        <Route path='/admin/review' element={<AdminReviewPage/>} />
         {
         auth.user.role == "admin"?<>
         <Route path='/admin/user' element={<AdminUserPage />} />

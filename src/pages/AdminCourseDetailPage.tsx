@@ -20,6 +20,7 @@ import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
 import AdminCourseComponent from '../components/adminComponent/AdminCourseComponent';
 import AdminDetailCourseComponent from '../components/adminComponent/AdminDetailCourseComponent';
+import { MdOutlineReviews } from 'react-icons/md';
 
 const { Header, Sider, Content } = Layout;
 
@@ -116,6 +117,14 @@ function AdminCourseDetailPage() {
                   navigate('/admin/course')
                 }
               },
+              {
+                key: '5',
+                icon: <MdOutlineReviews />,
+                label: 'Reviews',
+                onClick: ()=>{
+                  navigate('/admin/review')
+                }
+              },
             ]:
             [
               
@@ -124,7 +133,14 @@ function AdminCourseDetailPage() {
                 icon: <RiDashboardLine />,
                 label: 'Dashboard',
               },
-              
+              {
+                key: '2',
+                icon: <UserOutlined />,
+                label: 'Users',
+                onClick: ()=>{
+                  navigate('/admin/user')
+                }
+              },
               {
                 key: '3',
                 icon: <FaRoute />,
@@ -136,6 +152,14 @@ function AdminCourseDetailPage() {
                 label: 'Courses',
                 onClick: ()=>{
                   navigate('/admin/course')
+                }
+              },
+              {
+                key: '5',
+                icon: <MdOutlineReviews />,
+                label: 'Reviews',
+                onClick: ()=>{
+                  navigate('/admin/review')
                 }
               },
             ]

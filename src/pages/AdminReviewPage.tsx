@@ -24,9 +24,9 @@ import { MdOutlineReviews } from 'react-icons/md';
 const { Header, Sider, Content } = Layout;
 
 
-const AdminUserPage: React.FC = () => {
+const AdminReviewPage: React.FC = () => {
 
-  const [selectedMenu, setSelectedMenu] = useState('2');
+  const [selectedMenu, setSelectedMenu] = useState('5');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoadding] = useState(false);
@@ -198,4 +198,4 @@ const AdminUserPage: React.FC = () => {
   );
 }
 
-export default AdminUserPage;
+export default AdminReviewPage;

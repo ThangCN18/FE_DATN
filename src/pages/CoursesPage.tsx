@@ -52,10 +52,10 @@ function CoursesPage() {
             <HeaderComponent item="courses" />
             <Content className="pt-[70px]">
                 <div className="site-layout-content w-[100%] pb-10 " style={{ background: colorBgContainer }}>
-                    <Row gutter={[24, 24]} >
+                    <Row gutter={[24, 24]} className="max-sm:px-6">
                         {loaddingas ? null : <>
                             {datacourses.map(course => {
-                                return <Col xs={24} sm={24} md={12} lg={12} xl={6}>
+                                return <Col xs={24} sm={24} md={12} lg={12} xl={6} >
                                     {course.sections.length == 0 ?
                                         <Badge.Ribbon text={course.price - course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={course.price - course.discount <= 0 ? "green" : "yellow"}>
 
