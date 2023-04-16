@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
  
 const AboutUsHomeComponent: React.FC = () => {
     return ( 
-        <div className='max-w-[1400px] flex justify-between items-center w-100% bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4 my-7 max-md:space-x-2 space-x-16'>
+        <div className='max-w-[1400px] max-md:!w-[90%] flex justify-between items-center w-100% bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4 my-7 max-md:space-x-2 space-x-16'>
             <div className='flex flex-col justify-center items-start px-10 max-md:px-0 max-md:py-5 space-y-2'>
                 <h4 className='text-sm text-gray-800 font-bold'>About Us</h4>
                 <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">

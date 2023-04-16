@@ -22,7 +22,7 @@ const AboutUsPage: React.FC = () => {
                 
                 <h1 className='text-4xl max-lg:text-3xl my-8 max-md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r text-slide-how-to from-[#0160fa] to-[#1ddbb7] text-center'>Our Team</h1>
                 
-                    <Row className='my-auto'>
+                    <Row gutter={[16, 16]} className='my-auto'>
                         <Col xl={8} lg={12} sm={24} xs={24} md={24} className='my-auto mx-auto max-w-[300px]' >
                             <div>
                                 <img className="mx-auto w-[150px] h-[150px] object-cover rounded-full" src='https://live.staticflickr.com/65535/52813748689_96da48e8b9_w.jpg'/>
@@ -47,7 +47,7 @@ const AboutUsPage: React.FC = () => {
                     
                 </div>
 
-                <div className='text-left font-semibold py-5 mb-20 max-md:text-center  max-lg:py-2  max-w-[1400px] bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4'>
+                <div className='text-left font-semibold py-5 mb-20 max-md:text-center  max-lg:py-2 max-md:w-[90%] max-w-[1400px] bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4'>
                     <Row className='my-auto'>
                         <Col lg={14} sm={24} xs={24} md={24} className='my-auto' >
                             <div className='flex flex-col justify-center px-10'>

@@ -19,6 +19,7 @@ import CoursesPage from "./pages/CoursesPage";
 import DetailCoursesPage from "./pages/DetailCoursePage";
 import { unsetLoading } from "./store/loadSlice";
 import AdminReviewPage from "./pages/AdminReviewPage";
+import DetailCourseLearnPage from "./pages/DetailCourseLearnPage";
 
 
 
@@ -45,6 +46,7 @@ const App = () => {
       {
         auth.user?<>
         <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/learn/:id' element={<DetailCourseLearnPage/>} />
         {
         auth.user.role != "user"?<>
         <Route path='/admin' element={<AdminHomePage/>} />

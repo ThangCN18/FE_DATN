@@ -6,10 +6,10 @@ import { FaRoute } from "react-icons/fa";
 function SlideBanner() {
 
   return (
-    <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px]  bg-[url('../assets/images/bg-slide-banner.png')] bg-[length:100%_100%]">
+    <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px] max-sm:!h-[450px] bg-[url('../assets/images/bg-slide-banner.png')] bg-[length:100%_100%]">
       <div className="mx-auto px-4 max-sm:px-1 max-w-[1400px]">
         <Carousel autoplay >
-          <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px]">
+          <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px] max-sm:!h-[450px]">
           <Row gutter={[8, 0]} className="max-md:!flex-col-reverse">
               <Col
                 md={24} sm={24} xs={24} lg={11} xl={11}
@@ -32,7 +32,7 @@ function SlideBanner() {
               </Col>
               <Col  md={24} sm={24} xs={24} lg={13} xl={13} className="flex justify-end max-md:my-8 max-md:justify-center items-center relative">
          
-                <div className="w-[95%] max-md:!w-[80%] max-md:!h-[250px] max-md:mx-auto h-[80%]  bg-white rounded-3xl shadow-lg shadow-sky-400 flex justify-center items-center">
+                <div className="w-[95%] max-md:!w-[80%] max-md:!h-[250px] max-sm:!h-[150px] max-md:mx-auto h-[80%]  bg-white rounded-3xl shadow-lg shadow-sky-400 flex justify-center items-center">
                 <div className="w-[95%] h-[90%] bg-gradient-to-r from-[#01a1fa] to-[#1dbfdb] rounded-3xl flex justify-center items-center overflow-hidden">
                 <div className="w-[95%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
@@ -41,13 +41,13 @@ function SlideBanner() {
                 </div>
                 </div>
                
-                <img className="max-lg:w-[115px] max-md:w-[100px] max-md:left-[10px] max-md:bottom-[7px]  absolute z-1 left-[-30px] bottom-5" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/6eb83c59-dbae-4e80-97d1-7a7d81f7bcb7-illustration_header_left.png"/>
+                <img className="max-lg:w-[115px] max-md:w-[100px] max-sm:w-[70px] max-md:left-[10px] max-md:bottom-[7px] max-sm:bottom-[3px] absolute z-1 left-[-30px] bottom-5" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/6eb83c59-dbae-4e80-97d1-7a7d81f7bcb7-illustration_header_left.png"/>
 
                 </div>
               </Col>
             </Row>
           </div>
-          <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-dm:!h-[550px]">
+          <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-dm:!h-[550px] max-sm:!h-[450px]">
             <Row gutter={[8, 0]} className="max-md:!flex-col-reverse">
               <Col
                 md={24} sm={24} xs={24} lg={11} xl={11}
@@ -79,7 +79,7 @@ function SlideBanner() {
               </Col>
             </Row>
           </div>
-          <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-sm:!h-[200px]">
+          <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-dm:!h-[550px]  max-sm:!h-[450px]">
           <Row gutter={[8, 0]} className="max-md:!flex-col-reverse">
               <Col
                 md={24} sm={24} xs={24} lg={11} xl={11}
@@ -104,7 +104,7 @@ function SlideBanner() {
                 
                 <div className="w-[90%] h-[90%] bg-white rounded-2xl  flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="https://live.staticflickr.com/video/52813748209/112b410edc/360p.mp4?s=eyJpIjo1MjgxMzc0ODIwOSwiZSI6MTY4MTM1ODkyMSwicyI6ImIxZGFkYTc3NjdhODUwODUzZjdiMmNjMGNhOWI2MWNkYmZlN2UxMzMiLCJ2IjoxfQ" type="video/mp4"/>
+                <source src="https://live.staticflickr.com/video/52813748209/112b410edc/360p.mp4?s=eyJpIjo1MjgxMzc0ODIwOSwiZSI6MTY4MTYxNTAwMSwicyI6IjIwZGQzMWE1NDU1NjM4YTA3MTZkZjg1NmI5ZjcwMWY3MWMyZTk2YTkiLCJ2IjoxfQ" type="video/mp4"/>
                 </video>
                 </div>
                 

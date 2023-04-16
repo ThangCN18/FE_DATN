@@ -39,7 +39,7 @@ const onChange = (key: string) => {
 
 const TabsCoursesComponent: React.FC = ()=>{
     return(
-        <div className="max-w-[1400px] mx-auto text-center rounded-3xl px-[5%] py-[2%] bg-[rgba(71,214,226,.1)] tapscoursescomponemt">
+        <div className="max-w-[1400px] max-md:w-[90%] mx-auto text-center rounded-3xl px-[5%] py-[2%] bg-[rgba(71,214,226,.1)] tapscoursescomponemt">
         <Tabs  defaultActiveKey="1" animated  items={items} onChange={onChange} />
         </div>
     )

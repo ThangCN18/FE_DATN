@@ -26,7 +26,7 @@ const { Header, Content, Footer } = Layout;
 const { Panel } = Collapse;
 
 
-function DetailCoursesPage() {
+function DetailCourseLearnPage() {
 
     const loading = useSelector((state: RootState) => state.root.load)
     const [loaddingas, setloaddingas] = useState(false)
@@ -422,4 +422,4 @@ function DetailCoursesPage() {
     );
 }
 
-export default DetailCoursesPage;
+export default DetailCourseLearnPage;
