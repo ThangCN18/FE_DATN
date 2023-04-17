@@ -37,7 +37,7 @@ const StudentReviewHomePageComponent: React.FC = () => {
                         <Avatar className="w-[90px] h-[90px]" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg"/>
                         <h5 className="text-sm truncate">Nguyen Chi Thang </h5>
                     </div>
-                    <p>"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio architecto dolores neque aliquam impedit dolores neque aliquam impedit!"</p>
+                    <p >"Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio architecto dolores neque aliquam impedit dolores neque aliquam impedit!"</p>
                 </div>
                 
             </Card>

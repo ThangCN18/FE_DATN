@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Badge, Breadcrumb, Button, Card, Col, Layout, Menu, Rate, Row, Skeleton, Space, Tabs, theme } from 'antd';
+import { Avatar, Badge, Breadcrumb, Button, Card, Col, Empty, Layout, Menu, Rate, Row, Skeleton, Space, Tabs, theme } from 'antd';
 import HeaderComponent from "../components/HeaderComponent";
 import SlideBanner from "../components/SlideBanner";
 import SliderRoadmap from "../components/SliderRoadmap";
@@ -42,9 +42,6 @@ function CoursesPage() {
     const onChange = (key: string) => {
         console.log(key);
       };
-
-
-     let constadata = []
 
       
     var items: TabsProps['items'] = dataadacss
@@ -105,16 +102,16 @@ function CoursesPage() {
 
         ).then(async(response: any) => {
             const adshba = response.data
-            
+            console.log(adshba)
             for(const index in adshba){
                 const caca = {
                     key: index+1,
                     label: <p>{adshba[index].name}</p>,
                     children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5">
-                    {!adshba[index].courseRoadmaps? null : <>
+                    {adshba[index].courseRoadmaps.length == 0? <Empty className="mx-auto" image={Empty.PRESENTED_IMAGE_SIMPLE} />: <>
                         {adshba[index].courseRoadmaps.map(course => {
           
-                            if(aaaa.includes(course.course.id)){
+                            if(aaaa.includes(course.id)){
                                 return  <CardCourseItemComponent course={course.course} key={course.id} issub={true}/>
                             }
                             return <CardCourseItemComponent course={course.course} key={course.id} issub={false}/>
@@ -182,54 +179,54 @@ const getCourseSubscribe = async () =>{
                     {
                         loaddingas?<>
                         <div className="flex justify-center space-x-2 ">
-                        <SkeletonButton className="my-4" /> 
-                        <SkeletonButton className="my-4" /> 
-                        <SkeletonButton className="my-4" /> 
-                        <SkeletonButton className="my-4" /> 
+                        <SkeletonButton active className="my-4" /> 
+                        <SkeletonButton active  className="my-4" /> 
+                        <SkeletonButton active className="my-4" /> 
+                        <SkeletonButton active className="my-4" /> 
 
                         </div>
 
                         <Row gutter={[24,24]}>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
                             <div className="border-collapse border-[1px] rounded-md shadow-md">
-                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
                             <div className="px-3">
-                            <Skeleton className="my-5" /> 
-                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
                             </div>
                             </div>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
                             <div className="border-collapse border-[1px] rounded-md shadow-md">
-                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
                             <div className="px-3">
-                            <Skeleton className="my-5" /> 
-                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
                             </div>
                             </div>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
                             <div className="border-collapse border-[1px] rounded-md shadow-md">
-                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
                             <div className="px-3">
-                            <Skeleton className="my-5" /> 
-                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
                             </div>
                             </div>
                         </Col>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
                             <div className="border-collapse border-[1px] rounded-md shadow-md">
-                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
                             <div className="px-3">
-                            <Skeleton className="my-5" /> 
-                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
                             </div>
                             </div>
                         </Col>
                         </Row>
                         
                         </>:
-                        <Tabs  defaultActiveKey="1" animated  items={items} onChange={onChange} />
+                        <Tabs  defaultActiveKey="1" animated className="min-h-[475px]"  items={items} onChange={onChange} />
                     }
                 
                     </div>

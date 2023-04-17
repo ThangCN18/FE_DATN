@@ -21,6 +21,7 @@ import { unsetLoading } from "./store/loadSlice";
 import AdminReviewPage from "./pages/AdminReviewPage";
 import DetailCourseLearnPage from "./pages/DetailCourseLearnPage";
 import RoadmapsPages from "./pages/RoadmapsPages";
+import DetailRoadmapsPages from "./pages/DetailRoadmapsPages";
 
 
 
@@ -68,6 +69,7 @@ const App = () => {
       }
       <Route path='/about-us' element={<AboutUsPage />} />
       <Route path='/roadmaps' element={<RoadmapsPages />} />
+      <Route path='/roadmap/:id' element={<DetailRoadmapsPages />} />
       <Route path='/course/:id' element={<DetailCoursesPage />} />
       <Route path='/courses' element={<CoursesPage />} />
       <Route path='/verify-email' element={<VerifyEmailPage />} />

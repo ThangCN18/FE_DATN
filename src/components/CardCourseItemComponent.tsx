@@ -123,7 +123,11 @@ function CardCourseItemComponent(course, issub) {
                                                     </Space>
                                                     <Space className="!flex !justify-between mt-2">
                                                         <div>
-                                                        <Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={data.courseKeyMetric.rating} /><span className="text-gray-500 text-xs ml-1">{data.courseKeyMetric.rating + "/5"}</span>
+                                                        {
+                                                            data.courseKeyMetric?
+                                                            <><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={data.courseKeyMetric.rating} /><span className="text-gray-500 text-xs ml-1">{data.courseKeyMetric.rating + "/5"}</span></>
+                                                       :<><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={5} /><span className="text-gray-500 text-xs ml-1">{5}</span></>
+                                                        }
                                                         </div>
                                                         
                                                         {

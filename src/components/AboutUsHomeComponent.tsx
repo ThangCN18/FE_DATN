@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
  
 const AboutUsHomeComponent: React.FC = () => {
     return ( 
-        <div className='max-w-[1400px] max-md:!w-[90%] flex justify-between items-center w-100% bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4 my-7 max-md:space-x-2 space-x-16'>
+                        <div className='max-w-[1400px] max-md:!w-[90%] flex justify-between items-center w-100% bg-gray-50 border-2 border-gray-800 rounded-xl mx-auto px-4 my-7 max-md:space-x-2 space-x-16'>
             <div className='flex flex-col justify-center items-start px-10 max-md:px-0 max-md:py-5 space-y-2'>
                 <h4 className='text-sm text-gray-800 font-bold'>About Us</h4>
                 <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
@@ -14,7 +14,7 @@ const AboutUsHomeComponent: React.FC = () => {
                     
                 </div>
                 <p className='text-base max-lg:text-sm  font-semibold text-gray-800 max-md:text-xs'>We want to share this passion with everyone by providing high-quality programming courses and helping students develop the necessary skills to become successful programmers.</p>
-                <Link to="about-us"><Button type='primary' className='bg-blue-100 text-base font-medium h-10 max-md:text-sm max-md:h-7 max-md:w-[230px] max-md:!mt-5 !mt-8 w-[300px] text-zinc-800'>See more information about us</Button></Link>
+                <Link to="/about-us"><Button  className='mt-4 text-base h-[40px] rounded-full font-semibold border-2 border-gray-800'>See more information about us</Button></Link>
             </div>
             <img className='h-[100%] max-lg:h-[90%] max-md:h-[160px] max-md:hidden' src='https://hrcdn.net/fcore/assets/dashboard/hackerresume-card-dd9b01fcd2.svg'/>
             
