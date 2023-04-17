@@ -20,6 +20,7 @@ import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
 import { MdOutlineReviews } from 'react-icons/md';
+import AdminReviewComponent from '../components/adminComponent/AdminReviewComponent';
 
 const { Header, Sider, Content } = Layout;
 
@@ -187,7 +188,7 @@ const AdminReviewPage: React.FC = () => {
           >
             {
              
-              <AdminUserComponent  />
+              <AdminReviewComponent  />
            
 
             }

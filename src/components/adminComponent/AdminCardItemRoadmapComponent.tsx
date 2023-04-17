@@ -206,11 +206,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                         <div className='flex justify-around mt-2'>
                             <div>
                                 <h6 className='font-semibold text-blue-500 w-[100px]'>Requirements:</h6>
-                                {
-
-                                    roadmap.courseRoadmaps[0] != undefined ? <>{roadmap.courseRoadmaps[0].course.name}</> : null
-
-                                }
+                               
                                 {roadmap.requirements == null ? null
                                     : roadmap.requirements.map(requi => {
                                         return <p className='text-xs truncate text-red-400' key={requi}>{requi} { }</p>
@@ -235,7 +231,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
 
 
                 </div>
-                {/* <h5 className='font-bold mb-2'>List courses:</h5>
+                <h5 className='font-bold mb-2'>List courses:</h5>
             <Carousel responsive={responsive}>
 
             {
@@ -243,10 +239,10 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                         roadmap.courseRoadmaps.map((course)=>{
                             return <img className='rounded-sm mx-2 shadow-md' key={course.id} src={course.course.image}/>
                         })
-                     }</>: <div></div>
+                     }</>: <div>...</div>
                 }
 
-            </Carousel> */}
+            </Carousel>
 
 
 

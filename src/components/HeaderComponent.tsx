@@ -11,7 +11,7 @@ import UserDropdown from "./UserDropdown";
 import { GiHamburgerMenu } from "react-icons/gi"
 import { IoHome } from 'react-icons/io5';
 import { HiOutlineNewspaper, HiOutlineBookOpen } from "react-icons/hi"
-import { FaRoute, FaRegUser } from "react-icons/fa"
+import { FaRoute, FaRegUser, FaUsers } from "react-icons/fa"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import { BsBell } from "react-icons/bs"
 import { TbLogout, TbLogin } from "react-icons/tb"
@@ -54,12 +54,13 @@ const HeaderComponent: React.FC<{item: string}> = ({item}) => {
         console.log(error)
         dispatch(unsetLoading({}))
         dispatch(logout())
+        navigate("/")
     })
     
 }
 
   return (
-    <Header className="w-[100%]  !bg-[#ffffffda] shadow-md !px-0 !py-0 fixed top-0 left-0 right-0 z-50">
+    <Header className="w-[100%]  !bg-[#ffffff] shadow-md !px-0 !py-0 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-[1400px] md:!w-[100%] h-[100%] flex justify-between items-center mx-auto px-4 max-sm:px-1 space-x-2">
         <Link to="/">
           <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
@@ -82,22 +83,19 @@ const HeaderComponent: React.FC<{item: string}> = ({item}) => {
             <Link to="/courses" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Courses</p></Link>
           }
             {
-            item=="roadmap"?
-            <Link to="/roadmap" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden active-menu"><p>Roadmap</p></Link> : 
-            <Link to="/roadmap" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Roadmap</p></Link>
+            item=="roadmaps"?
+            <Link to="/roadmaps" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden active-menu"><p>Roadmaps</p></Link> : 
+            <Link to="/roadmaps" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Roadmaps</p></Link>
           }
-            {
-            item=="block"?
-            <Link to="/block" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden active-menu"><p>Block</p></Link> : 
-            <Link to="/block" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>Block</p></Link>
-          }
-          
-          
-          
+
+             {
+            item=="about-us"?
+            <Link to="/about-us" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden active-menu"><p>About Us</p></Link> : 
+            <Link to="/about-us" className="block text-sm font-medium  flex justify-start items-center !space-x-1 max-sm:hidden"><p>About Us</p></Link>
+          }        
          
           {
             auth.isAuthenticated ? <>
-              <CartDropdown />
               <NotifyDropdown />
               <UserDropdown handelLogout={handelLogout}/>
             </> :
@@ -115,20 +113,19 @@ const HeaderComponent: React.FC<{item: string}> = ({item}) => {
                   <Link to="/" className="block w-[100%] pl-5 text-sm font-medium !pt-8 flex justify-start items-center !space-x-2 active-menu"><IoHome /><p>Home</p></Link>
                   <Link to="/courses" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><HiOutlineBookOpen /><p>Courses</p></Link>
                   <Link to="/my-courses" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><HiOutlineBookOpen /><p>My Courses</p></Link>
-                  <Link to="/roadmap" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaRoute /><p>Roadmap</p></Link>
-                  <Link to="/block" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><HiOutlineNewspaper /><p>Block</p></Link>
-                  <Link to="/my-block" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><HiOutlineNewspaper /><p>My Block</p></Link>
+                  <Link to="/roadmaps" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaRoute /><p>Roadmaps</p></Link>
                   <Link to="/cart" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><MdOutlineShoppingCart /><p>Cart</p></Link>
                   <Link to="/notification" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><BsBell /><p>Notification</p></Link>
                   <Link to="/profile" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaRegUser /><p>View Profile</p></Link>
+                  <Link to="/about-us" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaUsers /><p>About Us</p></Link>
                   <p onClick={handelLogout}
                   className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center text-red-500 hover:!text-red-500 !space-x-2 cursor-pointer"><TbLogout /><p>Sign Out</p></p>
                 </> :
                   <>
                     <Link to="/" className="block w-[100%] pl-5 text-sm font-medium !pt-8 flex justify-start items-center !space-x-2 active-menu"><IoHome /><p>Home</p></Link>
                     <Link to="/courses" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><HiOutlineBookOpen /><p>Courses</p></Link>
-                    <Link to="/roadmap" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaRoute /><p>Roadmap</p></Link>
-                    <Link to="/block" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><HiOutlineNewspaper /><p>Block</p></Link>
+                    <Link to="/roadmaps" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaRoute /><p>Roadmaps</p></Link>
+                    <Link to="/about-us" className="block w-[100%] pl-5 text-sm font-medium !pt-3 flex justify-start items-center !space-x-2"><FaUsers /><p>About Us</p></Link>
                     <Button type="primary" className="block text-sm mx-auto mt-6 font-medium  flex justify-start items-center !space-x-1 bg-blue-500"
                     onClick={()=> setshowModalLogin(true)}
                     ><TbLogin /><p>Sign In</p></Button>

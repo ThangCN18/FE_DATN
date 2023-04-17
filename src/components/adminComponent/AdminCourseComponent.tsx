@@ -198,7 +198,7 @@ const handelGetDataCourse = async (pagea: number) => {
                 >
                     <Input className='font-normal text-base'/>
                 </Form.Item>
-                <Space>
+                <Space className='flex !justify-between'>
                 <Form.Item
                     label="Price"
                     name="price"
@@ -246,7 +246,7 @@ const handelGetDataCourse = async (pagea: number) => {
                     <Input className='font-normal text-base'/>
                 </Form.Item>
 
-                <Space>
+                <Space className='!justify-between flex'>
                 <Form.Item
                     label="Requirements"
                     name="requirements"

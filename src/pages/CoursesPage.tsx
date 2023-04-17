@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Badge, Breadcrumb, Button, Card, Col, Layout, Menu, Rate, Row, Space, theme } from 'antd';
+import { Avatar, Badge, Breadcrumb, Button, Card, Col, Layout, Menu, Rate, Row, Skeleton, Space, Tabs, theme } from 'antd';
 import HeaderComponent from "../components/HeaderComponent";
 import SlideBanner from "../components/SlideBanner";
 import SliderRoadmap from "../components/SliderRoadmap";
@@ -15,7 +15,12 @@ import api from "../configs/axiosConfig";
 import { logout } from "../store/authSlice";
 import Meta from "antd/es/card/Meta";
 import { RiVipCrownFill } from "react-icons/ri";
+import CardCourseItemComponent from "../components/CardCourseItemComponent";
 const { Header, Content, Footer } = Layout;
+import type { TabsProps } from 'antd';
+import SkeletonImage from "antd/es/skeleton/Image";
+import SkeletonInput from "antd/es/skeleton/Input";
+import SkeletonButton from "antd/es/skeleton/Button";
 
 
 function CoursesPage() {
@@ -25,17 +30,61 @@ function CoursesPage() {
     const loading = useSelector((state: RootState) => state.root.load)
     const [loaddingas, setloaddingas] = useState(false)
     const [datacourses, setdatacourses] = useState<any[]>([])
+    const [dataroadmap, setdataroadmap] = useState([])
     const auth = useSelector((state: RootState) => state.root.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const [datasub, setdatasub] = useState([])
+    const [dataadacss, setdataadacss] = useState([])
+
+
+
+    const onChange = (key: string) => {
+        console.log(key);
+      };
+
+
+     let constadata = []
+
+      
+    var items: TabsProps['items'] = dataadacss
+
+    var aaaa =[]
+
 
     const hangdlegetdatacourses = async () => {
+
+
         setloaddingas(true)
+        if(auth.isAuthenticated){
+            await getCourseSubscribe()
+        }
+        await hangdlegetdataroadmap()
+        
         await api.get('/courses/?page=1',
 
         ).then((response: any) => {
             setdatacourses(response.data.items)
-            console.log(response.data.items)
+
+            const caca = [{
+                key: 1,
+                label: <p>All</p>,
+                children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5">
+                {!response.data.items? null : <>
+                    {response.data.items.map(course => {
+                        console.log(aaaa)
+                        if(aaaa.includes(course.id)){
+                            
+                            return  <CardCourseItemComponent course={course} key={course.id} issub={true}/>
+                        }
+                        return <CardCourseItemComponent course={course} key={course.id} issub={false}/>
+                        
+                    })}
+                </>}
+            </Row>
+              }]
+
+            setdataadacss([ ...caca, ...ccccaa])
             setloaddingas(false)
         }).catch((error: any) => {
             console.log(error)
@@ -43,105 +92,147 @@ function CoursesPage() {
         })
 
     }
+    
+
+    var ccccaa = []
+
+
+    const hangdlegetdataroadmap = async () => {
+
+        setloaddingas(true)
+
+        await api.get('/roadmaps',
+
+        ).then(async(response: any) => {
+            const adshba = response.data
+            
+            for(const index in adshba){
+                const caca = {
+                    key: index+1,
+                    label: <p>{adshba[index].name}</p>,
+                    children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5">
+                    {!adshba[index].courseRoadmaps? null : <>
+                        {adshba[index].courseRoadmaps.map(course => {
+          
+                            if(aaaa.includes(course.course.id)){
+                                return  <CardCourseItemComponent course={course.course} key={course.id} issub={true}/>
+                            }
+                            return <CardCourseItemComponent course={course.course} key={course.id} issub={false}/>
+                            
+                        })}
+                    </>}
+                </Row>
+                  }
+                  ccccaa.push(caca)
+                  
+            }
+                        
+        }).catch((error: any) => {
+            console.log(error)
+            
+        })
+
+    }
+
+
+    
+
+
+
+    const headers = {
+        Accept: '*/*',
+        Authorization: 'Bearer ' + auth.user?.accessToken,
+      };
+    
+const getCourseSubscribe = async () =>{
+
+    await api.get('/users/my-courses/',
+        {
+            headers
+          },
+    
+    ).then(async (response:any)=>{
+        if (response.status === 200){
+            console.log(response)
+            for(var addf in response.data){
+                aaaa.push(response.data[addf].courseId)
+            }
+        }
+       
+    }).catch((error: any)=>{
+        console.log(error)
+        
+
+    })
+    
+    }
+
+
     useEffect(() => {
         hangdlegetdatacourses()
-    }, [])
+        
+    }, [auth.isAuthenticated])
 
     return (
         <Layout className="layout bg-white">
             <HeaderComponent item="courses" />
             <Content className="pt-[70px]">
-                <div className="site-layout-content w-[100%] pb-10 " style={{ background: colorBgContainer }}>
-                    <Row gutter={[24, 24]} className="max-sm:px-6">
-                        {loaddingas ? null : <>
-                            {datacourses.map(course => {
-                                return <Col xs={24} sm={24} md={12} lg={12} xl={6} >
-                                    {course.sections.length == 0 ?
-                                        <Badge.Ribbon text={course.price - course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={course.price - course.discount <= 0 ? "green" : "yellow"}>
+                <div className="site-layout-content w-[100%] pb-10 max-w-[1400px] mx-auto" style={{ background: colorBgContainer }}>
+                <div className="max-w-[1400px] max-md:w-[90%] mx-auto text-center rounded-3xl px-[5%] py-[2%] bg-[rgba(71,213,226,0)] tapscoursescomponemt">
+                    {
+                        loaddingas?<>
+                        <div className="flex justify-center space-x-2 ">
+                        <SkeletonButton className="my-4" /> 
+                        <SkeletonButton className="my-4" /> 
+                        <SkeletonButton className="my-4" /> 
+                        <SkeletonButton className="my-4" /> 
 
-                                            <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
-                                                hoverable
-                                                cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={course.image} />}
-                                            >
-                                                <Meta className="text-left text-title-course" title={course.name} />
-                                                <p className="my-2 truncate text-gray-500">{course.headline}</p>
-                                                <Space className="!flex !justify-between mt-2">
+                        </div>
 
-
-                                                </Space>
-                                                <Space className="!flex !justify-between mt-2">
-                                                    <Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={5} />
-                                                    {
-                                                        course.price - course.discount <= 0 ? null : <>
-                                                            <p className="text-sm font-bold"><span className="line-through text-gray-500">${course.price}</span>
-                                                                <span className=" text-base text-blue-600"> ${course.price - course.discount}</span></p>
-                                                        </>
-                                                    }
-                                                </Space>
-                                                {
-                                                    course.sections.length == 0 ?
-                                                        <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs w-[100%] cursor-default">Not started yet</Button> :
-                                                        <>
-                                                            {course.price - course.discount <= 0 ?
-                                                                <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Learn Now</Button> :
-                                                                <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Buy Now</Button>
-                                                            }
-                                                        </>
-                                                }
-
-
-                                            </Card>
-                                        </Badge.Ribbon> :
-                                        <Link to={'/course/' + course.id} >
-                                            <Badge.Ribbon text={course.price - course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={course.price - course.discount <= 0 ? "green" : "yellow"}>
-
-                                                <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
-                                                    hoverable
-                                                    cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={course.image} />}
-                                                >
-                                                    <Meta className="text-left text-title-course" title={course.name} />
-                                                    <p className="my-2 truncate text-gray-500">{course.headline}</p>
-                                                    <Space className="!flex !justify-between mt-2">
-
-
-                                                    </Space>
-                                                    <Space className="!flex !justify-between mt-2">
-                                                        <div>
-                                                        <Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={course.courseKeyMetric.rating} /><span className="text-gray-500 text-xs ml-1">{course.courseKeyMetric.rating + "/5"}</span>
-                                                        </div>
-                                                        
-                                                        {
-                                                            course.price - course.discount <= 0 ? null : <>
-                                                                <p className="text-sm font-bold"><span className="line-through text-gray-500">${course.price}</span>
-                                                                    <span className=" text-base text-blue-600"> ${course.price - course.discount}</span></p>
-                                                            </>
-                                                        }
-                                                    </Space>
-                                                    {
-                                                        course.sections.length == 0 ?
-                                                            <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs w-[100%] cursor-default">Not started yet</Button> :
-                                                            <>
-                                                                {course.price - course.discount <= 0 ?
-                                                                    <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Learn Now</Button> :
-                                                                    <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Buy Now</Button>
-                                                                }
-                                                            </>
-                                                    }
-
-
-                                                </Card>
-                                            </Badge.Ribbon>
-
-
-                                        </Link>
-
-                                    }
-
-
-                                </Col>
-                            })}
-                        </>}
-                    </Row>
+                        <Row gutter={[24,24]}>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton className="my-5" /> 
+                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton className="my-5" /> 
+                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton className="my-5" /> 
+                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton className="my-5" /> 
+                            <SkeletonButton className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        </Row>
+                        
+                        </>:
+                        <Tabs  defaultActiveKey="1" animated  items={items} onChange={onChange} />
+                    }
+                
+                    </div>
                 </div>
             </Content>
             <FooterComponent />

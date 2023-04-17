@@ -116,7 +116,7 @@ const AdminCourseItemComponent:  React.FC<propstype>= ({course, handelGetDataCou
         <>
         <Col span={8}>
             
-        <Badge.Ribbon text={course.price == 0? "Free": "$"+course.price} color={course.price == 0? "green": ""}>
+        <Badge.Ribbon text={course.discount == 0? "Free": "$"+course.discount} color={course.discount == 0? "green": ""}>
         <Card bordered={false} onMouseOver={()=>{setonshowaction(true)}} onMouseLeave={()=>{setonshowaction(false)}} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
             <div className='flex justify-around items-start space-x-4'>
             <Image src={course.image} className='!w-[100px] !h-[70px] max-lg:!w-[80px] rounded-md shadow-md max-lg:!h-[40px]'/>
@@ -180,7 +180,7 @@ const AdminCourseItemComponent:  React.FC<propstype>= ({course, handelGetDataCou
                 >
                     <Input className='font-normal text-base'/>
                 </Form.Item>
-                <Space>
+                <Space className='!justify-between flex'>
                 <Form.Item
                     label="Price"
                     name="price"
@@ -230,7 +230,7 @@ const AdminCourseItemComponent:  React.FC<propstype>= ({course, handelGetDataCou
                     <Input className='font-normal text-base'/>
                 </Form.Item>
 
-                <Space>
+                <Space className='!justify-between flex'>
                 <Form.Item
                     label="Requirements"
                     name="requirements"

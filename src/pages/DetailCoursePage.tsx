@@ -40,6 +40,8 @@ function DetailCoursesPage() {
     const [rating, setrating] = useState(null)
     const [valuerating, setvaluerating] = useState(5)
     const [valuecontent, setvaluecontent] = useState("")
+    const [datasub ,setdatasub] = useState([])
+    const [checksub, setchecksub] = useState(false)
 
 
     const hangdlegetdatareviews = async () => {
@@ -59,11 +61,11 @@ function DetailCoursesPage() {
                 setrating(totalrating / response.data.total)
             }
             setdatareview(response.data.items)
-            setloaddingas(false)
+            
         }).catch((error: any) => {
 
             console.log(error)
-            setloaddingas(false)
+            
         })
 
     }
@@ -77,6 +79,7 @@ function DetailCoursesPage() {
 
 
       const handlecreatereview = async () =>{
+        
                 
                     dispatch(setLoading({}))
             await api.post('/courses/' + location.pathname.split("/")[2] + "/review",
@@ -90,14 +93,16 @@ function DetailCoursesPage() {
                   },
            
             ).then((response:any)=>{
-                if (response.status === 204){
+                if (response.status === 201){
                     hangdlegetdatareviews()
                     dispatch(unsetLoading({}))
+                    
                 }
             }).catch((error: any)=>{
                 console.log(error)
                 dispatch(setNotify({typeNotify: "error", titleNotify: "Review unsuccessful!", messageNotify: error.response.data.message}))
                 dispatch(unsetLoading({}))
+                
             })
         
        
@@ -105,10 +110,78 @@ function DetailCoursesPage() {
     }
 
 
+    const handellearncourse = async () =>{
+        console.log(location.pathname.split("/")[2])
+await api.post('/courses/' + location.pathname.split("/")[2] + '/subscribe/',
+    {
+        headers
+      },
 
-    const hangdlegetdatacourses = async () => {
+).then((response:any)=>{
+    if (response.status === 201){
+        dispatch(setNotify({typeNotify: "success", titleNotify: "Subscribe Course successful!", messageNotify:  "You subscribe Course successful!"}))
+    }
+}).catch((error: any)=>{
+    console.log(error)
+    dispatch(setNotify({typeNotify: "error", titleNotify: "Subscribe unsuccessful!", messageNotify: error.response.data.message}))
+})
+
+}
+
+
+const getCourseSubscribe = async () =>{
+
+    await api.get('/users/my-courses/',
+        {
+            headers
+          },
+    
+    ).then((response:any)=>{
+        if (response.status === 200){
+            console.log(response)
+            for(var addf in response.data){
+                if(response.data[addf].courseId == location.pathname.split("/")[2]){
+                    setchecksub(true)
+                }
+            }
+        }
+       
+    }).catch((error: any)=>{
+        console.log(error)
         
+
+    })
+    
+    }
+
+    const hangdlepayment = async () => {   
+
+        console.log(location.pathname.split("/")[2])
+        const data = {
+            courseIds : [location.pathname.split("/")[2]]
+        }
+        await api.post('/payment/checkout-info',
+        data,
+        {
+            headers
+        }
+        ).then((response: any) => {
+            window.location = response.data.url
+            setloaddingas(false)
+        }).catch((error: any) => {
+            console.log(error)
+            setloaddingas(false)
+        })
+    }
+
+
+    const hangdlegetdatacourses = async () => {   
         setloaddingas(true)
+        await hangdlegetdatareviews()
+        if(auth.isAuthenticated){
+            await getCourseSubscribe()
+            
+        }
         console.log(location.pathname.split("/")[2])
         await api.get('/courses/' + location.pathname.split("/")[2],
 
@@ -119,12 +192,13 @@ function DetailCoursesPage() {
             console.log(error)
             setloaddingas(false)
         })
-
     }
     const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
     useEffect(() => {
-        hangdlegetdatareviews()
+        
+        
         hangdlegetdatacourses()
+        dispatch(unsetLoading({}))
        
     }, [])
 
@@ -132,7 +206,7 @@ function DetailCoursesPage() {
         <Layout className="layout bg-white">
             <HeaderComponent item="courses" />
             <Content className="pt-[70px]">
-                <div className="site-layout-content w-[100%] pb-10 " >
+                <div className="site-layout-content w-[100%] pb-10 max-w-[1400px] mx-auto " >
                     {
                         loaddingas ? <>
                             <Row className="px-8" gutter={[24, 24]}>
@@ -183,19 +257,24 @@ function DetailCoursesPage() {
 
                                                 <img className="mt-10 rounded-md w-[100%] h-[200px] " src={courses.image} />
                                                 {
-                                                    courses.price - courses.discount <= 0 ? <p className="mt-4 text-lg text-green-600 font-bold">Free </p> : <>
+                                                     courses.discount <= 0 ? <p className="mt-4 text-lg text-green-600 font-bold">Free </p> : <>
                                                         <p className="mt-4 text-lg font-bold">Discounted price of </p>
                                                         <p className="text-base font-bold"> <span className="line-through text-gray-500">${courses.price}</span>
-                                                            <span className=" text-xl text-blue-600"> ${courses.price - courses.discount}</span></p>
+                                                            <span className=" text-xl text-blue-600"> ${ courses.discount}</span></p>
                                                     </>
                                                 }
                                                 {
                                                     courses.sections.length == 0 ?
                                                         <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 w-[80%] h-[40px] font-bold mt-3 max-sm:text-xs cursor-default">Not started yet</Button> :
                                                         <>
-                                                            {courses.price - courses.discount <= 0 ?
-                                                                <Button type="primary" className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Learn Now</Button> :
-                                                                <Button type="primary" className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
+                                                            { courses.discount <= 0 ?
+                                                               <>{checksub ?  <Link to={"/learn/"+ location.pathname.split("/")[2] +"?s=0&l=0"}><Button type="primary"  className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
+                                                            : <Button type="primary" onClick={()=>{handellearncourse()}} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Learn Now</Button>
+                                                            }</> :
+                                                            <>{checksub ?  <Link to={"/learn/"+ location.pathname.split("/")[2]+"?s=0&l=0"}><Button type="primary"  className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
+                                                            : <Button type="primary" onClick={hangdlepayment} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
+                                                            }</>
+                                                                
                                                             }
                                                         </>
                                                 }

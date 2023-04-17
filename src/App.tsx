@@ -20,6 +20,7 @@ import DetailCoursesPage from "./pages/DetailCoursePage";
 import { unsetLoading } from "./store/loadSlice";
 import AdminReviewPage from "./pages/AdminReviewPage";
 import DetailCourseLearnPage from "./pages/DetailCourseLearnPage";
+import RoadmapsPages from "./pages/RoadmapsPages";
 
 
 
@@ -66,6 +67,7 @@ const App = () => {
         : null
       }
       <Route path='/about-us' element={<AboutUsPage />} />
+      <Route path='/roadmaps' element={<RoadmapsPages />} />
       <Route path='/course/:id' element={<DetailCoursesPage />} />
       <Route path='/courses' element={<CoursesPage />} />
       <Route path='/verify-email' element={<VerifyEmailPage />} />

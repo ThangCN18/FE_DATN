@@ -182,3 +182,6 @@
         -webkit-box-orient: vertical;
         overflow: hidden; 
 }
+.ant-rate-star{
+    @apply !mr-0
+}

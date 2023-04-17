@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux'
 import { RootState } from "../store/types";
 import AboutUsHomeComponent from "../components/AboutUsHomeComponent";
 import FooterComponent from "../components/FooterComponent";
+import StudentReviewHomePageComponent from "../components/StudentReviewHomePageComponent";
+import PopularCourseComponent from "../components/PopularCourseComponent";
 const { Header, Content, Footer } = Layout;
 
 function HomePage() {
@@ -26,6 +28,8 @@ function HomePage() {
           <SlideBanner/>
           <SliderRoadmap/>
           <TabsCoursesComponent/>
+          <StudentReviewHomePageComponent/>
+          <PopularCourseComponent/>
           <AboutUsHomeComponent/>
         </div>
       </Content>
