@@ -16,7 +16,7 @@ import { logout } from "../store/authSlice";
 import Meta from "antd/es/card/Meta";
 import { RiVipCrownFill } from "react-icons/ri";
 import { FiArrowLeft } from "react-icons/fi";
-import { AiFillLike, AiOutlineCheckCircle, AiOutlineFieldTime } from "react-icons/ai";
+import { AiFillLike, AiFillStar, AiOutlineCheckCircle, AiOutlineFieldTime } from "react-icons/ai";
 import { BsCheck2Circle, BsSendFill } from "react-icons/bs";
 import { SiYoutubemusic } from "react-icons/si";
 import { BiUser } from "react-icons/bi";
@@ -248,6 +248,24 @@ const getCourseSubscribe = async () =>{
                                                 <p className="mt-5  text-md">{courses.headline}</p>
                                                 <h5 className="mt-5 font-bold text-base ">Description course</h5>
                                                 <p className="mt-3  text-md">{courses.description}</p>
+                                                <div className="flex justify-start space-x-20 max-md:space-x-10 items-start">
+                                                    <div>
+                                                        <h5 className="mt-5 font-bold text-base ">Requirements</h5>
+                                                        {
+                                                            courses.requirements ? <>{courses.requirements.map((requirement) => {
+                                                                return <div className="my-2 space-x-1 flex items-center justify-start text-green-600" key={requirement}><BsCheck2Circle /><span>{requirement}</span></div>
+                                                            })}</> : null
+                                                        }
+                                                    </div>
+                                                    <div>
+                                                        <h5 className="mt-5 font-bold text-base ">Benefits</h5>
+                                                        {
+                                                            courses.benefits ? <>{courses.benefits.map((benefit) => {
+                                                                return <div className="my-2 space-x-2 flex items-center justify-start text-green-600" key={benefit}><BsCheck2Circle /><span>{benefit}</span></div>
+                                                            })}</> : null
+                                                        }
+                                                    </div>
+                                                </div>
 
 
 
@@ -324,38 +342,19 @@ const getCourseSubscribe = async () =>{
                                                         : null
                                                 }
 
-                                                <div className="flex justify-around items-start">
-                                                    <div>
-                                                        <h5 className="mt-5 font-bold text-base ">Requirements</h5>
-                                                        {
-                                                            courses.requirements ? <>{courses.requirements.map((requirement) => {
-                                                                return <div className="my-2 space-x-1 flex items-center justify-start text-green-600" key={requirement}><BsCheck2Circle /><span>{requirement}</span></div>
-                                                            })}</> : null
-                                                        }
-                                                    </div>
-                                                    <div>
-                                                        <h5 className="mt-5 font-bold text-base ">Benefits</h5>
-                                                        {
-                                                            courses.benefits ? <>{courses.benefits.map((benefit) => {
-                                                                return <div className="my-2 space-x-2 flex items-center justify-start text-green-600" key={benefit}><BsCheck2Circle /><span>{benefit}</span></div>
-                                                            })}</> : null
-                                                        }
-                                                    </div>
-                                                </div>
+                                                
 
-                                                <div className="flex flex-col justify-center py-5">
+                                                <div className="flex items-center space-x-2 justify-start py-5">
 
                                                     {
                                                         datareview ? <>
-                                                            <div className="flex justify-center  ">
-                                                                {rating != 0 ? <><Rate disabled defaultValue={rating} /></> :
+                                                            <div className="flex justify-start  ">
+                                                                {rating != 0 ? <div className="flex justify-start items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-3xl" /><span>{courses.courseKeyMetric.rating +" course rating. "+ courses.courseKeyMetric.totalReviews+ " ratings"}</span></div> :
                                                                     <Rate disabled defaultValue={0} />
                                                                 }
                                                             </div>
                                                             <div className="mx-auto">
-                                                                <Button onClick={() => { setshowmodalviewvd(true) }} className="mt-5  text-md bg-blue-600  flex justify-center items-center" type="primary">Reviews {
-                                                                    datareview.length
-                                                                }  <BiUser className="!text-xs" /> </Button>
+                                                                <Button onClick={() => { setshowmodalviewvd(true) }} className="mt-5  text-md   flex justify-center items-center" >See reviews </Button>
 
 
 
@@ -416,7 +415,7 @@ const getCourseSubscribe = async () =>{
                                                     renderItem={(item) => (
                                                         <List.Item key={item?.id} className="bg-gray-50 my-2 rounded-md !px-2">
                                                         <List.Item.Meta 
-                                                            avatar={<Avatar src={item.user.image? item.user.image: "https://live.staticflickr.com/65535/52813965210_ca9d9cd3a9_w.jpg"} />}
+                                                            avatar={<Avatar src={item.user.avatar? item.user.avatar: "https://live.staticflickr.com/65535/52813965210_ca9d9cd3a9_w.jpg"} />}
                                                             title={<p className="font-semibold">{item.user.lastName + " " + item.user.firstName + " "} 
                                                             
                                                             <span>{item.user.role=="admin"?<Tag color="cyan">Admin</Tag>:<>

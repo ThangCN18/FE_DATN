@@ -90,7 +90,15 @@ function TabsCoursesComponent() {
                 const caca = {
                     key: index+1,
                     label: <p>{adshba[index].name}</p>,
-                    children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5">
+                    children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5 pb-10">
+                        <Col span={24}>
+                        <h2 className="py-8 max-md:py-2 text-3xl max-md:w-[100%] w-[80%] mx-auto text-gray-700 font-bold max-lg:text-xl max-sm:text-md">{
+                            adshba[index].description
+                        }
+</h2>
+                        
+                        </Col>
+                        
                     {adshba[index].courseRoadmaps.length == 0? <Empty className="mx-auto" image={Empty.PRESENTED_IMAGE_SIMPLE} />: <>
                         {adshba[index].courseRoadmaps.map(course => {
           

@@ -6,7 +6,7 @@ import { FaRoute } from "react-icons/fa";
 function SlideBanner() {
 
   return (
-    <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px] max-sm:!h-[450px] bg-[url('../assets/images/bg-slide-banner.png')] bg-[length:100%_100%]">
+    <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px] max-sm:!h-[450px] bg-[url('https://live.staticflickr.com/65535/52812995427_d741a09e0a_z.jpg')] bg-[length:100%_100%]">
       <div className="mx-auto px-4 max-sm:px-1 max-w-[1400px]">
         <Carousel autoplay >
           <div className="w-[100%] h-[500px] max-lg:!h-[325px] max-md:!h-[550px] max-sm:!h-[450px]">

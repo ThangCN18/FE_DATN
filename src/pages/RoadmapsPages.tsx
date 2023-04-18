@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Badge, Breadcrumb, Button, Card, Col, Layout, Menu, Rate, Row, Space, theme } from 'antd';
+import { Avatar, Badge, Breadcrumb, Button, Card, Col, Layout, Menu, Rate, Row, Skeleton, Space, theme } from 'antd';
 import HeaderComponent from "../components/HeaderComponent";
 import SlideBanner from "../components/SlideBanner";
 import SliderRoadmap from "../components/SliderRoadmap";
@@ -15,6 +15,10 @@ import api from "../configs/axiosConfig";
 import { logout } from "../store/authSlice";
 import Meta from "antd/es/card/Meta";
 import { RiVipCrownFill } from "react-icons/ri";
+import SkeletonInput from "antd/es/skeleton/Input";
+import SkeletonAvatar from "antd/es/skeleton/Avatar";
+import SkeletonButton from "antd/es/skeleton/Button";
+import SkeletonImage from "antd/es/skeleton/Image";
 const { Header, Content, Footer } = Layout;
 
 
@@ -51,13 +55,17 @@ function RoadmapsPages() {
         <Layout className="layout bg-white">
             <HeaderComponent item="roadmaps" />
             <Content className="pt-[70px]">
-                <div className="site-layout-content max-w-[1400px] mx-auto py-8 w-[90%] pb-10 " style={{ background: colorBgContainer }}>
-                    <h4 className="text-gray-900 text-3xl font-bold mb-4 max-md:text-2xl truncate">WizcoveIT's learning Roadmap </h4>
+               
+                    {
+                        dataroadmap.length != 0?<>
+                         <div className="site-layout-content max-w-[1400px] mx-auto py-8 w-[90%] pb-10 " style={{ background: colorBgContainer }}>
+
+                        <h4 className="text-gray-900 text-3xl font-bold mb-4 max-md:text-2xl truncate">WizcoveIT's learning Roadmap </h4>
                     <p className="text-gray-800 w-[80%] mb-8 text-lg font-semibold max-md:text-md max-md:w-[95%]">WizcoveIT is an information technology training company that provides courses in programming and software testing. Here are some of the routes that WizcoveIT offers:</p>
                     <Row gutter={[24,24]}>
 
                         {
-                            dataroadmap?<>
+                            dataroadmap.length != 0?<>
                                 {dataroadmap.map((roadmap) => {
                                     return <Col xs={24} sm={24} md={24} lg={10} xl={10} key={roadmap.id}>
                                     <div className="w-[100%] p-10 rounded-xl border-2 border-gray-600 shadow-lg bg-slate-50">
@@ -94,8 +102,85 @@ function RoadmapsPages() {
                 <Link to="/about-us"><Button  className='mt-4 text-base h-[40px] rounded-full font-semibold border-2 border-gray-800'>See more information about us</Button></Link>
             </div>
             <img className='h-[100%] max-lg:h-[90%] max-md:h-[160px] max-md:hidden' src='https://hrcdn.net/fcore/assets/dashboard/hackerresume-card-dd9b01fcd2.svg'/>
+            </div>
+                        
+                        </>:
+                        <div className="site-layout-content max-w-[1400px] mx-auto py-8 w-[90%] pb-10 " style={{ background: colorBgContainer }}>
+                            <SkeletonInput active className="!w-[300px] !h-[40px]"/>
+                            <Skeleton title={null} active paragraph={{rows: 2}}  className="!w-[80%] max-md:!w-[95%] mt-5"/>
+
+                            <Row gutter={[24,24]} className="py-10">
+                            <Col xs={24} sm={24} md={24} lg={10} xl={10}>
+                                    <div className="w-[100%] p-10 rounded-xl  shadow-lg bg-slate-50">
+                                        <div className="flex justify-between items-start ">
+                                            <div>
+                                                <SkeletonInput active className="!w-[60%] !h-[30px]"/>
+                                                <Skeleton title={null} active paragraph={{rows: 2}}  className=" mt-5"/>
+                                            </div>
+                                            <div className="w-[100px]">
+                                            <SkeletonImage active className="!w-[100px] !rounded-full !h-[100px]" />
+                                            </div>
+                                            
+                                        </div>
+                                        <SkeletonButton active className="my-3"/>
             
-        </div>
+                                    </div>
+                                    </Col>
+                                    <Col xs={24} sm={24} md={24} lg={10} xl={10}>
+                                    <div className="w-[100%] p-10 rounded-xl  shadow-lg bg-slate-50">
+                                        <div className="flex justify-between items-start ">
+                                            <div>
+                                                <SkeletonInput active className="!w-[60%] !h-[30px]"/>
+                                                <Skeleton title={null} active paragraph={{rows: 2}}  className=" mt-5"/>
+                                            </div>
+                                            <div className="w-[100px]">
+                                            <SkeletonImage active className="!w-[100px] !rounded-full !h-[100px]" />
+                                            </div>
+                                            
+                                        </div>
+                                        <SkeletonButton active className="my-3"/>
+            
+                                    </div>
+                                    </Col>
+                                    <Col xs={24} sm={24} md={24} lg={10} xl={10}>
+                                    <div className="w-[100%] p-10 rounded-xl  shadow-lg bg-slate-50">
+                                        <div className="flex justify-between items-start ">
+                                            <div>
+                                                <SkeletonInput active className="!w-[60%] !h-[30px]"/>
+                                                <Skeleton title={null} active paragraph={{rows: 2}}  className=" mt-5"/>
+                                            </div>
+                                            <div className="w-[100px]">
+                                            <SkeletonImage active className="!w-[100px] !rounded-full !h-[100px]" />
+                                            </div>
+                                            
+                                        </div>
+                                        <SkeletonButton active className="my-3"/>
+            
+                                    </div>
+                                    </Col>
+                                    <Col xs={24} sm={24} md={24} lg={10} xl={10}>
+                                    <div className="w-[100%] p-10 rounded-xl  shadow-lg bg-slate-50">
+                                        <div className="flex justify-between items-start ">
+                                            <div>
+                                                <SkeletonInput active className="!w-[60%] !h-[30px]"/>
+                                                <Skeleton title={null} active paragraph={{rows: 2}}  className="  mt-5"/>
+                                            </div>
+                                            <div className="w-[100px]">
+                                            <SkeletonImage active className="!w-[100px] !rounded-full !h-[100px]" />
+                                            </div>
+                                            
+                                        </div>
+                                        <SkeletonButton active className="my-3"/>
+            
+                                    </div>
+                                    </Col>
+                            </Row>
+
+                        </div>
+                    }
+                    
+            
+        
             </Content>
             <FooterComponent />
             <Footer style={{ textAlign: 'center' }}>Copyright ©2023 Wizcove IT</Footer>
