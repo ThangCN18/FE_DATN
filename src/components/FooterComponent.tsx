@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
  
 const FooterComponent: React.FC = () => {
     return ( 
-        <div className='bg-gray-100 w-[100vw]'>
+        <div className='bg-gray-100 w-[100%]'>
             <div className='max-w-[1400px] w-[100%] px-4 py-10 border-b-2 border-separate mx-auto'>
             <Row gutter={[24, 16]} >
                 <Col lg={8} xl={6} md={12} sm={12} xs={12} className='mx-auto flex flex-col justify-center items-start space-y-3 px-2'>

@@ -1,9 +1,11 @@
 import { Button } from "antd";
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { BsCheck } from "react-icons/bs";
 import { FaRoute } from "react-icons/fa";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import api from "../configs/axiosConfig";
+import { Link } from "react-router-dom";
 
 const responsive = {
     desktop: {
@@ -24,13 +26,70 @@ const responsive = {
 };
 
 const SliderRoadmap: React.FC = () => {
+
+
+    
+
+    const [loaddingas, setloaddingas] = useState(false)
+    const [dataroadmap, setdataroadmap] = useState([])
+
+
+    const hangdlegetdataroadmap = async () => {
+        setloaddingas(true)
+        await api.get(`/roadmaps/`,
+
+        ).then((response: any) => {
+            setdataroadmap(response.data)
+            console.log(response)
+            setloaddingas(false)
+        }).catch((error: any) => {
+            console.log(error)
+            setloaddingas(false)
+        })
+    }
+    useEffect(() => {
+        hangdlegetdataroadmap()
+    }, [])
+
+
+
     return (
         <div className="mx-auto px-4 mt-[80px] max-sm:mt-[20px] max-sm:px-1 max-w-[1400px]">
-            <h2 className="text-3xl py-5 max-sm:text-xl font-bold text-center bg-clip-text text-transparent bg-blue-600 ">Training Roadmaps</h2>
+            {
+                dataroadmap.length != 0? <>
+                 <h2 className="text-3xl py-5 max-sm:text-xl font-bold text-center bg-clip-text text-transparent bg-blue-600 ">Training Roadmaps</h2>
             <p className="text-lg max-sm:text-sm max-sm:px-[5%] max-md:text-base font-semibold text-center leading-8 px-[17%]"><strong>Wizcove IT </strong>provides students with the skills and knowledge to work in the information technology industry, including courses from basic to advanced, to help students understand the theory and application of technologies. information in a real environment.</p>
-            <Carousel responsive={responsive}  className="max-w-[1170px] mx-auto my-14 max-sm:my-5">
+            <Carousel responsive={responsive}  className="max-w-[1100px] mx-auto my-14 max-sm:my-5 !justify-center">
+
+                {dataroadmap.map(roadmap=>{
+                    return <div key={roadmap.id} className=" py-10 px-5 pb-10 max-sm:px-2 text-center cursor-pointer ">
+                    <div className="bg-white w-100 hover:shadow-xl min-h-[277px] hover:bg-gray-50  max-sm:h-[220px] !border border-inherit rounded-md shadow-lg text-center">
+                        <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px] shadow-lg rounded-full"
+                         src={roadmap.image}/>
+                         <h4 className="mt-5 mb-3 max-sm:mt-2 text-base truncate max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center">{roadmap.name}</h4>
+                         <div className=" mb-3 ml-5 h-[120px] max-sm:h-[105px] flex space-y-1 flex-col">
+                            {
+                                roadmap.benefits.map((text, index)=>{
+                                    return  <p key={index} className="text-gray-700 truncate font-normal text-sm flex max-sm:text-[10px] justify-start items-center leading-3 space-x-1"><BsCheck className="!text-lg text-green-600"/>
+                                    <span>{text}</span></p>
+                                })
+                            }
+                         </div>
+                         <Link to={'/roadmap/'+roadmap.id}><Button type="primary" className="bg-gradient-to-tr from-blue-600 to-cyan-400 font-semibold max-sm:text-xs ">See more</Button></Link>
+                    </div>
+                </div>
+                })}
                 
-                <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
+            
+                </Carousel>
+                
+                </>:<>
+                asda
+                </>
+            }
+           
+
+                {/* <div className=" py-10 px-5 pb-10 max-sm:px-2 text-center">
                     <div className="bg-white w-100 h-[270px] max-sm:h-[220px] !border border-inherit rounded-md shadow-xl text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px]"
                          src="https://live.staticflickr.com/65535/52813965190_1b4a15fe98_w.jpg"/>
@@ -131,10 +190,10 @@ const SliderRoadmap: React.FC = () => {
                          </div>
                          <Button type="primary" className="bg-gradient-to-r from-blue-500 to-cyan-600 font-semibold max-sm:text-xs ">See more</Button>
                     </div>
-                </div>
+                </div> */}
 
                 
-            </Carousel>
+            
         </div>
     );
 }

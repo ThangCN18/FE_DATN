@@ -22,6 +22,7 @@ import AdminReviewPage from "./pages/AdminReviewPage";
 import DetailCourseLearnPage from "./pages/DetailCourseLearnPage";
 import RoadmapsPages from "./pages/RoadmapsPages";
 import DetailRoadmapsPages from "./pages/DetailRoadmapsPages";
+import MyCoursePage from "./pages/MyCoursePage";
 
 
 
@@ -49,6 +50,7 @@ const App = () => {
         auth.user?<>
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/learn/:id' element={<DetailCourseLearnPage/>} />
+        <Route path='/my-courses' element={<MyCoursePage/>} />
         {
         auth.user.role != "user"?<>
         <Route path='/admin' element={<AdminHomePage/>} />

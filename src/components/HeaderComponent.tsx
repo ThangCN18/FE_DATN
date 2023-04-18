@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Breadcrumb, Layout, Menu, theme, Input, notification } from 'antd';
+import React, { useState, useEffect } from "react";
+import { Breadcrumb, Layout, Menu, theme, Input, notification, AutoComplete } from 'antd';
 import { Link, useNavigate } from "react-router-dom";
 import { RiSearchLine } from "react-icons/ri"
 import type { MenuProps } from 'antd';
@@ -28,12 +28,22 @@ const { Meta } = Card;
 const { Header, Content, Footer } = Layout;
 const { Search } = Input;
 
+
+import type { SelectProps } from 'antd/es/select';
+
+
 const HeaderComponent: React.FC<{item: string}> = ({item}) => {
   const [showMenuSM, setShowMenuSM] = useState(false);
   const [showModalLogin, setshowModalLogin] = useState(false)
+  const [textSearch, settextSearch] = useState("")
+  const [datacourses, setdatacourses] = useState([])
   const auth = useSelector((state: RootState) => state.root.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate();
+  
+const [options, setOptions] = useState([]);
+const [dataCourses, setDataCourses] = useState([]);
+
 
   const handelLogout = async () =>{
     dispatch(setLoading({}))
@@ -56,8 +66,63 @@ const HeaderComponent: React.FC<{item: string}> = ({item}) => {
         dispatch(logout())
         navigate("/")
     })
-    
 }
+
+
+useEffect(() => {
+  handleGetCourses();
+}, []);
+
+const handleGetCourses = async () => {
+  try {
+    const response = await api.get('/courses');
+    setDataCourses(response.data.items);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const onSelect = (value) => {
+  console.log('onSelect', value);
+};
+
+const handleSearch = (value) => {
+  let filteredCourses = [];
+
+  if (value) {
+    filteredCourses = dataCourses.filter((course) =>
+      course.name.toLowerCase().includes(value.toLowerCase())
+    );
+  }
+
+  setOptions(
+    filteredCourses.map((course) => ({
+      value: course.name,
+      label: (
+        <Link to={'/course/'+course.id}><div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-start',
+            alignItems: 'center'
+          }}
+        >
+           <div className="flex justify-start items-center !space-x-2">
+            <img src={course.image} className="!w-[60px] rounded-md h-[40px]" />
+            <span className="truncate">{course.name}</span>
+           </div>
+          
+         
+        </div></Link>
+      ),
+    }))
+  );
+};
+
+
+
+
+
+  
 
   return (
     <Header className="w-[100%]  !bg-[#ffffff] shadow-md !px-0 !py-0 fixed top-0 left-0 right-0 z-50">
@@ -69,9 +134,23 @@ const HeaderComponent: React.FC<{item: string}> = ({item}) => {
           </div>
         </Link>
         <div className="flex justify-between items-center w-auto space-x-4 max-lg:space-x-2  max-sm:space-x-1">
-          <Input placeholder="Search Courses" className="text-base max-sm:text-xs w-[400px] max-lg:w-[250px] max-sm:w-[270px] max-xs:w-[250px]" size="large"
-            prefix={<div><RiSearchLine className="text-base text-gray-400 " /></div>}
-          />
+          <div className="relative">
+          
+       
+  <AutoComplete
+      dropdownMatchSelectWidth={252}
+      style={{ width: 300 }}
+      options={options}
+      onSelect={onSelect}
+      onSearch={handleSearch}
+     
+      className="text-base max-sm:text-xs !w-[450px] max-lg:!w-[250px] max-sm:!w-[280px] max-xs:w-[250px] " size="large"
+    >
+      <Input size="large"  placeholder="Course..." 
+      prefix={<div><RiSearchLine className="text-base text-gray-400 " /></div>}
+      />
+    </AutoComplete>
+          </div>
           {
             item=="home"?
             <Link to="/" className="block text-sm font-medium  flex justify-start items-center !space-x-1 active-menu max-sm:hidden"><p>Home</p></Link> : 
