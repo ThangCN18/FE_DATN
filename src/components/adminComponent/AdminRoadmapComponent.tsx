@@ -90,6 +90,7 @@ const AdminRoadmapComponent: React.FC = () => {
                 dispatch(setNotify({typeNotify: "success", titleNotify: "Create Roadmap successful!", messageNotify: 'You Create Roadmap successful'}))
                 dispatch(unsetLoading({}))
                 setshowmodalcreatnew(false)
+                form.resetFields()
             }
         }).catch((error: any)=>{
             console.log(error)

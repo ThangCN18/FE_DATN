@@ -47,86 +47,6 @@ function TabsCoursesComponent() {
 
     var aaaa =[]
 
-
-    const hangdlegetdatacourses = async () => {
-
-
-        setloaddingas(true)
-        if(auth.isAuthenticated){
-            await getCourseSubscribe()
-        }
-        await hangdlegetdataroadmap()
-        
-        await api.get('/courses/?page=1',
-
-        ).then((response: any) => {
-            setdatacourses(response.data.items)
-
-            const caca = []
-
-            setdataadacss([ ...caca, ...ccccaa])
-            setloaddingas(false)
-        }).catch((error: any) => {
-            console.log(error)
-            
-        })
-
-    }
-    
-
-    var ccccaa = []
-
-
-    const hangdlegetdataroadmap = async () => {
-
-        setloaddingas(true)
-
-        await api.get('/roadmaps',
-
-        ).then(async(response: any) => {
-            const adshba = response.data
-            console.log(adshba)
-            for(const index in adshba){
-                const caca = {
-                    key: index+1,
-                    label: <p>{adshba[index].name}</p>,
-                    children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5 pb-10">
-                        <Col span={24}>
-                        <h2 className="py-8 max-md:py-2 text-3xl max-md:w-[100%] w-[80%] mx-auto text-gray-700 font-bold max-lg:text-xl max-sm:text-md">{
-                            adshba[index].description
-                        }
-</h2>
-                        
-                        </Col>
-                        
-                    {adshba[index].courseRoadmaps.length == 0? <Empty className="mx-auto" image={Empty.PRESENTED_IMAGE_SIMPLE} />: <>
-                        {adshba[index].courseRoadmaps.map(course => {
-          
-                            if(aaaa.includes(course.id)){
-                                return  <CardCourseItemComponent course={course.course} key={course.id} issub={true}/>
-                            }
-                            return <CardCourseItemComponent course={course.course} key={course.id} issub={false}/>
-                            
-                        })}
-                    </>}
-                </Row>
-                  }
-                  ccccaa.push(caca)
-                  
-            }
-                        
-        }).catch((error: any) => {
-            console.log(error)
-            
-        })
-
-    }
-
-
-    
-
-
-
     const headers = {
         Accept: '*/*',
         Authorization: 'Bearer ' + auth.user?.accessToken,
@@ -141,7 +61,7 @@ const getCourseSubscribe = async () =>{
     
     ).then(async (response:any)=>{
         if (response.status === 200){
-            console.log(response)
+
             for(var addf in response.data){
                 aaaa.push(response.data[addf].courseId)
             }
@@ -155,9 +75,68 @@ const getCourseSubscribe = async () =>{
     
     }
 
+    var ccccaa =[]
+
+    const hangdlegetdataroadmap = async () => {
+
+        setloaddingas(true)
+        await getCourseSubscribe()
+        await api.get('/roadmaps',
+
+        ).then(async(response: any) => {
+            const adshba = response.data.reverse()
+   
+            for(const index in adshba){
+                const caca = {
+                    key: index+1,
+                    label: <p>{adshba[index].name}</p>,
+                    children: <Row gutter={[24, 24]} className="max-sm:px-6  pb-10">
+                        <Col span={24}>
+                        <h2 className="py-6 max-md:py-2 text-3xl max-md:w-[100%] w-[80%] mx-auto text-gray-700 font-bold max-lg:text-xl max-sm:text-md">{
+                            adshba[index].description
+                        }
+</h2>
+                        
+                        </Col>
+                        
+                    {adshba[index].courseRoadmaps.length == 0? <Empty className="mx-auto" image={Empty.PRESENTED_IMAGE_SIMPLE} />: <>
+                        {adshba[index].courseRoadmaps.map(course => {
+          console.log(aaaa)
+                            if(aaaa.includes(course.course.id)){
+                                
+                                return  <CardCourseItemComponent course={course.course} key={course.id} issub={true}/>
+                            }
+                            return <CardCourseItemComponent course={course.course} key={course.id} issub={false}/>
+                            
+                        })}
+                    </>}
+                </Row>
+                  }
+                  ccccaa.push(caca)
+
+                  
+            }
+            await setdataadacss(ccccaa)
+            await setloaddingas(false)
+                        
+        }).catch((error: any) => {
+            console.log(error)
+            setloaddingas(false)
+            
+        })
+
+    }
+
+
+    
+
+
+
+
+
 
     useEffect(() => {
-        hangdlegetdatacourses()
+        hangdlegetdataroadmap()
         
     }, [auth.isAuthenticated])
 

@@ -89,7 +89,7 @@ function DetailRoadmapsPages() {
                                                     dataroadmap.courseRoadmaps.map((roadmap, index) => {
                                                         return <>
                                                             <h4 className="text-gray-900 text-xl font-bold mb-4 max-md:text-lg truncate">{`${index + 1}: `}{roadmap.title}</h4>
-                                                            <h5 className="text-md  mb-3">{roadmap.description}</h5>
+                                                            <h5 className="text-md text-base font-medium w-[80%] max-md:w-[95%] mb-3 ">{roadmap.description}</h5>
                                                             <div className="w-[80%] max-md:w-[95%] p-5 rounded-xl border-2 border-gray-600 shadow-lg bg-slate-50">
 
                                                                 <div className="flex justify-start space-x-3 items-start">

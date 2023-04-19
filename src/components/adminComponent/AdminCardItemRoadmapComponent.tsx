@@ -88,17 +88,17 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
         desktop: {
             breakpoint: { max: 3000, min: 1024 },
             items: 4,
-            slidesToSlide: 1 // optional, default to 1.
+            slidesToSlide: 3 // optional, default to 1.
         },
         tablet: {
             breakpoint: { max: 1024, min: 590 },
-            items: 3,
-            slidesToSlide: 1 // optional, default to 1.
+            items: 4,
+            slidesToSlide: 2 // optional, default to 1.
         },
         mobile: {
-            breakpoint: { max: 589, min: 0 },
-            items: 2,
-            slidesToSlide: 1 // optional, default to 1.
+            breakpoint: { max: 3000, min: 0 },
+            items: 4,
+            slidesToSlide: 3 // optional, default to 1.
         }
     };
 
@@ -232,17 +232,17 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
 
                 </div>
                 <h5 className='font-bold mb-2'>List courses:</h5>
-            <Carousel responsive={responsive}>
+            <div className='flex justify-start items-center space-x-2 flex-nowrap' style={{overflowX: "auto"}}>
 
             {
                      roadmap.courseRoadmaps[0] !=undefined? <>{
                         roadmap.courseRoadmaps.map((course)=>{
-                            return <img className='rounded-sm mx-2 shadow-md' key={course.id} src={course.course.image}/>
+                            return <img className='rounded-sm !w-[100px] shadow-md' key={course.id} src={course.course.image}/>
                         })
                      }</>: <div>...</div>
                 }
 
-            </Carousel>
+            </div>
 
 
 

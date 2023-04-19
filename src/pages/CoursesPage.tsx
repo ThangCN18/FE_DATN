@@ -101,7 +101,7 @@ function CoursesPage() {
         await api.get('/roadmaps',
 
         ).then(async(response: any) => {
-            const adshba = response.data
+            const adshba = response.data.reverse()
             console.log(adshba)
             for(const index in adshba){
                 const caca = {
@@ -111,7 +111,7 @@ function CoursesPage() {
                     {adshba[index].courseRoadmaps.length == 0? <Empty className="mx-auto" image={Empty.PRESENTED_IMAGE_SIMPLE} />: <>
                         {adshba[index].courseRoadmaps.map(course => {
           
-                            if(aaaa.includes(course.id)){
+                            if(aaaa.includes(course.course.id)){
                                 return  <CardCourseItemComponent course={course.course} key={course.id} issub={true}/>
                             }
                             return <CardCourseItemComponent course={course.course} key={course.id} issub={false}/>

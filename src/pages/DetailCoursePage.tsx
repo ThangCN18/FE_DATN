@@ -248,22 +248,33 @@ const getCourseSubscribe = async () =>{
                                                 <p className="mt-5  text-md">{courses.headline}</p>
                                                 <h5 className="mt-5 font-bold text-base ">Description course</h5>
                                                 <p className="mt-3  text-md">{courses.description}</p>
-                                                <div className="flex justify-start space-x-20 max-md:space-x-10 items-start">
-                                                    <div>
-                                                        <h5 className="mt-5 font-bold text-base ">Requirements</h5>
+                                                <div className=" items-start">
+                                                    <div className="rounded-lg shadow-xl !border-[0.4px] border-gray-400 px-5 py-2 mt-4">
+                                                        <h5 className=" font-bold text-base ">Requirements to join the course</h5>
+                                                        <Row gutter={[24,24]} className="">
                                                         {
                                                             courses.requirements ? <>{courses.requirements.map((requirement) => {
-                                                                return <div className="my-2 space-x-1 flex items-center justify-start text-green-600" key={requirement}><BsCheck2Circle /><span>{requirement}</span></div>
+                                                                return <Col span={12}>
+
+                                                                <div className="my-2 space-x-1 flex items-center justify-start text-gray-800" key={requirement}><BsCheck2Circle className="!w-[50px]" /><span>{requirement}</span></div>
+                                                                </Col>
                                                             })}</> : null
                                                         }
+
+                                                        </Row>
+                                                        
                                                     </div>
-                                                    <div>
-                                                        <h5 className="mt-5 font-bold text-base ">Benefits</h5>
+                                                    <div className="rounded-lg shadow-xl !border-[0.4px] border-gray-400 px-5 py-1 mt-4">
+                                                        <h5 className=" font-bold text-base ">Benefits</h5>
+                                                        <Row gutter={[24,24]} className="">
                                                         {
                                                             courses.benefits ? <>{courses.benefits.map((benefit) => {
-                                                                return <div className="my-2 space-x-2 flex items-center justify-start text-green-600" key={benefit}><BsCheck2Circle /><span>{benefit}</span></div>
+                                                                return <Col span={12}>
+                                                                <div className="my-2 space-x-1 flex items-center justify-start text-gray-800" key={benefit}><BsCheck2Circle className="!w-[50px]" /><span>{benefit}</span></div>
+                                                                </Col>
                                                             })}</> : null
                                                         }
+                                                        </Row>
                                                     </div>
                                                 </div>
 
@@ -344,12 +355,12 @@ const getCourseSubscribe = async () =>{
 
                                                 
 
-                                                <div className="flex items-center space-x-2 justify-start py-5">
+                                                <div className="flex items-center space-x-2 justify-start py-5 max-sm:flex-col">
 
                                                     {
                                                         datareview ? <>
                                                             <div className="flex justify-start  ">
-                                                                {rating != 0 ? <div className="flex justify-start items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-3xl" /><span>{courses.courseKeyMetric.rating +" course rating. "+ courses.courseKeyMetric.totalReviews+ " ratings"}</span></div> :
+                                                                {rating != 0 ? <div className="flex justify-start  items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-2xl max-sm:text-sm" /><span>{courses.courseKeyMetric.rating +" course rating. "+ courses.courseKeyMetric.totalReviews+ " ratings"}</span></div> :
                                                                     <Rate disabled defaultValue={0} />
                                                                 }
                                                             </div>
@@ -405,7 +416,7 @@ const getCourseSubscribe = async () =>{
                                                 <InfiniteScroll
                                                     dataLength={datareview.length}
                                                     next={hangdlegetdatareviews}
-                                                    hasMore={datareview.length > 1}
+                                                    hasMore={datareview.length > 100}
                                                     loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
                                                     endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
                                                     scrollableTarget="scrollableDiv"

@@ -38,7 +38,7 @@ function RoadmapsPages() {
         await api.get('/roadmaps',
 
         ).then((response: any) => {
-            setdataroadmap(response.data)
+            setdataroadmap(response.data.reverse())
             console.log(response.data)
             setloaddingas(false)
         }).catch((error: any) => {
@@ -72,7 +72,7 @@ function RoadmapsPages() {
                                         <div className="flex justify-between items-start">
                                             <div>
                                                 <h5 className="text-lg font-bold mb-3">{roadmap.name}</h5>
-                                                <h5 className="text-md  mb-3">{roadmap.description}</h5>
+                                                <h5 className="text-md  mb-3 text-webkit-line-clamp-3">{roadmap.description}</h5>
                                             </div>
                                             <div className="w-[100px]">
                                             <Avatar className="!w-[100px] !h-[100px]" src={roadmap.image}/>

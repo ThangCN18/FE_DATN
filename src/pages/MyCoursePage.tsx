@@ -92,9 +92,6 @@ const getCourseSubscribe = async () =>{
                         <SkeletonButton active className="my-4 !w-[40%]" /> 
 
                         </div>
-                        
-
-                        
 
                         <Row gutter={[24,24]}>
                         <Col xs={24} sm={24} md={12} lg={12} xl={6} >    

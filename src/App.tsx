@@ -23,6 +23,7 @@ import DetailCourseLearnPage from "./pages/DetailCourseLearnPage";
 import RoadmapsPages from "./pages/RoadmapsPages";
 import DetailRoadmapsPages from "./pages/DetailRoadmapsPages";
 import MyCoursePage from "./pages/MyCoursePage";
+import ZoomPage from "./pages/ZoomPage";
 
 
 
@@ -77,6 +78,8 @@ const App = () => {
       <Route path='/verify-email' element={<VerifyEmailPage />} />
       <Route path='/' element={<HomePage />} />
       <Route path='/*' element={<ErrorPage />} />
+      <Route path='/zoom' element={<ZoomPage />} />
+      
       
 
   </Routes>

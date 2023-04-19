@@ -185,3 +185,6 @@
 .ant-rate-star{
     @apply !mr-0
 }
+#videofrom-youtubebe{
+   @apply !w-[100%] !h-[470px] max-md:!h-[275px] 
+}

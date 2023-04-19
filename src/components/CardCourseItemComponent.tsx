@@ -70,7 +70,7 @@ function CardCourseItemComponent(course, issub) {
                                     {!data.sections?
                                         <Badge.Ribbon text={data.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={data.discount <= 0 ? "green" : "yellow"}>
 
-                                            <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
+                                            <Card className="card-course-h overflow-hidden !opacity-50 cursor-default shadow-lg"
                                                 hoverable
                                                 cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={data.image} />}
                                             >
@@ -91,7 +91,7 @@ function CardCourseItemComponent(course, issub) {
                                                 </Space>
                                                 {
                                                     !data.sections?
-                                                        <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs w-[100%] cursor-default">Not started yet</Button> :
+                                                        <Button type="primary" className="bg-gray-400 w-[100%] h-[40px]  hover:bg-gray-400 font-bold mt-3 max-sm:text-xs">Not started yet</Button> :
                                                         <>
                                                             {data.discount <= 0 ?
                                                                <>{issub ?  <Link to={"/learn/"+ data.id +"?s=0&l=0"}><Button type="primary"  className="bg-gray-500 w-[100%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
@@ -111,7 +111,8 @@ function CardCourseItemComponent(course, issub) {
                                         <Link to={'/course/' + data.id} >
                                             <Badge.Ribbon text={data.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={data.discount <= 0 ? "green" : "yellow"}>
 
-                                                <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
+                                                <Card className={data.sections.length == 0 ?"card-course-h overflow-hidden opacity-50 cursor-default shadow-lg":
+                                                "card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"}
                                                     hoverable
                                                     cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={data.image} />}
                                                 >
@@ -139,7 +140,7 @@ function CardCourseItemComponent(course, issub) {
                                                     </Space>
                                                     {
                                                         data.sections.length == 0 ?
-                                                            <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs w-[100%] cursor-default">Not started yet</Button> :
+                                                            <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 h-[40px] bg- font-bold mt-3 max-sm:text-xs w-[100%] cursor-default">Not started yet</Button> :
                                                             <>
                                                             {data.discount <= 0 ?
                                                                <>{aissub ?  <Link to={"/learn/"+ data.id +"?s=0&l=0"}><Button type="primary"  className="bg-gray-500 w-[100%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>

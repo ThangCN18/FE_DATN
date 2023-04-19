@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Col, Row, Skeleton } from "antd";
 import React, { useState, useEffect } from "react"
 import { BsCheck } from "react-icons/bs";
 import { FaRoute } from "react-icons/fa";
@@ -6,17 +6,18 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import api from "../configs/axiosConfig";
 import { Link } from "react-router-dom";
+import SkeletonButton from "antd/es/skeleton/Button";
 
 const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
-        items: 4,
-        slidesToSlide: 3 // optional, default to 1.
+        items: 3,
+        slidesToSlide: 1 // optional, default to 1.
     },
     tablet: {
         breakpoint: { max: 1024, min: 590},
-        items: 3,
-        slidesToSlide: 2 // optional, default to 1.
+        items: 2,
+        slidesToSlide: 1 // optional, default to 1.
     },
     mobile: {
         breakpoint: { max: 589, min: 0 },
@@ -59,11 +60,11 @@ const SliderRoadmap: React.FC = () => {
                 dataroadmap.length != 0? <>
                  <h2 className="text-3xl py-5 max-sm:text-xl font-bold text-center bg-clip-text text-transparent bg-blue-600 ">Training Roadmaps</h2>
             <p className="text-lg max-sm:text-sm max-sm:px-[5%] max-md:text-base font-semibold text-center leading-8 px-[17%]"><strong>Wizcove IT </strong>provides students with the skills and knowledge to work in the information technology industry, including courses from basic to advanced, to help students understand the theory and application of technologies. information in a real environment.</p>
-            <Carousel responsive={responsive}  className="max-w-[1100px] mx-auto my-14 max-sm:my-5 !justify-center">
+            <Carousel responsive={responsive}  className="max-w-[900px] mx-auto my-14 max-sm:my-5 !justify-center">
 
                 {dataroadmap.map(roadmap=>{
                     return <div key={roadmap.id} className=" py-10 px-5 pb-10 max-sm:px-2 text-center cursor-pointer ">
-                    <div className="bg-white w-100 hover:shadow-xl min-h-[277px] hover:bg-gray-50  max-sm:h-[220px] !border border-inherit rounded-md shadow-lg text-center">
+                    <div className="bg-white w-100 hover:shadow-xl h-[270px] hover:bg-gray-50  max-sm:!h-[230px] !border border-inherit rounded-md shadow-lg text-center">
                         <img className="w-[60px] mt-[-30px] mx-auto max-sm:w-[50px] max-sm:mt-[-25px] shadow-lg rounded-full"
                          src={roadmap.image}/>
                          <h4 className="mt-5 mb-3 max-sm:mt-2 text-base truncate max-sm:text-xs max-lg:text-sm font-bold flex justify-center space-x-1 items-center">{roadmap.name}</h4>
@@ -84,8 +85,51 @@ const SliderRoadmap: React.FC = () => {
                 </Carousel>
                 
                 </>:<>
-                asda
-                </>
+                        <div className=" max-w-[1100px] !mx-auto text-center">
+                        <SkeletonButton active className="my-4 !w-[270px]" /> 
+                        <Skeleton active className="my-5 !mx-auto !flex !justify-center !text-center" /> 
+
+                        </div>
+
+                        <Row gutter={[24,24]} className="max-w-[1100px] !mx-auto">
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        </Row>
+                        </>
             }
            
 

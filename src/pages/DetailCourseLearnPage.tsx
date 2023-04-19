@@ -24,6 +24,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { setNotify } from "../store/notifycationSlide";
 const { Header, Content, Footer } = Layout;
 const { Panel } = Collapse;
+import YouTube from 'react-youtube';
 
 
 function DetailCourseLearnPage() {
@@ -35,18 +36,38 @@ function DetailCourseLearnPage() {
     const dispatch = useDispatch()
     const navigate = useNavigate();
     const location = useLocation();
-    const [showmodalviewvd, setshowmodalviewvd] = useState(false)
-    const [datareview, setdatareview] = useState<any>(null)
-    const [rating, setrating] = useState(null)
-    const [valuerating, setvaluerating] = useState(5)
-    const [valuecontent, setvaluecontent] = useState("")
+    const [watched, setWatched] = useState(false);
+    
+    const [idSectionnext, setidSectionnext] = useState("")
+    const [idlecturenext, setidlecturenext] = useState("")
+
     const [checksub, setchecksub] = useState(false)
     const [s,sets] = useState(0)
     const [l,setl] = useState(0)
+    const [scs,setscs] = useState(null)
+    const [lcl,setlcl] = useState(null)
 
 
 
-
+    const opts = {
+        playerVars: {
+          controls: 0
+        }
+      };
+    
+      const onPlayerStateChange = (event) => {
+        if (event.data === 0 && !watched) {
+          setWatched(true);
+          console.log("xem hết video")
+          if(scs != null || lcl!=null){
+            getlearncompleted()
+          }
+        }
+        if (event.data === 1 && watched) {
+          event.target.seekTo(0);
+          console.log("no no no???")
+        }
+      };
 
 
 
@@ -54,6 +75,25 @@ function DetailCourseLearnPage() {
         Accept: '*/*',
         Authorization: 'Bearer ' + auth.user?.accessToken,
       };
+
+
+      const getlearncompleted = async () =>{
+
+        await api.put(`/sections/${idSectionnext}/lectures/${idlecturenext}/completed`,
+            {
+                headers
+              },
+        
+        ).then((response:any)=>{
+            if (response.status === 204){
+                    navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
+            }
+        }).catch((error: any)=>{
+            console.log(error)
+            
+        })
+        
+        }
 
       const getCourseSubscribe = async () =>{
         await api.get('/courses/' + location.pathname.split("/")[2] + '/subscribe/',
@@ -76,6 +116,7 @@ function DetailCourseLearnPage() {
             }
         }).catch((error: any)=>{
             console.log(error)
+            
         })
         
         }
@@ -89,13 +130,47 @@ function DetailCourseLearnPage() {
             }
             console.log(location.pathname.split("/")[2])
             await api.get('/courses/' + location.pathname.split("/")[2],
+            {
+                headers
+            }
     
             ).then((response: any) => {
                 setcourses(response.data)
+                var aaa = ""
+                var bbb = ""
+                var ccc = true
+                const ssss = Number(location.search.split("&")[0].split("=")[1])
+                const llll = Number(location.search.split("&")[1].split("=")[1])
+                if(response.data.sections.length > ssss+1){
+                    
+                    if(response.data.sections[ssss].lectures.length > llll+1){
+                        if(response.data.sections[ssss].lectures[llll+1].lectureProgress == null){
+                            aaa=response.data.sections[ssss].id
+                            bbb=response.data.sections[ssss].lectures[llll+1].id
+                            setscs(ssss)
+                            setlcl(llll+1)
+                        }
+                    }else{
+                        if(response.data.sections[ssss+1].lectures.length > 0 ){
+                            if(response.data.sections[ssss+1].lectures[0].lectureProgress == null){
+                                aaa=response.data.sections[ssss+1].id
+                                bbb=response.data.sections[ssss+1].lectures[0].id
+                                setscs(ssss+1)
+                                setlcl(0)
+                            }
+                    }
+
+
+                }
+                setidSectionnext(aaa)
+                setidlecturenext(bbb)
+            }
+                    
                 setloaddingas(false)
             }).catch((error: any) => {
                 console.log(error)
                 setloaddingas(false)
+                navigate("/")
             })
     
         }
@@ -150,7 +225,13 @@ function DetailCourseLearnPage() {
                                                     {
                                                         courses.sections[0].lectures && courses.sections[0].lectures[0] ? <>
                                                             <div className="!w-[100%] !h-[470px] max-md:!h-[275px] overflow-hidden rounded-md text-center">
-                                                                <iframe width='100%' height="100%" className="mx-auto" src={"https://www.youtube.com/embed/" + courses.sections[s].lectures[l].videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+                                                            <YouTube
+                                                            id="videofrom-youtubebe"                                                           
+                                                            videoId={courses.sections[s].lectures[l].videoUrl}
+                                                            
+                                                            onStateChange={onPlayerStateChange}
+                                                            />
+                                                                {/* <iframe width='100%' height="100%" className="mx-auto" src={"https://www.youtube.com/embed/" + courses.sections[s].lectures[l].videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> */}
                                                             </div>
                                                             <h5 className="mt-5 font-bold text-2xl ">{courses.sections[s].lectures[l].name}</h5>
                                                             <p className="mt-5  text-md">{courses.sections[s].lectures[l].description}</p>
@@ -169,7 +250,7 @@ function DetailCourseLearnPage() {
                                                             courses.sections.map((section, index) => {
                                                                 return <Panel className="bg-slate-50" header={
                                                                     <div className='flex justify-between items-center '>
-                                                                        <h5 className='text-base font-semibold truncate w-[80%] max-md:w-[400px] max-lg:w-[300px] max-sm:w-[200px]'>{section.name}</h5>
+                                                                        <h5 className='text-base font-semibold truncate w-[300px] max-md:w-[400px] max-lg:w-[300px] max-sm:w-[200px]'>{section.name}</h5>
                                                                     </div>}
 
                                                                     key={index}>
@@ -178,10 +259,21 @@ function DetailCourseLearnPage() {
                                                                             <>
                                                                                 {
                                                                                     section.lectures.map((lecture, indexs) => {
+                                                                                        if(lecture.lectureProgress == null){
+                                                                                            return <div  className='flex justify-between items-center py-4 border-2 px-3 rounded-sm  border-gray-200 cursor-default '>
+                                                                                            <div className='justify-start items-center space-x-3 flex'>
+                                                                                                <SiYoutubemusic className='text-gray-600' />
+                                                                                                <p  className='truncate w-[250px] max-md:w-[400px] max-lg:w-[270px] max-sm:w-[200px]'>{lecture.name}</p>
+                                                                                            </div>
+                                                                                            <div>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        }
                                                                                         return <div onClick={()=>{navigate('/learn/' + location.pathname.split("/")[2]+ "?s="+index+ "&l="+indexs)}}  className='flex justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
                                                                                             <div className='justify-start items-center space-x-3 flex'>
                                                                                                 <SiYoutubemusic className='text-gray-600' />
-                                                                                                <p  className='truncate w-[75%] max-md:w-[400px] max-lg:w-[270px] max-sm:w-[200px]'>{lecture.name}</p>
+                                                                                                <p  className='truncate w-[250px] max-md:w-[400px] max-lg:w-[270px] max-sm:w-[200px]'>{lecture.name}</p>
                                                                                             </div>
                                                                                             <div>
                                                                                             </div>
