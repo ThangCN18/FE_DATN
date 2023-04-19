@@ -46,6 +46,7 @@ function DetailCourseLearnPage() {
     const [l,setl] = useState(0)
     const [scs,setscs] = useState(null)
     const [lcl,setlcl] = useState(null)
+    const [apor,setapor] = useState([])
 
 
 
@@ -59,35 +60,34 @@ function DetailCourseLearnPage() {
         if (event.data === 0 && !watched) {
           setWatched(true);
           console.log("xem hết video")
+          console.log(headers)
           if(scs != null || lcl!=null){
             getlearncompleted()
           }
         }
-        if (event.data === 1 && watched) {
-          event.target.seekTo(0);
-          console.log("no no no???")
-        }
+        // if (event.data === 1 && watched) {
+        //   event.target.seekTo(0);
+        //   console.log("no no no???")
+        // }
       };
 
 
 
     const headers = {
-        Accept: '*/*',
-        Authorization: 'Bearer ' + auth.user?.accessToken,
+        accept: '*/*',
+        Authorization: 'Bearer ' + auth.user.accessToken,
       };
 
 
       const getlearncompleted = async () =>{
-
-        await api.put(`/sections/${idSectionnext}/lectures/${idlecturenext}/completed`,
-            {
-                headers
-              },
+        console.log(headers)
+        const data = {}
+        await api.put(`/sections/${idSectionnext}/lectures/${idlecturenext}/completed`,{ headers }
         
         ).then((response:any)=>{
-            if (response.status === 204){
-                    navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
-            }
+            console.log(1233334)
+            navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
+            
         }).catch((error: any)=>{
             console.log(error)
             
@@ -96,67 +96,46 @@ function DetailCourseLearnPage() {
         }
 
       const getCourseSubscribe = async () =>{
-        await api.get('/courses/' + location.pathname.split("/")[2] + '/subscribe/',
+        setloaddingas(true)
+        await api.get('/courses/' + location.pathname.split("/")[2] + '/subscribe/user',
             {
                 headers
               },
         
         ).then((response:any)=>{
-            if (response.status === 200){
-                var adfa = 0
-                for(var addf in response.data){
-                    if(response.data[addf].courseId == location.pathname.split("/")[2]){
-                        setchecksub(true)
-                        adfa = 1
+            if (response.status === 200){                
+                setcourses(response.data.course)
+                var afsgn = []
+                if(response.data.course.userProgress.length> 0){
+                    for (const accs in response.data.course.userProgress){
+                        afsgn.push(response.data.course.userProgress[accs].lectureId)
                     }
+                    setapor(afsgn)
                 }
-                if(adfa == 0){
-                    navigate("/")
-                }
-            }
-        }).catch((error: any)=>{
-            console.log(error)
-            
-        })
-        
-        }
-    
-    
-    
-        const hangdlegetdatacourses = async () => {        
-            setloaddingas(true)
-            if(auth.isAuthenticated){
-                await getCourseSubscribe()
-            }
-            console.log(location.pathname.split("/")[2])
-            await api.get('/courses/' + location.pathname.split("/")[2],
-            {
-                headers
-            }
-    
-            ).then((response: any) => {
-                setcourses(response.data)
+
                 var aaa = ""
                 var bbb = ""
                 var ccc = true
                 const ssss = Number(location.search.split("&")[0].split("=")[1])
                 const llll = Number(location.search.split("&")[1].split("=")[1])
-                if(response.data.sections.length > ssss+1){
+                if(response.data.course.sections.length > ssss+1){
                     
-                    if(response.data.sections[ssss].lectures.length > llll+1){
-                        if(response.data.sections[ssss].lectures[llll+1].lectureProgress == null){
-                            aaa=response.data.sections[ssss].id
-                            bbb=response.data.sections[ssss].lectures[llll+1].id
+                    if(response.data.course.sections[ssss].lectures.length > llll+1){
+                        if(!afsgn.includes(response.data.course.sections[ssss].lectures[llll+1].id)){
+                            aaa=response.data.course.sections[ssss].id
+                            bbb=response.data.course.sections[ssss].lectures[llll+1].id
                             setscs(ssss)
                             setlcl(llll+1)
+     
                         }
                     }else{
-                        if(response.data.sections[ssss+1].lectures.length > 0 ){
-                            if(response.data.sections[ssss+1].lectures[0].lectureProgress == null){
-                                aaa=response.data.sections[ssss+1].id
-                                bbb=response.data.sections[ssss+1].lectures[0].id
+                        if(response.data.course.sections[ssss+1].lectures.length > 0 ){
+                            if(!afsgn.includes(response.data.course.sections[ssss+1].lectures[0].id)){
+                                aaa=response.data.course.sections[ssss+1].id
+                                bbb=response.data.course.sections[ssss+1].lectures[0].id
                                 setscs(ssss+1)
                                 setlcl(0)
+
                             }
                     }
 
@@ -165,19 +144,26 @@ function DetailCourseLearnPage() {
                 setidSectionnext(aaa)
                 setidlecturenext(bbb)
             }
-                    
+                
+
                 setloaddingas(false)
-            }).catch((error: any) => {
-                console.log(error)
-                setloaddingas(false)
-                navigate("/")
-            })
-    
+                
+            }
+        }).catch((error: any)=>{
+            console.log(error)
+            // navigate('/')
+            
+        })
+        
         }
+    
+    
+    
+ 
     const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
     useEffect(() => {
 
-        hangdlegetdatacourses()
+        getCourseSubscribe()
 
         if(location.search){
             sets(Number(location.search.split("&")[0].split("=")[1]))
@@ -193,7 +179,7 @@ function DetailCourseLearnPage() {
         <Layout className="layout bg-white">
             <HeaderComponent item="courses" />
             <Content className="pt-[70px]">
-                <div className="site-layout-content w-[100%] pb-10 " >
+                <div className="site-layout-content w-[100%] pb-10 max-w-[1400px] mx-auto" >
                     {
                         loaddingas ? <>
                             <Row className="px-8" gutter={[24, 24]}>
@@ -250,7 +236,7 @@ function DetailCourseLearnPage() {
                                                             courses.sections.map((section, index) => {
                                                                 return <Panel className="bg-slate-50" header={
                                                                     <div className='flex justify-between items-center '>
-                                                                        <h5 className='text-base font-semibold truncate w-[300px] max-md:w-[400px] max-lg:w-[300px] max-sm:w-[200px]'>{section.name}</h5>
+                                                                        <h5 className='text-base font-semibold truncate w-[260px] max-md:w-[400px] max-lg:w-[500px] max-sm:w-[200px]'>{section.name}</h5>
                                                                     </div>}
 
                                                                     key={index}>
@@ -258,24 +244,47 @@ function DetailCourseLearnPage() {
                                                                         section.lectures[0] ?
                                                                             <>
                                                                                 {
+    
                                                                                     section.lectures.map((lecture, indexs) => {
-                                                                                        if(lecture.lectureProgress == null){
+                                                                                        if(index == 0 && indexs == 0){
+                                                                                            return <div onClick={()=>{navigate('/learn/' + location.pathname.split("/")[2]+ "?s="+index+ "&l="+indexs)}}  className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
+                                                                                            <div className='justify-start items-center space-x-3 flex'>
+                                                                                                <SiYoutubemusic className='text-gray-600' />
+                                                                                                <p  className='truncate w-[195px] max-md:w-[400px] max-lg:w-[220px] max-sm:w-[100px]'>{lecture.name}</p>
+                                                                                            </div>
+                                                                                            
+                                                                                            <div>
+                                                                                            
+                                                                                            <p  className='text-xs text-center truncate text-gray-500'>learned</p>
+
+                                                                                            
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        }
+                                                                                        if(!apor.includes(lecture.id)){
                                                                                             return <div  className='flex justify-between items-center py-4 border-2 px-3 rounded-sm  border-gray-200 cursor-default '>
                                                                                             <div className='justify-start items-center space-x-3 flex'>
                                                                                                 <SiYoutubemusic className='text-gray-600' />
-                                                                                                <p  className='truncate w-[250px] max-md:w-[400px] max-lg:w-[270px] max-sm:w-[200px]'>{lecture.name}</p>
+                                                                                                <p  className='truncate  w-[250px] max-md:w-[400px] max-lg:w-[270px] max-sm:w-[200px]'>{lecture.name}</p>
                                                                                             </div>
+                                                                                            
                                                                                             <div>
                                                                                             </div>
                                                                                         </div>
 
                                                                                         }
-                                                                                        return <div onClick={()=>{navigate('/learn/' + location.pathname.split("/")[2]+ "?s="+index+ "&l="+indexs)}}  className='flex justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
+                                                                                        return <div onClick={()=>{navigate('/learn/' + location.pathname.split("/")[2]+ "?s="+index+ "&l="+indexs)}}  className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
                                                                                             <div className='justify-start items-center space-x-3 flex'>
                                                                                                 <SiYoutubemusic className='text-gray-600' />
-                                                                                                <p  className='truncate w-[250px] max-md:w-[400px] max-lg:w-[270px] max-sm:w-[200px]'>{lecture.name}</p>
+                                                                                                <p  className='truncate w-[195px] max-md:w-[400px] max-lg:w-[220px] max-sm:w-[100px]'>{lecture.name}</p>
                                                                                             </div>
+                                                                                            
                                                                                             <div>
+                                                                                            
+                                                                                            <p  className='text-xs text-center truncate text-gray-500'>learned</p>
+
+                                                                                            
                                                                                             </div>
                                                                                         </div>
                                                                                     })

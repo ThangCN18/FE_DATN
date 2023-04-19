@@ -1,17 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+// import ZoomComponent from '../components/ZoomComponent';
 
 const ZoomPage = () => {
-  const url = 'https://us04web.zoom.us/j/76935647861?pwd=xbdgzR8mnDqKXlFf2Ade8adBQTvdNS.1';
 
   return (
     <div>
-      <iframe
-      src={url}
-      width="100%"
-      height="100%"
-      frameBorder="0"
-      allow="microphone; camera"
-    />
+      {/* <ZoomComponent/> */}
     </div>
   );
 };

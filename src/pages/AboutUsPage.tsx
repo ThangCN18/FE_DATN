@@ -6,6 +6,7 @@ import React from 'react'
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/types';
 import LoadingComponent from '../components/LoadingComponent';
+import AboutUsHomeComponent from '../components/AboutUsHomeComponent';
 
 const AboutUsPage: React.FC = () => {
     const loading = useSelector((state: RootState) => state.root.load)
@@ -18,6 +19,8 @@ const AboutUsPage: React.FC = () => {
                     <p>We want to share this passion with everyone <br/> by providing high-quality programming courses and helping <br/> students develop the necessary skills to become <br/>  successful programmers.</p>
                 </div>
                 <div className='h-[4px] rounded-lg w-[35%] mt-5 bg-gradient-to-r  from-[#0160fa] to-[#1ddbb7] mx-auto'></div>
+               <AboutUsHomeComponent/>
+
                 <div className='mx-auto text-center font-semibold py-14  max-md:text-center  max-lg:py-5  max-w-[1000px] '>
                 
                 <h1 className='text-4xl max-lg:text-3xl my-8 max-md:text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r text-slide-how-to from-[#0160fa] to-[#1ddbb7] text-center'>Our Team</h1>
@@ -47,7 +50,8 @@ const AboutUsPage: React.FC = () => {
                     
                 </div>
 
-                <div className='text-left font-semibold py-5 mb-20 max-md:text-center  max-lg:py-2 max-md:w-[90%] max-w-[1400px] bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl mx-auto px-4'>
+
+                <div className='text-left font-semibold py-5 mb-20 max-md:text-center  max-lg:py-2 max-md:w-[90%] max-w-[1400px]  bg-gray-50 border-2 border-gray-800 rounded-xl rounded-xl mx-auto px-4'>
                     <Row className='my-auto'>
                         <Col lg={14} sm={24} xs={24} md={24} className='my-auto' >
                             <div className='flex flex-col justify-center px-10'>
@@ -62,7 +66,6 @@ const AboutUsPage: React.FC = () => {
                     </Row>
                     
                 </div>
-               
 
             </Content>
             <FooterComponent />

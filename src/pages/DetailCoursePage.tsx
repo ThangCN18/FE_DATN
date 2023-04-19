@@ -190,7 +190,7 @@ const getCourseSubscribe = async () =>{
             setloaddingas(false)
         }).catch((error: any) => {
             console.log(error)
-            setloaddingas(false)
+
         })
     }
     const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];

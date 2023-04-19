@@ -223,6 +223,42 @@ const getCourseSubscribe = async () =>{
                             </div>
                             </div>
                         </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
+                        <Col xs={24} sm={24} md={12} lg={12} xl={6} >    
+                            <div className="border-collapse border-[1px] rounded-md shadow-md">
+                            <SkeletonButton active className="!w-[100%] !h-[175px]" /> 
+                            <div className="px-3">
+                            <Skeleton active className="my-5" /> 
+                            <SkeletonButton active className="!w-[100%] mb-3" /> 
+                            </div>
+                            </div>
+                        </Col>
                         </Row>
                         
                         </>:

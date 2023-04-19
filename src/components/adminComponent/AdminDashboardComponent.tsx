@@ -246,6 +246,32 @@ const handelGetDataCourse = async () => {
                                     
                                 </Card>
                             </Col>
+                            <Col span={24}>
+                                <Card className='bg-gradient-to-tl  from-[#e4e6e7] to-[#fdfeff] shadow-lg'>
+                                    <div className='flex justify-between items-center text-lg font-bold'>
+                                    <h2 className='text-lg font-bold mb-3'>List Courses</h2><Link to="/admin/course/"><BsListUl/></Link>
+
+                                    </div>
+                                <List
+                                itemLayout="horizontal"
+                                dataSource={datacourse.slice(0,5)}
+                                renderItem={(item, index) => (
+                                <List.Item className='flex justify-between items-center'>
+
+                                    <List.Item.Meta className='!items-center'
+                                    avatar={<Avatar className='w-[100px] h-[55px] !rounded-md' src={item.image} />}
+                                    title={<h5 className='text-md font-semibold' >{item.name}</h5>}
+                                    description={item.headline}
+                                    
+                                    />
+                                    <BiDotsVerticalRounded/>
+                                </List.Item>
+                                )}
+                            />
+
+                                </Card>
+                           
+                            </Col>
                             
 
                     </Row>
@@ -259,7 +285,7 @@ const handelGetDataCourse = async () => {
                                     </div>
                                 <List
                                 itemLayout="horizontal"
-                                dataSource={datauser.slice(0,7)}
+                                dataSource={datauser.slice(0,8)}
                                 renderItem={(item, index) => (
                                 <List.Item className='flex justify-between items-center'>
 

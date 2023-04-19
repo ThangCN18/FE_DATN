@@ -125,7 +125,7 @@ const getCourseSubscribe = async () =>{
 
                 <Badge.Ribbon text={ course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={ course.discount <= 0 ? "green" : "yellow"}>
 
-                    <Card className={course.sections.length == 0 ? "card-course-h overflow-hidden opacity-50 cursor-default shadow-lg " :
+                    <Card className={course.sections.length == 0 ? "card-course-h overflow-hidden opacity-60 cursor-default shadow-lg " :
                     "card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg " }
                         hoverable
                         cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={course.image} />}

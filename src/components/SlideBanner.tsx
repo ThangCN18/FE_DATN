@@ -129,7 +129,7 @@ function SlideBanner() {
                 <div className="w-[95%] h-[90%] bg-gradient-to-r from-[#01a1fa] to-[#1dbfdb] rounded-3xl flex justify-center items-center overflow-hidden">
                 <div className="w-[95%] h-[90%] bg-white rounded-2xl flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="https://live.staticflickr.com/video/52813964825/7a062ce0d6/360p.mp4?s=eyJpIjo1MjgxMzk2NDgyNSwiZSI6MTY4MTg3MzI4MCwicyI6IjVmYTYwYmE5NWYyYmU4ZWZlZWQ3YjBlYjVmODY2N2Q0ZGNhN2MxNjkiLCJ2IjoxfQ" type="video/mp4"/>
+                <source src="https://player.vimeo.com/progressive_redirect/playback/818966526/rendition/360p/file.mp4?loc=external&oauth2_token_id=57447761&signature=695151d6e7e4bfc2c3efd5df84f6637191cf90664a9fbb47f84430cd2c590a08" type="video/mp4"/>
                 </video>
                 </div>
                 </div>
@@ -167,7 +167,7 @@ function SlideBanner() {
                 
                 <div className="w-[90%] h-[90%] bg-white rounded-2xl  flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="https://live.staticflickr.com/video/52813551836/36a4386c8f/360p.mp4?s=eyJpIjo1MjgxMzU1MTgzNiwiZSI6MTY4MTg3MzU1OCwicyI6IjliNWJkYWFmZDc2ZWZlYTI5MmNlYmMxZjIwZGEzMmJhMWFmYTkzYWQiLCJ2IjoxfQ" type="video/mp4"/>
+                <source src="https://player.vimeo.com/progressive_redirect/playback/818966525/rendition/360p/file.mp4?loc=external&oauth2_token_id=57447761&signature=80a8146522260c32faaf154a0e7bff4c031a78fd0f417267b2ed0174a10bea39" type="video/mp4"/>
                 </video>
                 </div>
                 
@@ -201,7 +201,7 @@ function SlideBanner() {
                 
                 <div className="w-[90%] h-[90%] bg-white rounded-2xl  flex justify-center items-center overflow-hidden">
                 <video autoPlay muted loop className="h-[100%] w-[100%] object-cover">
-                <source src="https://live.staticflickr.com/video/52813748209/112b410edc/360p.mp4?s=eyJpIjo1MjgxMzc0ODIwOSwiZSI6MTY4MTg3MzQ3OSwicyI6ImRkYTdlZTFlZWU4NzU0ZjMwZmQxZmEwN2EzMTdjMmU2ZjQzMTIxMDgiLCJ2IjoxfQ" type="video/mp4"/>
+                <source src="https://player.vimeo.com/progressive_redirect/playback/818966527/rendition/360p/file.mp4?loc=external&oauth2_token_id=57447761&signature=88d55bc94a29410973fec7701f541a39e0930d6a61b1b53e75d697dd59497b65" type="video/mp4"/>
                 </video>
                 </div>
                 

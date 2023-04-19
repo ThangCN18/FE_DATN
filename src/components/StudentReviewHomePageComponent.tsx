@@ -52,7 +52,7 @@ const getdatareview = async () =>{
 
     useEffect(()=>{
         getdatareview()
-    },)
+    },[])
     return (
         <div className="mx-auto px-4 mt-14  max-sm:mt-[20px] max-sm:px-1 max-w-[1400px] ">
             {

@@ -111,8 +111,8 @@ function CardCourseItemComponent(course, issub) {
                                         <Link to={'/course/' + data.id} >
                                             <Badge.Ribbon text={data.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={data.discount <= 0 ? "green" : "yellow"}>
 
-                                                <Card className={data.sections.length == 0 ?"card-course-h overflow-hidden opacity-50 cursor-default shadow-lg":
-                                                "card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"}
+                                                <Card className={data.sections.length == 0 ?"card-course-h overflow-hidden opacity-70  hover:opacity-80 cursor-pointer  shadow-lg":
+                                                "card-course-h overflow-hidden opacity-95 hover:opacity-100 shadow-lg"}
                                                     hoverable
                                                     cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={data.image} />}
                                                 >

@@ -24,6 +24,7 @@ import RoadmapsPages from "./pages/RoadmapsPages";
 import DetailRoadmapsPages from "./pages/DetailRoadmapsPages";
 import MyCoursePage from "./pages/MyCoursePage";
 import ZoomPage from "./pages/ZoomPage";
+import PaymentPage from "./pages/PaymentPage";
 
 
 
@@ -52,6 +53,8 @@ const App = () => {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/learn/:id' element={<DetailCourseLearnPage/>} />
         <Route path='/my-courses' element={<MyCoursePage/>} />
+        <Route path='/payment' element={<PaymentPage/>} />
+
         {
         auth.user.role != "user"?<>
         <Route path='/admin' element={<AdminHomePage/>} />
