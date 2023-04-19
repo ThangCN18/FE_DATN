@@ -21,7 +21,7 @@ const VerifyEmailPage: React.FC = () => {
     console.log(queryParamValue)
 
 
-    const handelVerify = async (data: { token: string | null}) => {
+    const handelVerify = async (data: { token: string | null }) => {
         dispatch(setLoading({}))
         await api.put('/auth/verify-email', data).then((response: any) => {
             if (response.status === 204) {
@@ -58,16 +58,16 @@ const VerifyEmailPage: React.FC = () => {
                                 <h5 className='text-xl font-semibold px-8 mb-5 text-green-700 mt-[-100px]'>You have successfully verified your account</h5>
                                 <p className='text-base font-medium '>Back to home: <Link to={'/'}><Button className='bg-blue-600 text-white'>Home</Button></Link></p>
 
-                            </div>:
+                            </div> :
                             <div className='flex justify-center items-center flex-col w-[100vw] h-[100vh]'>
-                            <video autoPlay muted loop className="h-[200px] w-[200px] max-sm:h-[100px] max-sm:w-[100px] mx-auto object-cover">
-                                <source src="https://player.vimeo.com/progressive_redirect/playback/818999938/rendition/540p/file.mp4?loc=external&oauth2_token_id=57447761&signature=e726da7f68bb319f589489b82f56eb44d664108be9846e1d370f43ca25bfb314" type="video/mp4" />
-                            </video>
-                            <h5 className='text-xl font-semibold px-8 mb-5 text-red-600 '>You have unsuccessfully verified your account</h5>
-                            <p className='text-base font-medium '>Back to home: <Link to={'/'}><Button className='bg-blue-600 text-white'>Home</Button></Link></p>
+                                <video autoPlay muted loop className="h-[200px] w-[200px] max-sm:h-[100px] max-sm:w-[100px] mx-auto object-cover">
+                                    <source src="https://player.vimeo.com/progressive_redirect/playback/818999938/rendition/540p/file.mp4?loc=external&oauth2_token_id=57447761&signature=e726da7f68bb319f589489b82f56eb44d664108be9846e1d370f43ca25bfb314" type="video/mp4" />
+                                </video>
+                                <h5 className='text-xl font-semibold px-8 mb-5 text-red-600 '>You have unsuccessfully verified your account</h5>
+                                <p className='text-base font-medium '>Back to home: <Link to={'/'}><Button className='bg-blue-600 text-white'>Home</Button></Link></p>
 
-                        </div>
-        }
+                            </div>
+                    }
 
                     </>
             }

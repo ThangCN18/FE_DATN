@@ -55,6 +55,8 @@ function AdminRoadmapPage() {
       console.log(error)
       dispatch(unsetLoading({}))
       dispatch(logout())
+      navigate("/")
+
     })
 
   }

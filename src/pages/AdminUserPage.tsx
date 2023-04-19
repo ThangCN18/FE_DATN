@@ -52,6 +52,8 @@ const AdminUserPage: React.FC = () => {
       console.log(error)
       dispatch(unsetLoading({}))
       dispatch(logout())
+      navigate("/")
+
     })
 
   }
