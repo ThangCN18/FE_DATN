@@ -40,32 +40,32 @@ function DetailCoursesPage() {
     const [rating, setrating] = useState(null)
     const [valuerating, setvaluerating] = useState(5)
     const [valuecontent, setvaluecontent] = useState("")
-    const [datasub ,setdatasub] = useState([])
+    const [datasub, setdatasub] = useState([])
     const [checksub, setchecksub] = useState(false)
 
 
     const hangdlegetdatareviews = async () => {
-        
+
         await api.get('/courses/' + location.pathname.split("/")[2] + "/review",
         ).then((response: any) => {
-            
+
             var totalrating = 0
             if (response.data.items[0]) {
                 const reviewss = response.data.items
                 for (const re in reviewss) {
                     let tam = totalrating + reviewss[re].rating
                     totalrating = tam
-                    
+
                 }
                 console.log(response.data)
                 setrating(totalrating / response.data.total)
             }
             setdatareview(response.data.items)
-            
+
         }).catch((error: any) => {
 
             console.log(error)
-            
+
         })
 
     }
@@ -75,96 +75,96 @@ function DetailCoursesPage() {
     const headers = {
         Accept: '*/*',
         Authorization: 'Bearer ' + auth.user?.accessToken,
-      };
+    };
 
 
-      const handlecreatereview = async () =>{
-        
-                
-                    dispatch(setLoading({}))
-            await api.post('/courses/' + location.pathname.split("/")[2] + "/review",
-                {
-                    content: valuecontent,
-                    rating: valuerating
-                },
-            
-                {
-                    headers
-                  },
-           
-            ).then((response:any)=>{
-                if (response.status === 201){
-                    hangdlegetdatareviews()
-                    dispatch(unsetLoading({}))
-                    
-                }
-            }).catch((error: any)=>{
-                console.log(error)
-                dispatch(setNotify({typeNotify: "error", titleNotify: "Review unsuccessful!", messageNotify: error.response.data.message}))
+    const handlecreatereview = async () => {
+
+
+        dispatch(setLoading({}))
+        await api.post('/courses/' + location.pathname.split("/")[2] + "/review",
+            {
+                content: valuecontent,
+                rating: valuerating
+            },
+
+            {
+                headers
+            },
+
+        ).then((response: any) => {
+            if (response.status === 201) {
+                hangdlegetdatareviews()
                 dispatch(unsetLoading({}))
-                
-            })
-        
-       
-  
+
+            }
+        }).catch((error: any) => {
+            console.log(error)
+            dispatch(setNotify({ typeNotify: "error", titleNotify: "Review unsuccessful!", messageNotify: error.response.data.message }))
+            dispatch(unsetLoading({}))
+
+        })
+
+
+
     }
 
 
-    const handellearncourse = async () =>{
+    const handellearncourse = async () => {
         console.log(location.pathname.split("/")[2])
-await api.post('/courses/' + location.pathname.split("/")[2] + '/subscribe/',
-    {
-        headers
-      },
+        await api.post('/courses/' + location.pathname.split("/")[2] + '/subscribe/',
+            {
+                headers
+            },
 
-).then((response:any)=>{
-    if (response.status === 201){
-        dispatch(setNotify({typeNotify: "success", titleNotify: "Subscribe Course successful!", messageNotify:  "You subscribe Course successful!"}))
+        ).then((response: any) => {
+            if (response.status === 201) {
+                dispatch(setNotify({ typeNotify: "success", titleNotify: "Subscribe Course successful!", messageNotify: "You subscribe Course successful!" }))
+            }
+        }).catch((error: any) => {
+            console.log(error)
+            dispatch(setNotify({ typeNotify: "error", titleNotify: "Subscribe unsuccessful!", messageNotify: error.response.data.message }))
+        })
+
     }
-}).catch((error: any)=>{
-    console.log(error)
-    dispatch(setNotify({typeNotify: "error", titleNotify: "Subscribe unsuccessful!", messageNotify: error.response.data.message}))
-})
-
-}
 
 
-const getCourseSubscribe = async () =>{
+    const getCourseSubscribe = async () => {
 
-    await api.get('/users/my-courses/',
-        {
-            headers
-          },
-    
-    ).then((response:any)=>{
-        if (response.status === 200){
-            console.log(response)
-            for(var addf in response.data){
-                if(response.data[addf].courseId == location.pathname.split("/")[2]){
-                    setchecksub(true)
+        await api.get('/users/my-courses/',
+            {
+                headers
+            },
+
+        ).then((response: any) => {
+            if (response.status === 200) {
+                console.log(response)
+                for (var addf in response.data) {
+                    if (response.data[addf].courseId == location.pathname.split("/")[2]) {
+                        setchecksub(true)
+                    }
                 }
             }
-        }
-       
-    }).catch((error: any)=>{
-        console.log(error)
-        
 
-    })
-    
+        }).catch((error: any) => {
+            console.log(error)
+
+
+        })
+
     }
 
-    const hangdlepayment = async () => {   
+    const hangdlepayment = async () => {
 
         console.log(location.pathname.split("/")[2])
         const data = {
-            courseIds : [location.pathname.split("/")[2]]
+            courseIds: [location.pathname.split("/")[2]]
         }
         await api.post('/payment/checkout-info',
-        data,
-        {
-            headers
-        }
+            data,
+            {
+                headers
+            }
         ).then((response: any) => {
             window.location = response.data.url
             setloaddingas(false)
@@ -175,12 +175,12 @@ const getCourseSubscribe = async () =>{
     }
 
 
-    const hangdlegetdatacourses = async () => {   
+    const hangdlegetdatacourses = async () => {
         setloaddingas(true)
         await hangdlegetdatareviews()
-        if(auth.isAuthenticated){
+        if (auth.isAuthenticated) {
             await getCourseSubscribe()
-            
+
         }
         console.log(location.pathname.split("/")[2])
         await api.get('/courses/' + location.pathname.split("/")[2],
@@ -195,12 +195,12 @@ const getCourseSubscribe = async () =>{
     }
     const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
     useEffect(() => {
-        
-        
+
+
         hangdlegetdatacourses()
         dispatch(unsetLoading({}))
-       
-    }, [])
+
+    }, [location.pathname])
 
     return (
         <Layout className="layout bg-white">
@@ -249,31 +249,31 @@ const getCourseSubscribe = async () =>{
                                                 <h5 className="mt-5 font-bold text-base ">Description course</h5>
                                                 <p className="mt-3  text-md">{courses.description}</p>
                                                 <div className=" items-start">
-                                                    <div className="rounded-lg shadow-xl !border-[0.4px] border-gray-400 px-5 py-2 mt-4">
+                                                    <div className="rounded-lg shadow-md !border-[0.4px] border-gray-400 px-5 py-2 mt-4">
                                                         <h5 className=" font-bold text-base ">Requirements to join the course</h5>
-                                                        <Row gutter={[24,24]} className="">
-                                                        {
-                                                            courses.requirements ? <>{courses.requirements.map((requirement) => {
-                                                                return <Col span={12}>
+                                                        <Row gutter={[24, 24]} className="">
+                                                            {
+                                                                courses.requirements ? <>{courses.requirements.map((requirement) => {
+                                                                    return <Col span={12}>
 
-                                                                <div className="my-2 space-x-1 flex items-center justify-start text-gray-800" key={requirement}><BsCheck2Circle className="!w-[50px]" /><span>{requirement}</span></div>
-                                                                </Col>
-                                                            })}</> : null
-                                                        }
+                                                                        <div className="my-2 space-x-1 flex items-center justify-start text-gray-800" key={requirement}><BsCheck2Circle className="!w-[50px]" /><span>{requirement}</span></div>
+                                                                    </Col>
+                                                                })}</> : null
+                                                            }
 
                                                         </Row>
-                                                        
+
                                                     </div>
-                                                    <div className="rounded-lg shadow-xl !border-[0.4px] border-gray-400 px-5 py-1 mt-4">
+                                                    <div className="rounded-lg shadow-md !border-[0.4px] border-gray-400 px-5 py-1 mt-4">
                                                         <h5 className=" font-bold text-base ">Benefits</h5>
-                                                        <Row gutter={[24,24]} className="">
-                                                        {
-                                                            courses.benefits ? <>{courses.benefits.map((benefit) => {
-                                                                return <Col span={12}>
-                                                                <div className="my-2 space-x-1 flex items-center justify-start text-gray-800" key={benefit}><BsCheck2Circle className="!w-[50px]" /><span>{benefit}</span></div>
-                                                                </Col>
-                                                            })}</> : null
-                                                        }
+                                                        <Row gutter={[24, 24]} className="">
+                                                            {
+                                                                courses.benefits ? <>{courses.benefits.map((benefit) => {
+                                                                    return <Col span={12}>
+                                                                        <div className="my-2 space-x-1 flex items-center justify-start text-gray-800" key={benefit}><BsCheck2Circle className="!w-[50px]" /><span>{benefit}</span></div>
+                                                                    </Col>
+                                                                })}</> : null
+                                                            }
                                                         </Row>
                                                     </div>
                                                 </div>
@@ -286,24 +286,24 @@ const getCourseSubscribe = async () =>{
 
                                                 <img className="mt-10 rounded-md w-[100%] h-[200px] " src={courses.image} />
                                                 {
-                                                     courses.discount <= 0 ? <p className="mt-4 text-lg text-green-600 font-bold">Free </p> : <>
+                                                    courses.discount <= 0 ? <p className="mt-4 text-lg text-green-600 font-bold">Free </p> : <>
                                                         <p className="mt-4 text-lg font-bold">Discounted price of </p>
                                                         <p className="text-base font-bold"> <span className="line-through text-gray-500">${courses.price}</span>
-                                                            <span className=" text-xl text-blue-600"> ${ courses.discount}</span></p>
+                                                            <span className=" text-xl text-blue-600"> ${courses.discount}</span></p>
                                                     </>
                                                 }
                                                 {
                                                     courses.sections.length == 0 ?
                                                         <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 w-[80%] h-[40px] font-bold mt-3 max-sm:text-xs cursor-default">Not started yet</Button> :
                                                         <>
-                                                            { courses.discount <= 0 ?
-                                                               <>{checksub ?  <Link to={"/learn/"+ location.pathname.split("/")[2] +"?s=0&l=0"}><Button type="primary"  className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
-                                                            : <Button type="primary" onClick={()=>{handellearncourse()}} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Learn Now</Button>
-                                                            }</> :
-                                                            <>{checksub ?  <Link to={"/learn/"+ location.pathname.split("/")[2]+"?s=0&l=0"}><Button type="primary"  className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
-                                                            : <Button type="primary" onClick={hangdlepayment} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
-                                                            }</>
-                                                                
+                                                            {courses.discount <= 0 ?
+                                                                <>{checksub ? <Link to={"/learn/" + location.pathname.split("/")[2] + "?s=0&l=0"}><Button type="primary" className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
+                                                                    : <Button type="primary" onClick={() => { handellearncourse() }} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Learn Now</Button>
+                                                                }</> :
+                                                                <>{checksub ? <Link to={"/learn/" + location.pathname.split("/")[2] + "?s=0&l=0"}><Button type="primary" className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
+                                                                    : <Button type="primary" onClick={hangdlepayment} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
+                                                                }</>
+
                                                             }
                                                         </>
                                                 }
@@ -353,14 +353,14 @@ const getCourseSubscribe = async () =>{
                                                         : null
                                                 }
 
-                                                
+
 
                                                 <div className="flex items-center space-x-2 justify-start py-5 max-sm:flex-col">
 
                                                     {
                                                         datareview ? <>
                                                             <div className="flex justify-start  ">
-                                                                {rating != 0 ? <div className="flex justify-start  items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-2xl max-sm:text-sm" /><span>{courses.courseKeyMetric.rating +" course rating. "+ courses.courseKeyMetric.totalReviews+ " ratings"}</span></div> :
+                                                                {rating != 0 ? <div className="flex justify-start  items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-2xl max-sm:text-sm" /><span>{courses.courseKeyMetric.rating + " course rating. " + courses.courseKeyMetric.totalReviews + " ratings"}</span></div> :
                                                                     <Rate disabled defaultValue={0} />
                                                                 }
                                                             </div>
@@ -390,98 +390,98 @@ const getCourseSubscribe = async () =>{
                                                         <h3 className="truncate w-[370px] max-md:w-[170px] text-base font-bold mb-2">{courses.name}</h3>
                                                         <p className="truncate w-[370px] max-md:w-[170px] text-sm">{courses.headline}</p>
                                                         {
-                                                            datareview?<>
-                                                            {
-                                                                rating? <><Rate disabled defaultValue={rating} className="text-sm space-x-1"/></> :
-                                                                <Rate disabled defaultValue={0} className="text-sm space-x-1"/>
-                                                            }
-                                                            </>:
-                                                            <Rate disabled defaultValue={0} className="text-sm space-x-1"/>
+                                                            datareview ? <>
+                                                                {
+                                                                    rating ? <><Rate disabled defaultValue={rating} className="text-sm space-x-1" /></> :
+                                                                        <Rate disabled defaultValue={0} className="text-sm space-x-1" />
+                                                                }
+                                                            </> :
+                                                                <Rate disabled defaultValue={0} className="text-sm space-x-1" />
                                                         }
-                                                        
+
 
                                                     </div>
                                                 </div>
                                                 {
-                                                    datareview? 
-                                                    <div
-                                                id="scrollableDiv"
-                                                style={{
-                                                    height: 400,
-                                                    overflow: 'auto',
-                                                    padding: '0 16px',
-                                                    border: '1px solid rgba(140, 140, 140, 0.35)',
-                                                }}
-                                                >
-                                                <InfiniteScroll
-                                                    dataLength={datareview.length}
-                                                    next={hangdlegetdatareviews}
-                                                    hasMore={datareview.length > 100}
-                                                    loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
-                                                    endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
-                                                    scrollableTarget="scrollableDiv"
-                                                >
-                                                    <List
-                                                    dataSource={datareview}
-                                                    renderItem={(item) => (
-                                                        <List.Item key={item?.id} className="bg-gray-50 my-2 rounded-md !px-2">
-                                                        <List.Item.Meta 
-                                                            avatar={<Avatar src={item.user.avatar? item.user.avatar: "https://live.staticflickr.com/65535/52813965210_ca9d9cd3a9_w.jpg"} />}
-                                                            title={<p className="font-semibold">{item.user.lastName + " " + item.user.firstName + " "} 
-                                                            
-                                                            <span>{item.user.role=="admin"?<Tag color="cyan">Admin</Tag>:<>
-                                                            {
-                                                                item.user.role=="user"? <Tag>Student</Tag>: <Tag>Teacher</Tag>
-                                                            }
-                                                            </>}</span></p>}
-                                                            description={item.content}
-                                                        />
-                                                        <div><Rate disabled defaultValue={item.rating} className="text-xs space-x-0"/></div>
-                                                        </List.Item>
-                                                    )}
-                                                    />
-                                                </InfiniteScroll>
-                                                </div>:
-                                                <div
-                                                id="scrollableDiv"
-                                                style={{
-                                                    height: 400,
-                                                    overflow: 'auto',
-                                                    padding: '0 16px',
-                                                    border: '1px solid rgba(140, 140, 140, 0.35)',
-                                                }}
-                                                >
-                                                <Divider plain>It is all, nothing more 🤐</Divider>
+                                                    datareview ?
+                                                        <div
+                                                            id="scrollableDiv"
+                                                            style={{
+                                                                height: 400,
+                                                                overflow: 'auto',
+                                                                padding: '0 16px',
+                                                                border: '1px solid rgba(140, 140, 140, 0.35)',
+                                                            }}
+                                                        >
+                                                            <InfiniteScroll
+                                                                dataLength={datareview.length}
+                                                                next={hangdlegetdatareviews}
+                                                                hasMore={datareview.length > 100}
+                                                                loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+                                                                endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+                                                                scrollableTarget="scrollableDiv"
+                                                            >
+                                                                <List
+                                                                    dataSource={datareview}
+                                                                    renderItem={(item) => (
+                                                                        <List.Item key={item?.id} className="bg-gray-50 my-2 rounded-md !px-2">
+                                                                            <List.Item.Meta
+                                                                                avatar={<Avatar src={item.user.avatar ? item.user.avatar : "https://live.staticflickr.com/65535/52813965210_ca9d9cd3a9_w.jpg"} />}
+                                                                                title={<p className="font-semibold">{item.user.lastName + " " + item.user.firstName + " "}
 
-                                                </div>
+                                                                                    <span>{item.user.role == "admin" ? <Tag color="cyan">Admin</Tag> : <>
+                                                                                        {
+                                                                                            item.user.role == "user" ? <Tag>Student</Tag> : <Tag>Teacher</Tag>
+                                                                                        }
+                                                                                    </>}</span></p>}
+                                                                                description={item.content}
+                                                                            />
+                                                                            <div><Rate disabled defaultValue={item.rating} className="text-xs space-x-0" /></div>
+                                                                        </List.Item>
+                                                                    )}
+                                                                />
+                                                            </InfiniteScroll>
+                                                        </div> :
+                                                        <div
+                                                            id="scrollableDiv"
+                                                            style={{
+                                                                height: 400,
+                                                                overflow: 'auto',
+                                                                padding: '0 16px',
+                                                                border: '1px solid rgba(140, 140, 140, 0.35)',
+                                                            }}
+                                                        >
+                                                            <Divider plain>It is all, nothing more 🤐</Divider>
+
+                                                        </div>
                                                 }
                                                 <>
-                                                {
-                                                    auth.isAuthenticated?<>
-                                                    <div className="bg-slate-50 p-3 rounded-md mt-2">
-                                                        <h5 className="text-base font-semibold mb-2 text-black">Write a review</h5>
-                                                    <span>
-                                                        <Rate tooltips={desc} onChange={setvaluerating} value={valuerating} />
-                                                        {valuerating ? <span className="ant-rate-text">{desc[valuerating - 1]}</span> : ''}
-                                                    </span>
-                                                    <div className="my-2 flex justify-between items-center space-x-2">
-                                                    <Input onChange={e=>{setvaluecontent(e.target.value)}} placeholder="..." className="" />
-
                                                     {
-                                                        valuecontent.length > 3?
-                                                            <Button  onClick={()=>{handlecreatereview()}}><BsSendFill/></Button>
-                                                        :<Button disabled><BsSendFill/></Button>
+                                                        auth.isAuthenticated ? <>
+                                                            <div className="bg-slate-50 p-3 rounded-md mt-2">
+                                                                <h5 className="text-base font-semibold mb-2 text-black">Write a review</h5>
+                                                                <span>
+                                                                    <Rate tooltips={desc} onChange={setvaluerating} value={valuerating} />
+                                                                    {valuerating ? <span className="ant-rate-text">{desc[valuerating - 1]}</span> : ''}
+                                                                </span>
+                                                                <div className="my-2 flex justify-between items-center space-x-2">
+                                                                    <Input onChange={e => { setvaluecontent(e.target.value) }} placeholder="..." className="" />
+
+                                                                    {
+                                                                        valuecontent.length > 3 ?
+                                                                            <Button onClick={() => { handlecreatereview() }}><BsSendFill /></Button>
+                                                                            : <Button disabled><BsSendFill /></Button>
+                                                                    }
+
+                                                                </div>
+
+                                                            </div>
+                                                        </> : null
                                                     }
-                                                    
-                                                    </div>
-                                                    
-                                                    </div>
-                                                    </>:null
-                                                }
-                                                
-                                                
+
+
                                                 </>
-                                                
+
 
 
                                             </Modal>

@@ -6,7 +6,7 @@ import {
   UserOutlined,
   VideoCameraOutlined
 } from '@ant-design/icons';
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Layout, Menu, theme, Spin } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
@@ -33,28 +33,28 @@ const AdminUserPage: React.FC = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch();
 
-  const handelLogout = async () =>{
+  const handelLogout = async () => {
     dispatch(setLoading({}))
     await api.delete('/auth/logout',
-    {
-      headers: {
-        accept: '*/*',
-        Authorization: 'Bearer ' + auth.user?.refreshToken,
+      {
+        headers: {
+          accept: '*/*',
+          Authorization: 'Bearer ' + auth.user?.refreshToken,
 
-      },
-    }
-    ).then((response:any)=>{
+        },
+      }
+    ).then((response: any) => {
 
-      dispatch(unsetLoading({}))        
-            dispatch(logout())
-            navigate("/")
-    }).catch((error: any)=>{
-        console.log(error)
-        dispatch(unsetLoading({}))
-        dispatch(logout())
+      dispatch(unsetLoading({}))
+      dispatch(logout())
+      navigate("/")
+    }).catch((error: any) => {
+      console.log(error)
+      dispatch(unsetLoading({}))
+      dispatch(logout())
     })
-    
-}
+
+  }
 
   const {
     token: { colorBgContainer },
@@ -67,29 +67,29 @@ const AdminUserPage: React.FC = () => {
       <Layout className='h-[100vh]' >
         <Sider trigger={null} collapsible collapsed={collapsed} className="!bg-gray-100">
           <Link to="/">
-          {
-            !collapsed ?
-              <div className="logo flex pt-4 mb-8 justify-center items-center" >
-                <img className="h-[35px] mr-2" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
-                <h4 className='text-black text-lg font-bold'>Wizcove IT</h4>
-              </div> :
-              <div className="logo flex pt-4 mb-8 justify-center items-center" >
-                <img className="h-[35px]" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
+            {
+              !collapsed ?
+                <div className="logo flex pt-4 mb-8 justify-center items-center" >
+                  <img className="h-[35px] mr-2" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
+                  <h4 className='text-black text-lg font-bold'>Wizcove IT</h4>
+                </div> :
+                <div className="logo flex pt-4 mb-8 justify-center items-center" >
+                  <img className="h-[35px]" src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png' />
 
-              </div>
-          }
+                </div>
+            }
           </Link>
-          
-           <Menu
+
+          <Menu
             theme='light'
             mode="inline"
             selectedKeys={[selectedMenu]}
-            items = {auth.user?.role === "admin"? [
+            items={auth.user?.role === "admin" ? [
               {
                 key: '1',
                 icon: <RiDashboardLine />,
                 label: 'Dashboard',
-                onClick: ()=>{
+                onClick: () => {
                   navigate('/admin')
                 }
               },
@@ -97,7 +97,7 @@ const AdminUserPage: React.FC = () => {
                 key: '2',
                 icon: <UserOutlined />,
                 label: 'Users',
-                onClick: ()=>{
+                onClick: () => {
                   navigate('/admin/user')
                 }
               },
@@ -105,7 +105,7 @@ const AdminUserPage: React.FC = () => {
                 key: '3',
                 icon: <FaRoute />,
                 label: 'Roadmaps',
-                onClick: ()=>{
+                onClick: () => {
                   navigate('/admin/roadmap')
                 }
               },
@@ -113,7 +113,7 @@ const AdminUserPage: React.FC = () => {
                 key: '4',
                 icon: <HiOutlineBookOpen />,
                 label: 'Courses',
-                onClick: ()=>{
+                onClick: () => {
                   navigate('/admin/course')
                 }
               },
@@ -121,63 +121,63 @@ const AdminUserPage: React.FC = () => {
                 key: '5',
                 icon: <MdOutlineReviews />,
                 label: 'Reviews',
-                onClick: ()=>{
+                onClick: () => {
                   navigate('/admin/review')
                 }
               },
-            ]:
-            [
-              
-              {
-                key: '1',
-                icon: <RiDashboardLine />,
-                label: 'Dashboard',
-              },
-              {
-                key: '2',
-                icon: <UserOutlined />,
-                label: 'Users',
-                onClick: ()=>{
-                  navigate('/admin/user')
-                }
-              },
-              {
-                key: '3',
-                icon: <FaRoute />,
-                label: 'Roadmaps',
-              },
-              {
-                key: '4',
-                icon: <HiOutlineBookOpen />,
-                label: 'Courses',
-                onClick: ()=>{
-                  navigate('/admin/course')
-                }
-              },
-              {
-                key: '5',
-                icon: <MdOutlineReviews />,
-                label: 'Reviews',
-                onClick: ()=>{
-                  navigate('/admin/review')
-                }
-              },
-            ]
-          
-          }
+            ] :
+              [
+
+                {
+                  key: '1',
+                  icon: <RiDashboardLine />,
+                  label: 'Dashboard',
+                },
+                {
+                  key: '2',
+                  icon: <UserOutlined />,
+                  label: 'Users',
+                  onClick: () => {
+                    navigate('/admin/user')
+                  }
+                },
+                {
+                  key: '3',
+                  icon: <FaRoute />,
+                  label: 'Roadmaps',
+                },
+                {
+                  key: '4',
+                  icon: <HiOutlineBookOpen />,
+                  label: 'Courses',
+                  onClick: () => {
+                    navigate('/admin/course')
+                  }
+                },
+                {
+                  key: '5',
+                  icon: <MdOutlineReviews />,
+                  label: 'Reviews',
+                  onClick: () => {
+                    navigate('/admin/review')
+                  }
+                },
+              ]
+
+            }
           />
         </Sider>
         <Layout className="site-layout min-w-[1000px] h-[100vh]">
-        <Header className="!bg-white !px-5 flex justify-between items-center" >
+          <Header className="!bg-white !px-5 flex justify-between items-center" >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),
             })}
-            <UserDropdown handelLogout={handelLogout}/>
+            <UserDropdown handelLogout={handelLogout} />
 
           </Header>
-          <Content 
-           
+          <Content
+
             style={{
               margin: '24px 16px',
               padding: 24,
@@ -186,12 +186,12 @@ const AdminUserPage: React.FC = () => {
             }}
           >
             {
-             
-              <AdminUserComponent  />
-           
+
+              <AdminUserComponent />
+
 
             }
-            
+
           </Content>
         </Layout>
       </Layout>
