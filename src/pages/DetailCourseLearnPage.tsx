@@ -27,6 +27,7 @@ const { Panel } = Collapse;
 import YouTube from 'react-youtube';
 import { HiLockClosed } from "react-icons/hi";
 import { FcCheckmark } from "react-icons/fc";
+import { IoVideocam } from "react-icons/io5";
 
 
 function DetailCourseLearnPage() {
@@ -64,7 +65,7 @@ function DetailCourseLearnPage() {
             console.log("xem hết video")
             console.log(headers)
             if (scs != null || lcl != null) {
-                getlearncompleted()
+                getlearncompleted(null)
             }
         }
 
@@ -94,13 +95,18 @@ function DetailCourseLearnPage() {
     };
 
 
-    const getlearncompleted = async () => {
+    const getlearncompleted = async (videoUrl: any) => {
         console.log(headers)
         const data = {}
         await api.put(`/sections/${idSectionnext}/lectures/${idlecturenext}/completed`, {}, { headers }
         ).then((response: any) => {
             console.log(1233334)
-            navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
+            if (videoUrl != null) {
+                window.open(videoUrl, '_blank')
+            } else {
+                navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
+                window.open(videoUrl, "_blank")
+            }
 
         }).catch((error: any) => {
             console.log(error)
@@ -222,12 +228,29 @@ function DetailCourseLearnPage() {
                                                 {courses.sections[0] ? <>
                                                     {
                                                         courses.sections[0].lectures && courses.sections[0].lectures[0] ? <>
-                                                            <div className="!w-[100%] !h-[470px] max-md:!h-[275px] overflow-hidden rounded-md text-center">
-                                                                <YouTube
-                                                                    id="videofrom-youtubebe"
-                                                                    videoId={courses.sections[s].lectures[l].videoUrl}
-                                                                    onStateChange={onPlayerStateChange}
-                                                                />
+                                                            <div className="!w-[100%] !h-[470px] max-md:!h-[275px] overflow-hidden rounded-md text-center ">
+                                                                {
+                                                                    courses.sections[s].lectures[l].videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                        <div className="w-[100%] h-[100%] flex justify-center items-center">
+                                                                            <Button onClick={() => {
+                                                                                if (scs != null || lcl != null) {
+                                                                                    getlearncompleted(null)
+                                                                                } else {
+                                                                                    window.open(courses.sections[s].lectures[l].videoUrl, "_blank")
+                                                                                }
+
+                                                                            }} className="flex justify-center items-center space-x-2 text-base bg-green-600 hover:!bg-green-500 max-sm:text-sm max-sm:space-x-1 max-sm:px-2 " type="primary"><IoVideocam /><span> Join Meet</span></Button>
+                                                                            <img className='max-sm:w-[190px] max-md:w-[350px] max-lg:w-[500px]' src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/4d63594d-e135-41b3-947a-53d7c9d46119-01-google-workspace.jpg' />
+
+                                                                        </div>
+                                                                        :
+                                                                        <YouTube
+                                                                            id="videofrom-youtubebe"
+                                                                            videoId={courses.sections[s].lectures[l].videoUrl}
+                                                                            onStateChange={onPlayerStateChange}
+                                                                        />
+                                                                }
+
                                                                 {/* <iframe width='100%' height="100%" className="mx-auto" src={"https://www.youtube.com/embed/" + courses.sections[s].lectures[l].videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> */}
                                                             </div>
                                                             <h5 className="mt-5 font-bold text-2xl ">{courses.sections[s].lectures[l].name}</h5>
@@ -258,9 +281,17 @@ function DetailCourseLearnPage() {
 
                                                                                     section.lectures.map((lecture, indexs) => {
                                                                                         if (index == 0 && indexs == 0) {
-                                                                                            return <div onClick={() => { navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs) }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
+                                                                                            return <div onClick={() => {
+
+                                                                                                navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs)
+
+                                                                                            }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
                                                                                                 <div className='justify-start items-center space-x-3 flex'>
-                                                                                                    <SiYoutubemusic className='text-green-500' />
+                                                                                                    {
+                                                                                                        lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                            <IoVideocam className='text-green-500 text-base' />
+                                                                                                            : <SiYoutubemusic className='text-green-500 text-base' />
+                                                                                                    }
                                                                                                     <p className='truncate w-[195px] max-md:w-[400px] max-lg:w-[220px] max-sm:w-[100px]'>{lecture.name}</p>
                                                                                                 </div>
 
@@ -276,7 +307,11 @@ function DetailCourseLearnPage() {
                                                                                         if (!apor.includes(lecture.id)) {
                                                                                             return <div className='flex justify-between items-center py-4 border-2 px-3 rounded-sm  border-gray-200 cursor-default '>
                                                                                                 <div className='justify-start items-center space-x-3 flex'>
-                                                                                                    <SiYoutubemusic className='text-gray-600' />
+                                                                                                    {
+                                                                                                        lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                            <IoVideocam className='text-gray-600 text-base' />
+                                                                                                            : <SiYoutubemusic className='text-gray-600 text-base' />
+                                                                                                    }
                                                                                                     <p className='truncate  w-[195px] max-md:w-[400px] max-lg:w-[220px] max-sm:w-[100px]'>{lecture.name}</p>
                                                                                                 </div>
 
@@ -287,15 +322,24 @@ function DetailCourseLearnPage() {
                                                                                             </div>
 
                                                                                         }
-                                                                                        return <div onClick={() => { navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs) }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
+                                                                                        return <div onClick={() => {
+
+                                                                                            navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs)
+
+                                                                                        }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
                                                                                             <div className='justify-start items-center space-x-3 flex'>
-                                                                                                <SiYoutubemusic className='text-gray-600' />
+                                                                                                {
+                                                                                                    lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                        <IoVideocam className='text-green-500 text-base' />
+                                                                                                        : <SiYoutubemusic className='text-green-500 text-base' />
+                                                                                                }
+
                                                                                                 <p className='truncate w-[195px] max-md:w-[400px] max-lg:w-[220px] max-sm:w-[100px]'>{lecture.name}</p>
                                                                                             </div>
 
                                                                                             <div>
 
-                                                                                                <p className='text-xs text-center truncate text-gray-500'>learned</p>
+                                                                                                <FcCheckmark className="text-green-500" />
 
 
                                                                                             </div>

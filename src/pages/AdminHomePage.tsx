@@ -9,7 +9,7 @@ import { Layout, Menu, theme, Spin } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/types';
 import { FaRoute } from 'react-icons/fa';
-import { RiDashboardLine } from 'react-icons/ri';
+import { RiDashboardLine, RiVideoAddFill } from 'react-icons/ri';
 import { HiOutlineBookOpen } from 'react-icons/hi';
 import UserDropdown from '../components/UserDropdown';
 import { setLoading, unsetLoading } from '../store/loadSlice';
@@ -189,7 +189,11 @@ function AdminHomePage() {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),
             })}
-            <UserDropdown handelLogout={handelLogout} />
+            <div className='flex justify-end space-x-5 items-center'>
+              <a href='https://meetwizcoveit.netlify.app' target="_blank" className='text-[#0160fa] hover:text-blue-500 '><RiVideoAddFill className='text-2xl' /></a>
+              <UserDropdown handelLogout={handelLogout} />
+
+            </div>
 
           </Header>
           <Content

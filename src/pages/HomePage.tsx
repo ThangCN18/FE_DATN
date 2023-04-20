@@ -17,32 +17,32 @@ function HomePage() {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
-  const loading =  useSelector((state: RootState) => state.root.load)
+  const loading = useSelector((state: RootState) => state.root.load)
 
   return (
     <Layout className="layout bg-white">
-      <HeaderComponent item="home"/>
-      <Content className="pt-[70px]">
+      <HeaderComponent item="home" />
+      <Content className="pt-[70px] ">
 
-        <div className="site-layout-content w-[100%] pb-10 " style={{ background: colorBgContainer }}>
-          <SlideBanner/>
-          <SliderRoadmap/>
-          <TabsCoursesComponent/>
-          <StudentReviewHomePageComponent/>
-          <PopularCourseComponent/>
-          <AboutUsHomeComponent/>
+        <div className="site-layout-content w-[100%] pb-0 " style={{ background: colorBgContainer }}>
+          <SlideBanner />
+          <SliderRoadmap />
+          <TabsCoursesComponent />
+          <StudentReviewHomePageComponent />
+          <PopularCourseComponent />
+          <AboutUsHomeComponent />
         </div>
       </Content>
-      <FooterComponent/>
+      <FooterComponent />
       <Footer style={{ textAlign: 'center' }}>Copyright ©2023 Wizcove IT</Footer>
       {
-        loading.isLoading?
-        <LoadingComponent/>:null
+        loading.isLoading ?
+          <LoadingComponent /> : null
       }
 
-      
+
     </Layout>
-    
+
   );
 }
 

@@ -26,7 +26,7 @@ import { setLoading, unsetLoading } from '../../store/loadSlice';
 interface UserType {
   key: string,
   fullname: string,
-  email:  string,
+  email: string,
   content: string,
   rating: number,
   avatar: string,
@@ -38,98 +38,6 @@ interface UserType {
 type DataIndex = keyof UserType;
 
 let datave: UserType[] = [
-{
-  key: "1",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "2",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "3",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "4",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "5",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  
-  key: "6",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "7",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "8",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  
-  key: "9",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
-{
-  key: "10",
-  fullname: "Nguyen Chi Thang",
-  email:  "Nguyen Chi Thang",
-  content: "Nguyen Chi Thang ádasda",
-  rating: 5,
-  avatar: "https://coursesbe.s3.ap-southeast-1.amazonaws.com/b953b7d1-915c-4e26-a2e2-37e0b60ff546-hinh-the.jpg",
-  isActive: true
-},
 
 ];
 
@@ -149,78 +57,78 @@ const AdminReviewComponent: React.FC = () => {
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
-    const [pageusers, setpageusers] = useState<number>(1);
-    const contentRef = useRef(null);
+  const [pageusers, setpageusers] = useState<number>(1);
+  const contentRef = useRef(null);
   const dispatch = useDispatch()
 
   const [userselectDelete, setuserselectDelete] = useState<any>(null);
-  
-  const auth = useSelector((state: RootState) => state.root.auth)
- 
 
- 
+  const auth = useSelector((state: RootState) => state.root.auth)
+
+
+
   const headers = {
     Accept: '*/*',
     Authorization: 'Bearer ' + auth.user?.accessToken,
   };
-const handelGetDataUsers = async (page: number) => {
-  setscrolltable(true)
+  const handelGetDataUsers = async (page: number) => {
+    setscrolltable(true)
     await api.get(`/review`,
-    {
+      {
         headers
       },
-).then((response:any)=>{
-    if (response.status === 200){
-      const datares: any[] = response.data.items; // assume datares is an array of any objects
-      const dataset: UserType[] = datares.map((item: any) => {
-        return {
-          key: item.id,
-          fullname:  item.user.lastName+ " "+item.user.firstName,
-          email:  item.user.email,
-          content: item.content,
-          rating: item.rating,
-          avatar: item.user.avatar,
-          isActive: item.isActive
-        };
-      });
-      if(page == 1){
-        setData(dataset)
-        setscrolltable(false)
-      }else{
-        setData(data.concat(dataset))
+    ).then((response: any) => {
+      if (response.status === 200) {
+        const datares: any[] = response.data.items; // assume datares is an array of any objects
+        const dataset: UserType[] = datares.map((item: any) => {
+          return {
+            key: item.id,
+            fullname: item.user.lastName + " " + item.user.firstName,
+            email: item.user.email,
+            content: item.content,
+            rating: item.rating,
+            avatar: item.user.avatar,
+            isActive: item.isActive
+          };
+        });
+        if (page == 1) {
+          setData(dataset)
+          setscrolltable(false)
+        } else {
+          setData(data.concat(dataset))
+          setscrolltable(false)
+        }
+        setloadingSkeleton(false)
+        const npage = pageusers + 1
+        setpageusers(npage)
         setscrolltable(false)
       }
-      setloadingSkeleton(false)
-      const npage = pageusers + 1
-      setpageusers(npage)
+    }).catch((error: any) => {
+      console.log(error)
       setscrolltable(false)
-    }
-}).catch((error: any)=>{
-    console.log(error)
-    setscrolltable(false)
-})
+    })
 
   }
 
 
-const handelGetDelete = async (id: string) => {
-  dispatch(setLoading({}))
-    await api.delete(`/review/`+ id,
-    {
+  const handelGetDelete = async (id: string) => {
+    dispatch(setLoading({}))
+    await api.delete(`/review/` + id,
+      {
         headers
       },
-).then((response:any)=>{
-    if (response.status === 204){
-      handelGetDataUsers(1)
-      dispatch(setNotify({typeNotify: "success", titleNotify: "Delete review successful!", messageNotify: 'Delete review successful'}))
+    ).then((response: any) => {
+      if (response.status === 204) {
+        handelGetDataUsers(1)
+        dispatch(setNotify({ typeNotify: "success", titleNotify: "Delete review successful!", messageNotify: 'Delete review successful' }))
+        dispatch(unsetLoading({}))
+        setIsModalDelete(false)
+      };
+    }).catch((error: any) => {
+      console.log(error)
+      dispatch(setNotify({ typeNotify: "success", titleNotify: "Delete review unsuccessful!", messageNotify: error }))
       dispatch(unsetLoading({}))
-      setIsModalDelete(false)
-        };     
-}).catch((error: any)=>{
-    console.log(error)
-    dispatch(setNotify({typeNotify: "success", titleNotify: "Delete review unsuccessful!", messageNotify: error}))
-    dispatch(unsetLoading({}))
-})
+    })
 
   }
 
@@ -281,6 +189,8 @@ const handelGetDelete = async (id: string) => {
 
   });
 
+
+
   const columns: ColumnsType<UserType> = [
     {
       title: 'Avatar',
@@ -335,11 +245,11 @@ const handelGetDelete = async (id: string) => {
       width: '5%',
       render: text => <>{
         loadingSkeleton ?
-          <SkeletonButton active size='small'  className='!w-[80%]' />
+          <SkeletonButton active size='small' className='!w-[80%]' />
           :
           <Rate disabled defaultValue={text} className='text-xs !space-x-1' />
       }</>,
-      
+
     },
     {
       title: 'Content',
@@ -350,7 +260,7 @@ const handelGetDelete = async (id: string) => {
         loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />
           :
-          <>{text}</>
+          <p className='truncate'>{text}</p>
       }</>,
       ...getColumnSearchProps('content'),
       sorter: (a, b) => a.content.length - b.content.length,
@@ -365,36 +275,37 @@ const handelGetDelete = async (id: string) => {
         loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />
           :
-          <>{text?<Switch size="small" defaultChecked={false} disabled />: <Switch size="small" defaultChecked disabled />}</>
+          <>{text ? <Switch size="small" defaultChecked={false} disabled /> : <Switch size="small" defaultChecked disabled />}</>
       }</>,
-      
+
     },
     {
       title: 'Action',
       dataIndex: 'key',
-      key: 'Action',
+      key: 'key',
       width: '8%',
       render: (text) => <>
         {loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />
           :
           <>
-           
-            <Button size="small" onClick={()=>setIsModalDelete(true)} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
+
+            <Button size="small" onClick={() => setIsModalDelete(true)} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
 
 
-            <Modal title={""} width={300} open={isModalDelete} footer={false} 
-              onCancel={()=>{setIsModalDelete(false)
-                      setuserselectDelete(null)
-                    }} >
-                <MdDeleteForever className='text-red-500 mx-auto my-1 text-[40px]' />
-            
-                  <p className='text-base font-bold my-2 text-center text-red-500'> <span>Make sure you delete review</span></p>
-                  <p className='text-sm my-2 text-center truncate'> <span>Id review: </span> <span className="font-medium">{text} </span></p>
-                  <div className='flex justify-end px-3 pt-4'>
-                  <Button onClick={()=>{handelGetDelete(text)}} danger >Delete</Button>
-                  </div>
-                  </Modal>
+            <Modal title={""} width={300} open={isModalDelete} footer={false}
+              onCancel={() => {
+                setIsModalDelete(false)
+                setuserselectDelete(null)
+              }} >
+              <MdDeleteForever className='text-red-500 mx-auto my-1 text-[40px]' />
+
+              <p className='text-base font-bold my-2 text-center text-red-500'> <span>Make sure you delete review</span></p>
+              <p className='text-sm my-2 text-center truncate'> <span>Id review: </span> <span className="font-medium">{text} </span></p>
+              <div className='flex justify-end px-3 pt-4'>
+                <Button onClick={() => { handelGetDelete(text) }} danger >Delete</Button>
+              </div>
+            </Modal>
           </>
         }
       </>
@@ -405,7 +316,7 @@ const handelGetDelete = async (id: string) => {
   useEffect(() => {
     setloadingSkeleton(true)
     handelGetDataUsers(1)
-    setpageusers(2)
+
   }, [])
 
 
@@ -426,20 +337,25 @@ const handelGetDelete = async (id: string) => {
       }
     };
   }, [data, contentRef, handelGetDataUsers, pageusers]);
-  
+
 
   return <>
-   <div ref={contentRef} style={{ height: "78vh", overflowY: 'scroll' }} >
-  <Table columns={columns}
-    dataSource={data} pagination={false} className='shadow-md'
-    footer={() => (<>
-    {scrolltable? 
-  <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
-  :null  
-  }
-     </>)}
-    >
-    </Table>
+    <div ref={contentRef} style={{ height: "78vh", overflowY: 'scroll' }} >
+      {
+        data ?
+          <Table columns={columns}
+            dataSource={data ?? datave} pagination={false} className='shadow-md'
+            footer={() => (<>
+              {scrolltable ?
+                <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+                : null
+              }
+            </>)}
+          >
+          </Table> :
+          null
+      }
+
     </div>
 
     {/* modal view */}
@@ -447,7 +363,7 @@ const handelGetDelete = async (id: string) => {
 
 
 
-    </>;
+  </>;
 };
 
 export default AdminReviewComponent;

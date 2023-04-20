@@ -60,32 +60,7 @@ const AdminPaymentComponent: React.FC = () => {
   const [userselectDelete, setuserselectDelete] = useState<any>(null);
 
   const auth = useSelector((state: RootState) => state.root.auth)
-  const handelshowview = (key: string) => {
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].key == key) {
-        setuserselect(data[i])
-        break;
-      }
-    }
-  }
 
-  const handelshowdelete = (key: string) => {
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].key == key) {
-        setuserselectDelete(data[i])
-        break;
-      }
-    }
-  }
-  const handelshowedit = (key: string) => {
-    for (var i = 0; i < data.length; i++) {
-      if (data[i].key == key) {
-        setuserselectedit(data[i])
-        break;
-      }
-    }
-
-  }
 
 
   const handelGetDatapayment = async (page: number) => {
@@ -159,6 +134,8 @@ const AdminPaymentComponent: React.FC = () => {
 
   }
   useEffect(() => {
+    setloadingSkeleton(true)
+
     handelGetDatapayment(1)
 
   }, [])

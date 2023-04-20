@@ -53,7 +53,6 @@ function SlideBanner() {
       for (const a in response.data.courseRoadmaps) {
         const tam = priback
         priback = tam + response.data.courseRoadmaps[a].course.price
-        console.log(priback)
       }
       setpriceroadmapback(priback)
       var disback = 0

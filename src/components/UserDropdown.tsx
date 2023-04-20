@@ -10,6 +10,7 @@ import { HiOutlineNewspaper, HiOutlineBookOpen } from "react-icons/hi"
 import { useSelector } from "react-redux";
 import { RootState } from "../store/types";
 import { RiDashboardLine } from "react-icons/ri";
+import { MdOutlineShoppingCart } from "react-icons/md";
 
 const { Meta } = Card;
 
@@ -69,7 +70,7 @@ const UserDropdown: React.FC<typeprops> = ({ handelLogout }) => {
     {
       key: 'card5',
       label: (
-        <Link to={"/profile"} className="!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
+        <Link to={"/my-courcss"} className="!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
           <HiOutlineBookOpen className="w-[16px] h-[16px]" />
           <p>My Courses</p>
 
@@ -79,9 +80,9 @@ const UserDropdown: React.FC<typeprops> = ({ handelLogout }) => {
     {
       key: 'card6',
       label: (
-        <Link to={"/profile"} className="!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
-          <HiOutlineNewspaper className="w-[16px] h-[16px]" />
-          <p>My Block</p>
+        <Link to={"/my-cart"} className="!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
+          <MdOutlineShoppingCart className="w-[16px] h-[16px]" />
+          <p>My Cart</p>
 
         </Link>
       )
@@ -89,7 +90,7 @@ const UserDropdown: React.FC<typeprops> = ({ handelLogout }) => {
     {
       key: 'card7',
       label: (
-        <Link to={"/profile"} className="!px-6 pt-4 mb-3 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
+        <Link to={"/"} className="!px-6 pt-4 mb-3 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
           <FiHelpCircle className="w-[16px] h-[16px]" />
           <p>Help</p>
 

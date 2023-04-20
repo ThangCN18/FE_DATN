@@ -107,7 +107,7 @@ function CoursesPage() {
                 const caca = {
                     key: index + 1,
                     label: <p>{adshba[index].name}</p>,
-                    children: <Row gutter={[24, 24]} className="max-sm:px-6 mt-5">
+                    children: <Row gutter={[24, 24]} className="max-sm:px-0 mt-5">
                         {adshba[index].courseRoadmaps.length == 0 ? <Empty className="mx-auto" image={Empty.PRESENTED_IMAGE_SIMPLE} /> : <>
                             {adshba[index].courseRoadmaps.map(course => {
 

@@ -17,11 +17,14 @@ import Meta from "antd/es/card/Meta";
 import { RiVipCrownFill } from "react-icons/ri";
 import { FiArrowLeft } from "react-icons/fi";
 import { AiFillLike, AiFillStar, AiOutlineCheckCircle, AiOutlineFieldTime } from "react-icons/ai";
-import { BsCheck2Circle, BsSendFill } from "react-icons/bs";
+import { BsBookHalf, BsCheck2Circle, BsSendFill } from "react-icons/bs";
 import { SiYoutubemusic } from "react-icons/si";
 import { BiUser } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { setNotify } from "../store/notifycationSlide";
+import { IoVideocam } from "react-icons/io5";
+import { FaCartPlus, FaUserAlt } from "react-icons/fa";
+import { MdCollectionsBookmark } from "react-icons/md";
 const { Header, Content, Footer } = Layout;
 const { Panel } = Collapse;
 
@@ -73,10 +76,33 @@ function DetailCoursesPage() {
 
 
     const headers = {
-        Accept: '*/*',
+        accept: '*/*',
         Authorization: 'Bearer ' + auth.user?.accessToken,
     };
 
+    const handeladdcart = async () => {
+
+        if (auth.isAuthenticated) {
+            await api.post('/course/' + location.pathname.split("/")[2] + '/cart/', {},
+                {
+                    headers
+                },
+
+            ).then((response: any) => {
+                if (response.status === 201) {
+                    dispatch(setNotify({ typeNotify: "success", titleNotify: "Add to cart successful!", messageNotify: 'You add to cart successful' }))
+                }
+            }).catch((error: any) => {
+                console.log(error)
+                dispatch(setNotify({ typeNotify: "error", titleNotify: "Add to cart unsuccessful!", messageNotify: 'You add to cart unsuccessful' }))
+
+            })
+        } else {
+            dispatch(setNotify({ typeNotify: "error", titleNotify: "Add to cart unsuccessful!", messageNotify: 'You add to cart unsuccessful' }))
+        }
+
+
+    }
 
     const handlecreatereview = async () => {
 
@@ -96,6 +122,9 @@ function DetailCoursesPage() {
             if (response.status === 201) {
                 hangdlegetdatareviews()
                 dispatch(unsetLoading({}))
+                setvaluerating(5)
+                setvaluecontent('')
+                hangdlegetdatacourses()
 
             }
         }).catch((error: any) => {
@@ -301,7 +330,11 @@ function DetailCoursesPage() {
                                                                     : <Button type="primary" onClick={() => { handellearncourse() }} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Learn Now</Button>
                                                                 }</> :
                                                                 <>{checksub ? <Link to={"/learn/" + location.pathname.split("/")[2] + "?s=0&l=0"}><Button type="primary" className="bg-gray-500 w-[80%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
-                                                                    : <Button type="primary" onClick={hangdlepayment} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
+                                                                    : <div className="flex justify-between items-center space-x-2">
+                                                                        <Button type="primary" onClick={hangdlepayment} className="bg-gradient-to-r w-[80%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
+                                                                        <Button type="primary" onClick={handeladdcart} className="h-[40px] mt-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold text-xl "><FaCartPlus /></Button>
+
+                                                                    </div>
                                                                 }</>
 
                                                             }
@@ -310,6 +343,16 @@ function DetailCoursesPage() {
                                                 <div className="w-[100%] pl-20 py-4">
                                                     <p className="mt-4 text-sm text-gray-600 font-semibold flex justify-start items-center space-x-2 "><AiFillLike className="text-lg" /><span>{courses.level == 1 ? "Basic course" : "Advanced course"}</span></p>
                                                     <p className="mt-4 text-sm text-gray-600 font-semibold flex justify-start items-center space-x-2 "><AiOutlineFieldTime className="text-lg" /><span>Learn anytime, anywhere</span></p>
+                                                    {
+                                                        courses.courseKeyMetric ?
+                                                            <>
+                                                                <p className="mt-4 text-sm text-gray-600 font-semibold flex justify-start items-center space-x-2 "><FaUserAlt className="text-base" /><span>{courses.courseKeyMetric.currentSubscribers} Students</span></p>
+                                                                <p className="mt-4 text-sm text-gray-600 font-semibold flex justify-start items-center space-x-2 ">< MdCollectionsBookmark className="text-base" /><span>{courses.courseKeyMetric.totalSections} Sections</span></p>
+                                                                <p className="mt-4 text-sm text-gray-600 font-semibold flex justify-start items-center space-x-2 ">< BsBookHalf className="text-base" /><span>{courses.courseKeyMetric.totalLectures} Lectures</span></p>
+
+                                                            </>
+                                                            : <></>
+                                                    }
 
 
                                                 </div>
@@ -335,7 +378,11 @@ function DetailCoursesPage() {
                                                                                     section.lectures.map(lecture => {
                                                                                         return <div className='flex justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200'>
                                                                                             <div className='flex justify-start items-center space-x-3 '>
-                                                                                                <SiYoutubemusic className='text-gray-600' />
+                                                                                                {
+                                                                                                    lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                        <IoVideocam className='text-gray-600 text-base' />
+                                                                                                        : <SiYoutubemusic className='text-gray-600 text-base' />
+                                                                                                }
                                                                                                 <p className='truncate w-[1200px] max-md:w-[400px] max-lg:w-[900px] max-sm:w-[200px]'>{lecture.name}</p>
                                                                                             </div>
                                                                                             <div>
@@ -360,7 +407,7 @@ function DetailCoursesPage() {
                                                     {
                                                         datareview ? <>
                                                             <div className="flex justify-start  ">
-                                                                {rating != 0 ? <div className="flex justify-start  items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-2xl max-sm:text-sm" /><span>{courses.courseKeyMetric.rating + " course rating. " + courses.courseKeyMetric.totalReviews + " ratings"}</span></div> :
+                                                                {rating != 0 ? <div className="flex justify-start  items-center space-x-1 text-lg font-bold mt-4"><AiFillStar className="text-yellow-400 text-2xl max-sm:text-sm" /><span>{Number.parseFloat(courses.courseKeyMetric.rating ?? 0).toFixed(1) + " course rating. " + courses.courseKeyMetric.totalReviews + " ratings"}</span></div> :
                                                                     <Rate disabled defaultValue={0} />
                                                                 }
                                                             </div>
@@ -465,7 +512,7 @@ function DetailCoursesPage() {
                                                                     {valuerating ? <span className="ant-rate-text">{desc[valuerating - 1]}</span> : ''}
                                                                 </span>
                                                                 <div className="my-2 flex justify-between items-center space-x-2">
-                                                                    <Input onChange={e => { setvaluecontent(e.target.value) }} placeholder="..." className="" />
+                                                                    <Input onChange={e => { setvaluecontent(e.target.value) }} value={valuecontent} placeholder="..." className="" />
 
                                                                     {
                                                                         valuecontent.length > 3 ?
