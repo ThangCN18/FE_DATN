@@ -1,4 +1,4 @@
-import { Avatar, Button, Card, Skeleton } from "antd";
+import { Avatar, Button, Card, Rate, Skeleton } from "antd";
 import React, { useEffect, useState } from "react"
 import { BsCheck } from "react-icons/bs";
 import { FaRoute } from "react-icons/fa";
@@ -75,12 +75,15 @@ const StudentReviewHomePageComponent: React.FC = () => {
                             data.map(review => {
                                 return <div className="px-5">
                                     <Card className="text-lg shadow-lg border-[1px] border-gray-600 font-semibold text-center my-7">
-                                        <div className="flex justify-start max-md:flex-col max-md:space-x-0 max-md:space-y-2 items-center space-x-8">
+                                        <div className="flex justify-start max-md:flex-col max-md:space-x-0 max-md:space-y-2 items-start space-x-8">
                                             <div className="flex flex-col items-center justify-center space-y-3 max-sm">
-                                                <Avatar className="w-[90px] h-[90px]" src={review.user.avatar ? review.user.avatar : "./src/assets/images/default-avatar-profile.png"} />
-                                                <h5 className="text-sm truncate">{review.user.lastName + " " + review.user.lastName}</h5>
+                                                <Avatar className="w-[90px] h-[90px]" src={review.user.avatar ? review.user.avatar : "https://www.shutterstock.com/image-vector/human-profile-avatar-blue-icon-260nw-2111144018.jpg"} />
+                                                <h5 className="text-sm truncate">{review.user.lastName + " " + review.user.firstName}</h5>
                                             </div>
-                                            <p >" {review.content} " </p>
+                                            <div className="flex flex-col text-left space-y-2">
+                                                <Rate disabled className="text-sm" value={review.rating} />
+                                                <p >" {review.content} " </p>
+                                            </div>
                                         </div>
 
                                     </Card>

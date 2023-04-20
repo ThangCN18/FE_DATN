@@ -19,7 +19,7 @@ import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
-import { MdOutlineReviews } from 'react-icons/md';
+import { MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
 import AdminReviewComponent from '../components/adminComponent/AdminReviewComponent';
 
 const { Header, Sider, Content } = Layout;
@@ -128,6 +128,14 @@ const AdminReviewPage: React.FC = () => {
                   navigate('/admin/review')
                 }
               },
+              {
+                key: '6',
+                icon: <MdOutlinePayments />,
+                label: 'Payments',
+                onClick: () => {
+                  navigate('/admin/payment')
+                }
+              },
             ] :
               [
 
@@ -163,6 +171,14 @@ const AdminReviewPage: React.FC = () => {
                   label: 'Reviews',
                   onClick: () => {
                     navigate('/admin/review')
+                  }
+                },
+                {
+                  key: '6',
+                  icon: <MdOutlinePayments />,
+                  label: 'Payments',
+                  onClick: () => {
+                    navigate('/admin/payment')
                   }
                 },
               ]

@@ -17,7 +17,7 @@ interface typeprops {
   handelLogout: () => Promise<void>
 }
 
-const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
+const UserDropdown: React.FC<typeprops> = ({ handelLogout }) => {
 
   const [loading, setLoading] = useState(false);
 
@@ -29,8 +29,8 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
       label: (
         <Card style={{ width: 230 }} loading={loading} className="user-item-menu m-2  max-sm:!w-[150px]">
           <Meta className="!py-0"
-            avatar={<Avatar className="!rounded-full w-[50px] h-[50px] max-sm:!w-[40px] max-sm:!h-[40px]" src={auth.user?.avatar? auth.user?.avatar: '/src/assets/images/default-avatar-profile.png'} />}
-            title={<h5 className="truncate w-[180px] max-sm:!w-[100px] max-sm:text-xs">{auth.user?.lastName+" "+auth.user?.firstName}</h5>}
+            avatar={<Avatar className="!rounded-full w-[50px] h-[50px] max-sm:!w-[40px] max-sm:!h-[40px]" src={auth.user?.avatar ? auth.user?.avatar : '/src/assets/images/default-avatar-profile.png'} />}
+            title={<h5 className="truncate w-[180px] max-sm:!w-[100px] max-sm:text-xs">{auth.user?.lastName + " " + auth.user?.firstName}</h5>}
             description={<Link to={"/profile"}><p className="truncate w-[180px] max-sm:!w-[100px] max-sm:text-xs">Manage Profile</p></Link>}
           />
         </Card>
@@ -41,19 +41,19 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
       label: (<hr />
       ),
     },
-    { 
+    {
       key: 'card323',
       label: (<>
-      {
-        auth.user.role != "user"?
-        <Link to={"/admin"} className={"!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450 "}>
-          <RiDashboardLine className="w-[16px] h-[16px]" />
-          <p>Admin</p>
+        {
+          auth.user.role != "user" ?
+            <Link to={"/admin"} className={"!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450 "}>
+              <RiDashboardLine className="w-[16px] h-[16px]" />
+              <p>Admin</p>
 
-        </Link>:null
-      }
+            </Link> : null
+        }
       </>
-        
+
       )
     },
     {
@@ -105,7 +105,7 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
       key: 'card9',
       label: (
         <p onClick={handelLogout}
-        className="block w-[100%] pl-5 pb-4 text-sm font-medium !pt-3 flex justify-start items-center text-red-500 hover:!text-red-500 !space-x-2 cursor-pointer"><TbLogout className="w-[20px] h-[20px] text-red-500" /><p>Sign Out</p></p>
+          className="block w-[100%] pl-5 pb-4 text-sm font-medium !pt-3 flex justify-start items-center text-red-500 hover:!text-red-500 !space-x-2 cursor-pointer"><TbLogout className="w-[20px] h-[20px] text-red-500" /><p>Sign Out</p></p>
       )
     },
   ];
@@ -113,7 +113,7 @@ const UserDropdown:React.FC<typeprops> = ( {handelLogout}) => {
   return (
     <Dropdown menu={{ items }} placement="bottomRight" className="max-sm:hidden" arrow>
       <Button className="!p-0 border-none bg-gray-100 !min-w-[40px] max-sm:text-xs !h-[40px] max-sm:!min-w-[30px] max-sm:!h-[30px] rounded-full flex justify-center items-center">
-        <div className="text-base">{auth.user?.avatar? <Avatar src={auth.user?.avatar}/> :<FaRegUser />}</div></Button>
+        <div className="text-base">{auth.user?.avatar ? <Avatar src={auth.user?.avatar} /> : <FaRegUser />}</div></Button>
     </Dropdown>
   );
 }

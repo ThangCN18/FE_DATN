@@ -2,29 +2,32 @@ import React, { useState, useEffect } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
-  UserOutlined
+  UploadOutlined,
+  UserOutlined,
+  VideoCameraOutlined
 } from '@ant-design/icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'
 import { Layout, Menu, theme, Spin } from 'antd';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
+import AdminUserComponent from '../components/adminComponent/AdminUserComponent';
 import { FaRoute } from 'react-icons/fa';
+import AdminRoadmapComponent from '../components/adminComponent/AdminRoadmapComponent';
 import { RiDashboardLine } from 'react-icons/ri';
 import { HiOutlineBookOpen } from 'react-icons/hi';
-import UserDropdown from '../components/UserDropdown';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
-import AdminDashboardComponent from '../components/adminComponent/AdminDashboardComponent';
+import UserDropdown from '../components/UserDropdown';
 import { MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
-
+import AdminPaymentComponent from '../components/adminComponent/AdminPaymentComponent';
 
 const { Header, Sider, Content } = Layout;
 
 
-function AdminHomePage() {
+const AdminPaymentPage: React.FC = () => {
 
-  const [selectedMenu, setSelectedMenu] = useState('1');
+  const [selectedMenu, setSelectedMenu] = useState('6');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
   const [loading, setLoadding] = useState(false);
@@ -51,7 +54,6 @@ function AdminHomePage() {
       dispatch(unsetLoading({}))
       dispatch(logout())
       navigate("/")
-
 
     })
 
@@ -80,6 +82,7 @@ function AdminHomePage() {
                 </div>
             }
           </Link>
+
           <Menu
             theme='light'
             mode="inline"
@@ -203,8 +206,7 @@ function AdminHomePage() {
           >
             {
 
-
-              <AdminDashboardComponent />
+              <AdminPaymentComponent />
 
 
             }
@@ -215,4 +217,4 @@ function AdminHomePage() {
   );
 }
 
-export default AdminHomePage;
+export default AdminPaymentPage;
