@@ -20,6 +20,7 @@ function CartDropdown() {
   const navigate = useNavigate();
   const [datacourse, setdatacourse] = useState([])
   const [datacourseshow, setdatacourseshow] = useState([])
+  const status = useSelector((state: RootState) => state.root.status)
 
 
 
@@ -122,7 +123,7 @@ function CartDropdown() {
 
   useEffect(() => {
     handeladdcart()
-  }, [])
+  }, [status.isStatus])
 
 
 

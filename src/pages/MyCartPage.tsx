@@ -13,6 +13,7 @@ import { Content, Footer } from "antd/es/layout/layout";
 import FooterComponent from "../components/FooterComponent";
 import AboutUsHomeComponent from "../components/AboutUsHomeComponent";
 import LoadingComponent from "../components/LoadingComponent";
+import { setstatus } from "../store/statusSlics";
 
 const { Meta } = Card;
 
@@ -78,11 +79,11 @@ function MyCartPage() {
         ).then((response: any) => {
             if (response.status === 204) {
                 handeladdcart()
+                dispatch(setstatus())
             }
         }).catch((error: any) => {
             console.log(error)
             setLoading(false)
-
 
         })
 

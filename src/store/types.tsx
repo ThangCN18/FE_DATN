@@ -4,9 +4,14 @@ export interface RootState {
   root: RootType & PersistPartial
 }
 export interface RootType {
-    auth: AuthState,
-    load: LoadState,
-    notify: NotifyState
+  auth: AuthState,
+  load: LoadState,
+  notify: NotifyState,
+  status: typeState
+}
+
+interface typeState {
+  isStatus: boolean
 }
 
 export interface AuthState {

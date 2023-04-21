@@ -4,19 +4,21 @@ import storage from 'redux-persist/lib/storage'
 import authReducer from './authSlice'
 import loadReducer from './loadSlice'
 import notyfyReducer from './notifycationSlide'
+import statusReducer from './statusSlics'
 import { RootState } from './types'
-import {combineReducers} from "redux"
+import { combineReducers } from "redux"
 
 const persistConfig = {
   key: 'root',
   storage,
 }
 
-const persistedReducer = persistReducer(persistConfig,  combineReducers({
-    auth: authReducer,
-    load: loadReducer,
-    notify: notyfyReducer
-  }))
+const persistedReducer = persistReducer(persistConfig, combineReducers({
+  auth: authReducer,
+  load: loadReducer,
+  notify: notyfyReducer,
+  status: statusReducer
+}))
 
 const store = configureStore({
   reducer: {

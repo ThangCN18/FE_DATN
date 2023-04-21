@@ -25,6 +25,7 @@ import { setNotify } from "../store/notifycationSlide";
 import { IoVideocam } from "react-icons/io5";
 import { FaCartPlus, FaUserAlt } from "react-icons/fa";
 import { MdCollectionsBookmark } from "react-icons/md";
+import { setstatus } from "../store/statusSlics";
 const { Header, Content, Footer } = Layout;
 const { Panel } = Collapse;
 
@@ -91,6 +92,8 @@ function DetailCoursesPage() {
             ).then((response: any) => {
                 if (response.status === 201) {
                     dispatch(setNotify({ typeNotify: "success", titleNotify: "Add to cart successful!", messageNotify: 'You add to cart successful' }))
+                    dispatch(setstatus())
+
                 }
             }).catch((error: any) => {
                 console.log(error)
