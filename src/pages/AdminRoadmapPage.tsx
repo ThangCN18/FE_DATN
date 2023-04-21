@@ -192,7 +192,7 @@ function AdminRoadmapPage() {
               onClick: () => setCollapsed(!collapsed),
             })}
             <div className='flex justify-end space-x-5 items-center'>
-              <a href='https://meetwizcoveit.netlify.app' target="_blank" className='text-[#0160fa] hover:text-blue-500 '><RiVideoAddFill className='text-2xl' /></a>
+              <a href='https://wizcoveit.netlify.app/meet' target="_blank" className='text-[#0160fa] hover:text-blue-500 '><RiVideoAddFill className='text-2xl' /></a>
               <UserDropdown handelLogout={handelLogout} />
 
             </div>

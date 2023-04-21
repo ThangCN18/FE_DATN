@@ -230,7 +230,7 @@ function DetailCourseLearnPage() {
                                                         courses.sections[0].lectures && courses.sections[0].lectures[0] ? <>
                                                             <div className="!w-[100%] !h-[470px] max-md:!h-[275px] overflow-hidden rounded-md text-center ">
                                                                 {
-                                                                    courses.sections[s].lectures[l].videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                    courses.sections[s].lectures[l].videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                                                         <div className="w-[100%] h-[100%] flex justify-center items-center">
                                                                             <Button onClick={() => {
                                                                                 if (scs != null || lcl != null) {
@@ -288,7 +288,7 @@ function DetailCourseLearnPage() {
                                                                                             }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
                                                                                                 <div className='justify-start items-center space-x-3 flex'>
                                                                                                     {
-                                                                                                        lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                        lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                                                                                             <IoVideocam className='text-green-500 text-base' />
                                                                                                             : <SiYoutubemusic className='text-green-500 text-base' />
                                                                                                     }
@@ -308,7 +308,7 @@ function DetailCourseLearnPage() {
                                                                                             return <div className='flex justify-between items-center py-4 border-2 px-3 rounded-sm  border-gray-200 cursor-default '>
                                                                                                 <div className='justify-start items-center space-x-3 flex'>
                                                                                                     {
-                                                                                                        lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                        lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                                                                                             <IoVideocam className='text-gray-600 text-base' />
                                                                                                             : <SiYoutubemusic className='text-gray-600 text-base' />
                                                                                                     }
@@ -329,7 +329,7 @@ function DetailCourseLearnPage() {
                                                                                         }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
                                                                                             <div className='justify-start items-center space-x-3 flex'>
                                                                                                 {
-                                                                                                    lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                    lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                                                                                         <IoVideocam className='text-green-500 text-base' />
                                                                                                         : <SiYoutubemusic className='text-green-500 text-base' />
                                                                                                 }

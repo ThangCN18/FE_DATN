@@ -382,7 +382,7 @@ function DetailCoursesPage() {
                                                                                         return <div className='flex justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200'>
                                                                                             <div className='flex justify-start items-center space-x-3 '>
                                                                                                 {
-                                                                                                    lecture.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                                                                                    lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                                                                                         <IoVideocam className='text-gray-600 text-base' />
                                                                                                         : <SiYoutubemusic className='text-gray-600 text-base' />
                                                                                                 }

@@ -138,7 +138,7 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
             description: values.description,
             duration: Number(values.duration),
             numLecture: Number(values.numLecture),
-            videoUrl: values.videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ? values.videoUrl : values.videoUrl.split("/")[3],
+            videoUrl: values.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ? values.videoUrl : values.videoUrl.split("/")[3],
         }
         handleaddLecture(inputData)
     };
@@ -242,7 +242,7 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                             </Form.Item>
                             <div className='bg-gray-200 rounded-md w-100% h-[200px]'>
                                 {videoUrl ? <>{videoUrl.split("/")[3] ? <>
-                                    {videoUrl.split("/")[2] == "meetwizcoveit.netlify.app" ?
+                                    {videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                         <img className='w-270 h-200' src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/4d63594d-e135-41b3-947a-53d7c9d46119-01-google-workspace.jpg' />
                                         :
                                         <iframe width="270" height="200" src={"https://www.youtube.com/embed/" + videoUrl.split("/")[3]} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>

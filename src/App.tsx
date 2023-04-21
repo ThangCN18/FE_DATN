@@ -26,6 +26,7 @@ import MyCoursePage from "./pages/MyCoursePage";
 import PaymentPage from "./pages/PaymentPage";
 import AdminPaymentPage from "./pages/AdminPaymentPage";
 import MyCartPage from "./pages/MyCartPage";
+import MeetingPage from "./pages/MeetingPage";
 
 
 
@@ -56,7 +57,7 @@ const App = () => {
             <Route path='/my-courses' element={<MyCoursePage />} />
             <Route path='/payment' element={<PaymentPage />} />
             <Route path='/my-cart' element={<MyCartPage />} />
-
+            <Route path='/meet' element={<MeetingPage />} />
 
             {
               auth.user.role != "user" ? <>
