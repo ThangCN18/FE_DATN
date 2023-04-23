@@ -11,6 +11,7 @@ import AboutUsHomeComponent from "../components/AboutUsHomeComponent";
 import FooterComponent from "../components/FooterComponent";
 import StudentReviewHomePageComponent from "../components/StudentReviewHomePageComponent";
 import PopularCourseComponent from "../components/PopularCourseComponent";
+import ChatBoxCommonent from "../components/ChatBoxCommonent";
 const { Header, Content, Footer } = Layout;
 
 function HomePage() {
@@ -33,6 +34,7 @@ function HomePage() {
           <AboutUsHomeComponent />
         </div>
       </Content>
+      <ChatBoxCommonent />
       <FooterComponent />
       <Footer style={{ textAlign: 'center' }}>Copyright ©2023 Wizcove IT</Footer>
       {
