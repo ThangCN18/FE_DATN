@@ -103,7 +103,7 @@ function CartDropdown() {
 
 
     const data = {
-      courseIds: datacourse
+      courseIds: [datacourse]
     }
     await api.post('/payment/checkout-info',
       data,

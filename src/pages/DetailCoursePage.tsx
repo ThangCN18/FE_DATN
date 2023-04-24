@@ -144,6 +144,10 @@ function DetailCoursesPage() {
 
     const handellearncourse = async () => {
         console.log(location.pathname.split("/")[2])
+        if (!auth.isAuthenticated) {
+            dispatch(setNotify({ typeNotify: "warning", titleNotify: "Pleace Sign in!", messageNotify: "Sign in to continue" }))
+            return
+        }
         await api.post('/courses/' + location.pathname.split("/")[2] + '/subscribe/',
             {
                 headers
@@ -187,6 +191,10 @@ function DetailCoursesPage() {
     }
 
     const hangdlepayment = async () => {
+        if (!auth.isAuthenticated) {
+            dispatch(setNotify({ typeNotify: "warning", titleNotify: "Pleace Sign in!", messageNotify: "Sign in to continue" }))
+            return
+        }
 
         console.log(location.pathname.split("/")[2])
         const data = {

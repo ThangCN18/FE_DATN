@@ -89,9 +89,64 @@ const PopularCourseComponent: React.FC = () => {
                 if (aaaa.includes(course.id)) {
                     return <div className="px-3">
 
+                        <Link to={"/course/" + course.id}>
+                            <Badge.Ribbon text={course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={course.discount <= 0 ? "green" : "yellow"}>
+
+                                <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
+                                    hoverable
+                                    cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={course.image} />}
+                                >
+                                    <Meta className="text-left text-title-course" title={course.name} />
+                                    <p className="my-2 truncate text-gray-500">{course.headline}</p>
+                                    <Space className="!flex !justify-between mt-2">
+
+
+                                    </Space>
+                                    <Space className="!flex !justify-between mt-2">
+                                        <div>
+                                            {
+                                                course.courseKeyMetric ?
+                                                    <>
+                                                        {
+                                                            course.courseKeyMetric.rating ?
+                                                                <><span className="text-gray-500 text-sm font-semibold mr-1">{Number.parseFloat(course.courseKeyMetric.rating).toFixed(1)}</span><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={course.courseKeyMetric.rating} /> <span> ({course.courseKeyMetric.totalReviews})</span></> :
+                                                                <><span className="text-gray-500 text-sm font-semibold mr-1">{0}</span><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={course.courseKeyMetric.rating} /></>
+
+                                                        }
+
+                                                    </>
+                                                    : <><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={5} /><span className="text-gray-500 text-xs ml-1">{5}</span></>
+                                            }
+                                        </div>
+                                        {
+                                            course.discount <= 0 ? null : <>
+                                                <p className="text-sm font-bold"><span className="line-through text-gray-500">${course.price}</span>
+                                                    <span className=" text-base text-blue-600"> ${course.discount}</span></p>
+                                            </>
+                                        }
+                                    </Space>
+
+                                    <Link to={"/learn/" + course.id + "?s=0&l=0"}><Button type="primary" className="bg-gray-500 w-[100%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
+
+
+
+                                </Card>
+                            </Badge.Ribbon>
+
+                        </Link>
+
+
+
+
+                    </div>
+
+                }
+                return <div className="px-3 ">
+                    <Link to={"/course/" + course.id}>
                         <Badge.Ribbon text={course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={course.discount <= 0 ? "green" : "yellow"}>
 
-                            <Card className="card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg"
+                            <Card className={course.sections.length == 0 ? "card-course-h overflow-hidden opacity-60 cursor-default shadow-lg " :
+                                "card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg "}
                                 hoverable
                                 cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={course.image} />}
                             >
@@ -124,70 +179,24 @@ const PopularCourseComponent: React.FC = () => {
                                         </>
                                     }
                                 </Space>
-
-                                <Link to={"/learn/" + course.id + "?s=0&l=0"}><Button type="primary" className="bg-gray-500 w-[100%] h-[40px] hover:!bg-gray-600 font-bold mt-3 max-sm:text-xs ">Learn continue</Button></Link>
-
+                                {
+                                    course.sections.length == 0 ?
+                                        <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs h-[40px] w-[100%] cursor-default">Not started yet</Button> :
+                                        <>
+                                            {course.discount <= 0 ?
+                                                <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Learn Now</Button> :
+                                                <Button type="primary" className="bg-gradient-to-r w-[100%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
+                                            }
+                                        </>
+                                }
 
 
                             </Card>
                         </Badge.Ribbon>
 
-
-                    </div>
-
-                }
-                return <div className="px-3 ">
-
-                    <Badge.Ribbon text={course.discount <= 0 ? "Free" : <RiVipCrownFill className="mx-2 my-1" />} color={course.discount <= 0 ? "green" : "yellow"}>
-
-                        <Card className={course.sections.length == 0 ? "card-course-h overflow-hidden opacity-60 cursor-default shadow-lg " :
-                            "card-course-h overflow-hidden opacity-90 hover:opacity-100 shadow-lg "}
-                            hoverable
-                            cover={<img alt="example" className="w-[100%] h-[190px] object-cover image-course" src={course.image} />}
-                        >
-                            <Meta className="text-left text-title-course" title={course.name} />
-                            <p className="my-2 truncate text-gray-500">{course.headline}</p>
-                            <Space className="!flex !justify-between mt-2">
+                    </Link>
 
 
-                            </Space>
-                            <Space className="!flex !justify-between mt-2">
-                                <div>
-                                    {
-                                        course.courseKeyMetric ?
-                                            <>
-                                                {
-                                                    course.courseKeyMetric.rating ?
-                                                        <><span className="text-gray-500 text-sm font-semibold mr-1">{Number.parseFloat(course.courseKeyMetric.rating).toFixed(1)}</span><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={course.courseKeyMetric.rating} /> <span> ({course.courseKeyMetric.totalReviews})</span></> :
-                                                        <><span className="text-gray-500 text-sm font-semibold mr-1">{0}</span><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={course.courseKeyMetric.rating} /></>
-
-                                                }
-
-                                            </>
-                                            : <><Rate disabled className="text-xs !space-x-1 rate-course-item" defaultValue={5} /><span className="text-gray-500 text-xs ml-1">{5}</span></>
-                                    }
-                                </div>
-                                {
-                                    course.discount <= 0 ? null : <>
-                                        <p className="text-sm font-bold"><span className="line-through text-gray-500">${course.price}</span>
-                                            <span className=" text-base text-blue-600"> ${course.discount}</span></p>
-                                    </>
-                                }
-                            </Space>
-                            {
-                                course.sections.length == 0 ?
-                                    <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs h-[40px] w-[100%] cursor-default">Not started yet</Button> :
-                                    <>
-                                        {course.discount <= 0 ?
-                                            <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Learn Now</Button> :
-                                            <Button type="primary" className="bg-gradient-to-r w-[100%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
-                                        }
-                                    </>
-                            }
-
-
-                        </Card>
-                    </Badge.Ribbon>
 
 
                 </div>

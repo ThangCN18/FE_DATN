@@ -27,6 +27,7 @@ import PaymentPage from "./pages/PaymentPage";
 import AdminPaymentPage from "./pages/AdminPaymentPage";
 import MyCartPage from "./pages/MyCartPage";
 import MeetingPage from "./pages/MeetingPage";
+import store from "./store";
 
 
 
@@ -42,6 +43,8 @@ const App = () => {
 
   useEffect(() => {
     dispatch(unsetLoading({}))
+
+
   }, [])
 
 

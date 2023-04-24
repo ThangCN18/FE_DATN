@@ -34,7 +34,7 @@ function HomePage() {
           <AboutUsHomeComponent />
         </div>
       </Content>
-      <ChatBoxCommonent />
+      {/* <ChatBoxCommonent /> */}
       <FooterComponent />
       <Footer style={{ textAlign: 'center' }}>Copyright ©2023 Wizcove IT</Footer>
       {

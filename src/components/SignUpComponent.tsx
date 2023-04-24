@@ -16,7 +16,7 @@ interface RegisterData {
     lastName: string
     email: string
     password: string
-  }
+}
 
 const SignUpComponent: React.FC<props> = ({ setcontentModal }) => {
 
@@ -25,26 +25,26 @@ const SignUpComponent: React.FC<props> = ({ setcontentModal }) => {
     const [form] = Form.useForm();
 
     const onFinish = (values: any) => {
-        const inputData = {firstName: values.firstname, lastName: values.lastname, email: values.email, password: values.password}
+        const inputData = { firstName: values.firstname, lastName: values.lastname, email: values.email, password: values.password }
         handelRegister(inputData)
         console.log(inputData)
-        
-      };
 
-    const handelRegister = async (data: RegisterData) =>{
+    };
+
+    const handelRegister = async (data: RegisterData) => {
         dispatch(setLoading({}))
-        await api.post('/auth/sign-up', data).then((response:any)=>{
-            if (response.status === 201){
+        await api.post('/auth/sign-up', data).then((response: any) => {
+            if (response.status === 201) {
                 form.resetFields()
                 dispatch(unsetLoading({}))
                 setcontentModal(4)
             }
-        }).catch((error: any)=>{
+        }).catch((error: any) => {
             console.log(error)
-            dispatch(setNotify({typeNotify: "error", titleNotify: "Sign-up unsuccessful!", messageNotify: error.response.data.message}))
+            dispatch(setNotify({ typeNotify: "error", titleNotify: "Sign-up unsuccessful!", messageNotify: error.response.data.message }))
             dispatch(unsetLoading({}))
         })
-        
+
     }
 
 
@@ -90,9 +90,9 @@ const SignUpComponent: React.FC<props> = ({ setcontentModal }) => {
                 className='mb-2'
                 rules={[{ required: true, message: 'Please input your password!', type: "string" },
                 {
-                    message: 'Password must be 5 characters long, including A-Z, a-z, 0-9, @$!%*#?&',
+                    message: 'Password must be 5 characters long, including A-Z, a-z, 0-9, @$!%*#?&.',
                     validator: (_, value) => {
-                        if (value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[a-z A-Z 1-9 @$!%*#?&].{5,}$/)) {
+                        if (value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&.])[a-z A-Z 1-9 @$!%*#?&.].{5,}$/)) {
                             return Promise.resolve();
                         } else {
                             return Promise.reject('Some message here');
