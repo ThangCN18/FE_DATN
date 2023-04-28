@@ -66,7 +66,7 @@ function CoursesPage() {
         }
         await hangdlegetdataroadmap()
 
-        await api.get('/courses/?perPage=8&page=' + pagenum,
+        await api.get('/courses?perPage=100&page=' + pagenum,
 
         ).then((response: any) => {
             setdatacourses(response.data.items)

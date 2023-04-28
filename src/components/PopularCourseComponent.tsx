@@ -80,7 +80,7 @@ const PopularCourseComponent: React.FC = () => {
         if (auth.isAuthenticated) {
             await getCourseSubscribe()
         }
-        await api.get('/courses?perPage=5&page=1&sortField=courseKeyMetric.currentSubscribers&sortDirection=DESC',
+        await api.get('/courses?perPage=80&page=1&sortField=courseKeyMetric.currentSubscribers&sortDirection=DESC',
 
         ).then((response: any) => {
             const data = response.data.items

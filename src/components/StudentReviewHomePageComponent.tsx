@@ -33,7 +33,7 @@ const StudentReviewHomePageComponent: React.FC = () => {
 
     const getdatareview = async () => {
 
-        await api.get('/courses/8d4a5598-dab3-4348-b364-a11df46a7db6/review',
+        await api.get('/review?sortField=rating',
 
 
         ).then(async (response: any) => {

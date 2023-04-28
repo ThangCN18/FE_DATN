@@ -75,7 +75,7 @@ const HeaderComponent: React.FC<{ item: string }> = ({ item }) => {
 
   const handleGetCourses = async () => {
     try {
-      const response = await api.get('/courses');
+      const response = await api.get('/courses?perPage=100');
       setDataCourses(response.data.items);
     } catch (error) {
       console.log(error);

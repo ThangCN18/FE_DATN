@@ -38,13 +38,13 @@ function CartDropdown() {
 
     ).then((response: any) => {
       if (response.status === 200) {
-
+        console.log(response.data)
         let courseaaa = []
         let listda = []
         let pricetotal = 0
         for (const a in response.data) {
           pricetotal = pricetotal + response.data[a].course.discount
-          listda.push(response.data[a].course.id)
+          listda.push(response.data[a].id)
           courseaaa.push(
             {
               key: response.data[a].id,
@@ -99,11 +99,12 @@ function CartDropdown() {
 
   }
 
+
   const hangdlepayment = async () => {
 
 
     const data = {
-      courseIds: [datacourse]
+      courseIds: datacourse
     }
     await api.post('/payment/checkout-info',
       data,
@@ -118,6 +119,7 @@ function CartDropdown() {
 
     })
   }
+
 
 
 

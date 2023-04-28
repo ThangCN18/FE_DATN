@@ -26,8 +26,9 @@ const AdminCourseComponent: React.FC = () => {
         if (loadinga) {
             return;
         }
-        await api.get(`/courses?perPage=10&page=${pagea}`)
+        await api.get(`/courses?perPage=100`)
             .then((response: any) => {
+                console.log(response.data)
                 if (response.status === 200) {
                     const datares: any[] = response.data.items;
                     // assume datares is an array of any objects
