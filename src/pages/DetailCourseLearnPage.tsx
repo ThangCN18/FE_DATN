@@ -96,16 +96,17 @@ function DetailCourseLearnPage() {
 
 
     const getlearncompleted = async (videoUrl: any) => {
-        console.log(headers)
+        console.log(idSectionnext, idlecturenext)
         const data = {}
         await api.put(`/sections/${idSectionnext}/lectures/${idlecturenext}/completed`, {}, { headers }
         ).then((response: any) => {
-            console.log(1233334)
+
             if (videoUrl != null) {
-                window.open(videoUrl, '_blank')
-            } else {
                 navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
                 window.open(videoUrl, "_blank")
+            } else {
+                navigate("/learn/" + location.pathname.split("/")[2] + `?s=${scs}&l=${lcl}`)
+
             }
 
         }).catch((error: any) => {
@@ -140,6 +141,7 @@ function DetailCourseLearnPage() {
                 const llll = Number(location.search.split("&")[1].split("=")[1])
                 if (response.data.course.sections.length > ssss + 1) {
 
+
                     if (response.data.course.sections[ssss].lectures.length > llll + 1) {
                         if (!afsgn.includes(response.data.course.sections[ssss].lectures[llll + 1].id)) {
                             aaa = response.data.course.sections[ssss].id
@@ -149,14 +151,14 @@ function DetailCourseLearnPage() {
 
                         }
                     } else {
+                        console.log("sai")
                         if (response.data.course.sections[ssss + 1].lectures.length > 0) {
-                            if (!afsgn.includes(response.data.course.sections[ssss + 1].lectures[0].id)) {
-                                aaa = response.data.course.sections[ssss + 1].id
-                                bbb = response.data.course.sections[ssss + 1].lectures[0].id
-                                setscs(ssss + 1)
-                                setlcl(0)
+                            aaa = response.data.course.sections[ssss + 1].id
+                            bbb = response.data.course.sections[ssss + 1].lectures[0].id
+                            setscs(ssss + 1)
+                            setlcl(0)
 
-                            }
+
                         }
                     }
                     setidSectionnext(aaa)
@@ -234,7 +236,7 @@ function DetailCourseLearnPage() {
                                                                         <div className="w-[100%] h-[100%] flex justify-center items-center">
                                                                             <Button onClick={() => {
                                                                                 if (scs != null || lcl != null) {
-                                                                                    getlearncompleted(null)
+                                                                                    getlearncompleted(courses.sections[s].lectures[l].videoUrl)
                                                                                 } else {
                                                                                     window.open(courses.sections[s].lectures[l].videoUrl, "_blank")
                                                                                 }

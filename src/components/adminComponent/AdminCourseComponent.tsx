@@ -26,7 +26,7 @@ const AdminCourseComponent: React.FC = () => {
         if (loadinga) {
             return;
         }
-        await api.get(`/courses?perPage=100`)
+        await api.get(`/courses?perPage=80&page=1&sortField=courseKeyMetric.currentSubscribers&sortDirection=DESC`)
             .then((response: any) => {
                 console.log(response.data)
                 if (response.status === 200) {
