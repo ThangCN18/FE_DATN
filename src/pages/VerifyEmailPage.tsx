@@ -52,8 +52,8 @@ const VerifyEmailPage: React.FC = () => {
                     <>{
                         verifyss ?
                             <div className='flex justify-center items-center flex-col w-[100vw] h-[100vh]'>
-                                <video autoPlay muted loop className="h-[400px] w-[400px] max-sm:h-[200px] max-sm:w-[200px] mx-auto object-cover">
-                                    <source src="https://player.vimeo.com/progressive_redirect/playback/818999937/rendition/540p/file.mp4?loc=external&oauth2_token_id=57447761&signature=bce4679fe53a98a8fd9a541e7b2d928e62c54cdd7f535940511a7705c3ba814a" type="video/mp4" />
+                                <video autoPlay muted loop className="h-[200px] w-[200px] max-sm:h-[100px] max-sm:w-[100px] mx-auto object-cover mb-[100px]">
+                                    <source src="https://static.videezy.com/system/resources/previews/000/037/538/original/4k-ok-circle-success-icon-animation-final.mp4" type="video/mp4" />
                                 </video>
                                 <h5 className='text-xl font-semibold px-8 mb-5 text-green-700 mt-[-100px]'>You have successfully verified your account</h5>
                                 <p className='text-base font-medium '>Back to home: <Link to={'/'}><Button className='bg-blue-600 text-white'>Home</Button></Link></p>
