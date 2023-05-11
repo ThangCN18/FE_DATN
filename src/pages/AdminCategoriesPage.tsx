@@ -7,30 +7,33 @@ import {
   VideoCameraOutlined
 } from '@ant-design/icons';
 import { Link, useNavigate } from 'react-router-dom'
-import { Layout, Menu, theme, Spin } from 'antd';
+import { Layout, Menu, theme, Spin, Modal } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/types';
-import AdminUserComponent from '../components/adminComponent/AdminUserComponent';
 import { FaRoute } from 'react-icons/fa';
-import AdminRoadmapComponent from '../components/adminComponent/AdminRoadmapComponent';
 import { RiDashboardLine, RiVideoAddFill } from 'react-icons/ri';
 import { HiOutlineBookOpen } from 'react-icons/hi';
+import LoadingComponent from '../components/LoadingComponent';
 import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
+import AdminCourseComponent from '../components/adminComponent/AdminCourseComponent';
 import { MdOutlineCategory, MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
+import AdminCategoriesComponent from '../components/adminComponent/AdminCategoriesComponent';
 
 const { Header, Sider, Content } = Layout;
 
 
-const AdminUserPage: React.FC = () => {
+function AdminCategoriesPage() {
 
-  const [selectedMenu, setSelectedMenu] = useState('2');
+  const [selectedMenu, setSelectedMenu] = useState('7');
   const auth = useSelector((state: RootState) => state.root.auth)
   const [collapsed, setCollapsed] = useState(false);
-  const [loading, setLoadding] = useState(false);
+  const [loadingaa, setLoaddingaa] = useState(false);
   const navigate = useNavigate()
+  const loading = useSelector((state: RootState) => state.root.load)
+
   const dispatch = useDispatch();
 
   const handelLogout = async () => {
@@ -53,11 +56,9 @@ const AdminUserPage: React.FC = () => {
       dispatch(unsetLoading({}))
       dispatch(logout())
       navigate("/")
-
     })
 
   }
-
   const {
     token: { colorBgContainer },
   } = theme.useToken();
@@ -65,7 +66,7 @@ const AdminUserPage: React.FC = () => {
 
 
   return (
-    loading ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
+    loadingaa ? <div className="w-[100vw] flex justify-center items-center h-[100vh]"><Spin size="large" /></div> :
       <Layout className='h-[100vh]' >
         <Sider trigger={null} collapsible collapsed={collapsed} className="!bg-gray-100">
           <Link to="/">
@@ -81,7 +82,6 @@ const AdminUserPage: React.FC = () => {
                 </div>
             }
           </Link>
-
           <Menu
             theme='light'
             mode="inline"
@@ -192,7 +192,7 @@ const AdminUserPage: React.FC = () => {
             }
           />
         </Sider>
-        <Layout className="site-layout min-w-[1000px] h-[100vh]">
+        <Layout className="site-layout min-w-[1200px] max-w-[1800px] h-[100vh]">
           <Header className="!bg-white !px-5 flex justify-between items-center" >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
@@ -216,13 +216,20 @@ const AdminUserPage: React.FC = () => {
           >
             {
 
-              <AdminUserComponent />
+              <AdminCategoriesComponent />
+
+
             }
 
           </Content>
         </Layout>
+        {
+          loading.isLoading ?
+            <LoadingComponent /> : null
+        }
+
       </Layout>
   );
 }
 
-export default AdminUserPage;
+export default AdminCategoriesPage;

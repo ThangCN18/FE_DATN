@@ -27,7 +27,7 @@ interface UserType {
   status: string
   totalPrice: string
   totalCourses: string
-  createAt: string
+  createdAt: string
 }
 
 
@@ -94,8 +94,7 @@ const AdminPaymentComponent: React.FC = () => {
       if (response.status === 200) {
         const datares: any[] = response.data.items; // assume datares is an array of any objects
         const dataset: UserType[] = datares.map((item: any) => {
-
-          const date = new Date(item.createAt * 1000);
+          const date = new Date(item.createdAt * 1000);
 
           const day = date.getDate().toString().padStart(2, '0');
           const month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -112,7 +111,7 @@ const AdminPaymentComponent: React.FC = () => {
             status: item.status,
             totalPrice: item.totalPrice ? item.totalPrice : 0,
             totalCourses: item.totalCourses ? item.totalCourses : 0,
-            createAt: formattedDate,
+            createdAt: formattedDate,
           };
         });
         if (page == 1) {
@@ -275,8 +274,8 @@ const AdminPaymentComponent: React.FC = () => {
     },
     {
       title: 'Time',
-      dataIndex: 'createAt',
-      key: 'createAt',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
       width: '8%',
       render: text => <>{
         loadingSkeleton ?
@@ -284,8 +283,8 @@ const AdminPaymentComponent: React.FC = () => {
           :
           <>{text}</>
       }</>,
-      ...getColumnSearchProps('createAt'),
-      sorter: (a, b) => a.createAt.length - b.createAt.length,
+      ...getColumnSearchProps('createdAt'),
+      sorter: (a, b) => a.createdAt.length - b.createdAt.length,
       sortDirections: ['descend', 'ascend'],
     },
 

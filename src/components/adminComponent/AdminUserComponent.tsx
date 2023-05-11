@@ -135,91 +135,91 @@ const AdminUserComponent: React.FC = () => {
   const [isModalDelete, setIsModalDelete] = useState(false);
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
-    const [pageusers, setpageusers] = useState<number>(1);
-    const contentRef = useRef(null);
+  const [pageusers, setpageusers] = useState<number>(1);
+  const contentRef = useRef(null);
 
   const [userselectDelete, setuserselectDelete] = useState<any>(null);
-  
+
   const auth = useSelector((state: RootState) => state.root.auth)
-  const handelshowview = (key: string)=>{
+  const handelshowview = (key: string) => {
     for (var i = 0; i < data.length; i++) {
       if (data[i].key == key) {
-         setuserselect(data[i])
+        setuserselect(data[i])
         break;
       }
     }
   }
 
-  const handelshowdelete = (key: string)=>{
+  const handelshowdelete = (key: string) => {
     for (var i = 0; i < data.length; i++) {
       if (data[i].key == key) {
-         setuserselectDelete(data[i])
+        setuserselectDelete(data[i])
         break;
       }
     }
   }
-  const handelshowedit = (key: string)=>{
+  const handelshowedit = (key: string) => {
     for (var i = 0; i < data.length; i++) {
       if (data[i].key == key) {
-         setuserselectedit(data[i])
+        setuserselectedit(data[i])
         break;
       }
     }
-    
+
   }
   const headers = {
     Accept: '*/*',
     Authorization: 'Bearer ' + auth.user?.accessToken,
   };
-const handelGetDataUsers = async (page: number) => {
-  setscrolltable(true)
+  const handelGetDataUsers = async (page: number) => {
+    setscrolltable(true)
     await api.get(`/users?perPage=10&page=${page}`,
-    {
+      {
         headers
       },
-).then((response:any)=>{
-    if (response.status === 200){
-      const datares: any[] = response.data.items; // assume datares is an array of any objects
-      const dataset: UserType[] = datares.map((item: any) => {
-        return {
-          key: item.id,
-          email: item.email,
-          lastName: item.lastName,
-          firstName: item.firstName,
-          role: item.role,
-          avatar: item.avatar,
-          phoneNumber: item.phoneNumber,
-        };
-      });
-      if(page == 1){
-        setData(dataset)
-        setscrolltable(false)
-      }else{
-        setData(data.concat(dataset))
+    ).then((response: any) => {
+      if (response.status === 200) {
+        const datares: any[] = response.data.items; // assume datares is an array of any objects
+        const dataset: UserType[] = datares.map((item: any) => {
+          return {
+            key: item.id,
+            email: item.email,
+            lastName: item.lastName,
+            firstName: item.firstName,
+            role: item.role,
+            avatar: item.avatar,
+            phoneNumber: item.phoneNumber,
+          };
+        });
+        if (page == 1) {
+          setData(dataset)
+          setscrolltable(false)
+        } else {
+          setData(data.concat(dataset))
+          setscrolltable(false)
+        }
+        setloadingSkeleton(false)
+        const npage = pageusers + 1
+        setpageusers(npage)
         setscrolltable(false)
       }
-      setloadingSkeleton(false)
-      const npage = pageusers + 1
-      setpageusers(npage)
+    }).catch((error: any) => {
+      console.log(error)
       setscrolltable(false)
-    }
-}).catch((error: any)=>{
-    console.log(error)
-    setscrolltable(false)
-})
+    })
 
   }
-  useEffect(()=>{
-    if(userselect){
+  useEffect(() => {
+    if (userselect) {
       setIsModalOpen(true)
     }
-    if(userselectedit){
+    if (userselectedit) {
       setIsModalEdit(true)
     }
-    if(userselectDelete){
+    if (userselectDelete) {
       setIsModalDelete(true)
     }
-  },[userselect, userselectedit, userselectDelete])
+  }, [userselect, userselectedit, userselectDelete])
 
   const handleSearch = (
     selectedKeys: string[],
@@ -362,7 +362,7 @@ const handelGetDataUsers = async (page: number) => {
         loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />
           :
-          <>{text== "admin"? <Tag color="green">{text}</Tag>: text== "user"? <Tag color="blue">{text}</Tag>: <Tag color="cyan">staff</Tag>}</>
+          <>{text == "admin" ? <Tag color="green">{text}</Tag> : text == "user" ? <Tag color="blue">{text}</Tag> : <Tag color="cyan">staff</Tag>}</>
       }</>,
       ...getColumnSearchProps('role'),
       sorter: (a, b) => a.role.length - b.role.length,
@@ -378,9 +378,9 @@ const handelGetDataUsers = async (page: number) => {
           <SkeletonButton active size='small' className='!w-[80%]' />
           :
           <>
-            <Button size="small" onClick={()=>handelshowview(text)} className='text-blue-600 border-blue-600'><BsFillEyeFill /></Button>
-            <Button size="small" onClick={()=>handelshowedit(text)} className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
-            <Button size="small" onClick={()=>handelshowdelete(text)} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
+            <Button size="small" onClick={() => handelshowview(text)} className='text-blue-600 border-blue-600'><BsFillEyeFill /></Button>
+            <Button size="small" onClick={() => handelshowedit(text)} className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
+            <Button size="small" onClick={() => handelshowdelete(text)} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
           </>
         }
       </>
@@ -412,64 +412,67 @@ const handelGetDataUsers = async (page: number) => {
       }
     };
   }, [data, contentRef, handelGetDataUsers, pageusers]);
-  
+
 
   return <>
-   <div ref={contentRef} style={{ height: "78vh", overflowY: 'scroll' }} >
-  <Table columns={columns}
-    dataSource={data} pagination={false} className='shadow-md'
-    footer={() => (<>
-    {scrolltable? 
-  <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
-  :null  
-  }
-     </>)}
-    >
-    </Table>
+    <div ref={contentRef} style={{ height: "78vh", overflowY: 'scroll' }} >
+      <Table columns={columns}
+        dataSource={data} pagination={false} className='shadow-md'
+        footer={() => (<>
+          {scrolltable ?
+            <Spin indicator={<LoadingOutlined style={{ fontSize: 24 }} spin />} />
+            : null
+          }
+        </>)}
+      >
+      </Table>
     </div>
 
     {/* modal view */}
     {
-      userselect?<>
-      <Modal title={""} width={300} open={isModalOpen} footer={false} 
-      onCancel={()=>{setIsModalOpen(false)
-        setuserselect(null)
-      }} >
+      userselect ? <>
+        <Modal title={""} width={300} open={isModalOpen} footer={false}
+          onCancel={() => {
+            setIsModalOpen(false)
+            setuserselect(null)
+          }} >
           <AdminUserShowComponent user={userselect} />
-        
-          </Modal>
-          </>
-      :null
 
-      
+        </Modal>
+      </>
+        : null
+
+
     }
     <>
-    {
-      userselectedit?
-      <Modal title={""} width={450} open={isModalEdit} footer={false} 
-      onCancel={()=>{setIsModalEdit(false)
-        setuserselectedit(null)
-      }} >
-          <AdminUserEditComponent user={userselectedit} />
+      {
+        userselectedit ?
+          <Modal title={""} width={450} open={isModalEdit} footer={false}
+            onCancel={() => {
+              setIsModalEdit(false)
+              setuserselectedit(null)
+            }} >
+            <AdminUserEditComponent user={userselectedit} />
           </Modal>
-          :null
-    }
+          : null
+      }
     </>
 
     <>
-    {
-      userselectDelete?
-      <Modal title={""} width={300} open={isModalDelete} footer={false} 
-      onCancel={()=>{setIsModalDelete(false)
-        setuserselectDelete(null)
-      }} >
-          <AdminUserDeleteComponent user={userselectDelete} />
+      {
+        userselectDelete ?
+          <Modal title={""} width={300} open={isModalDelete} footer={false}
+            onCancel={() => {
+              setIsModalDelete(false)
+              setuserselectDelete(null)
+            }} >
+            <AdminUserDeleteComponent user={userselectDelete} />
           </Modal>
-          :null
-    }
+          : null
+      }
     </>
 
-    </>;
+  </>;
 };
 
 export default AdminUserComponent;

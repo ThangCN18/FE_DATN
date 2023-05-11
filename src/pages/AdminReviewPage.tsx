@@ -19,7 +19,7 @@ import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
-import { MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
+import { MdOutlineCategory, MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
 import AdminReviewComponent from '../components/adminComponent/AdminReviewComponent';
 
 const { Header, Sider, Content } = Layout;
@@ -136,6 +136,14 @@ const AdminReviewPage: React.FC = () => {
                   navigate('/admin/payment')
                 }
               },
+              {
+                key: '7',
+                icon: <MdOutlineCategory />,
+                label: 'Categories',
+                onClick: () => {
+                  navigate('/admin/categories')
+                }
+              },
             ] :
               [
 
@@ -182,11 +190,10 @@ const AdminReviewPage: React.FC = () => {
                   }
                 },
               ]
-
             }
           />
         </Sider>
-        <Layout className="site-layout min-w-[1000px] h-[100vh]">
+        <Layout className="site-layout min-w-[1200px] h-[100vh]">
           <Header className="!bg-white !px-5 flex justify-between items-center" >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',

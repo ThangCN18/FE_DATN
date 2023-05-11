@@ -19,7 +19,7 @@ import { setLoading, unsetLoading } from '../store/loadSlice';
 import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
-import { MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
+import { MdOutlineCategory, MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
 import AdminPaymentComponent from '../components/adminComponent/AdminPaymentComponent';
 
 const { Header, Sider, Content } = Layout;
@@ -136,6 +136,14 @@ const AdminPaymentPage: React.FC = () => {
                   navigate('/admin/payment')
                 }
               },
+              {
+                key: '7',
+                icon: <MdOutlineCategory />,
+                label: 'Categories',
+                onClick: () => {
+                  navigate('/admin/categories')
+                }
+              },
             ] :
               [
 
@@ -182,7 +190,6 @@ const AdminPaymentPage: React.FC = () => {
                   }
                 },
               ]
-
             }
           />
         </Sider>

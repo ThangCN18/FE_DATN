@@ -20,7 +20,7 @@ import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
 import AdminCourseComponent from '../components/adminComponent/AdminCourseComponent';
 import AdminDetailCourseComponent from '../components/adminComponent/AdminDetailCourseComponent';
-import { MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
+import { MdOutlineCategory, MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
 
 const { Header, Sider, Content } = Layout;
 
@@ -134,6 +134,14 @@ function AdminCourseDetailPage() {
                   navigate('/admin/payment')
                 }
               },
+              {
+                key: '7',
+                icon: <MdOutlineCategory />,
+                label: 'Categories',
+                onClick: () => {
+                  navigate('/admin/categories')
+                }
+              },
             ] :
               [
 
@@ -180,7 +188,6 @@ function AdminCourseDetailPage() {
                   }
                 },
               ]
-
             }
           />
         </Sider>

@@ -19,7 +19,7 @@ import api from '../configs/axiosConfig';
 import { logout } from '../store/authSlice';
 import UserDropdown from '../components/UserDropdown';
 import AdminCourseComponent from '../components/adminComponent/AdminCourseComponent';
-import { MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
+import { MdOutlineCategory, MdOutlinePayments, MdOutlineReviews } from 'react-icons/md';
 
 const { Header, Sider, Content } = Layout;
 
@@ -134,6 +134,14 @@ function AdminCoursePage() {
                   navigate('/admin/payment')
                 }
               },
+              {
+                key: '7',
+                icon: <MdOutlineCategory />,
+                label: 'Categories',
+                onClick: () => {
+                  navigate('/admin/categories')
+                }
+              },
             ] :
               [
 
@@ -183,7 +191,7 @@ function AdminCoursePage() {
             }
           />
         </Sider>
-        <Layout className="site-layout min-w-[1000px] max-w-[1800px] h-[100vh]">
+        <Layout className="site-layout min-w-[1200px] max-w-[1800px] h-[100vh]">
           <Header className="!bg-white !px-5 flex justify-between items-center" >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',

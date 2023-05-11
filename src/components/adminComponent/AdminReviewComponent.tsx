@@ -242,7 +242,7 @@ const AdminReviewComponent: React.FC = () => {
       title: 'Rating',
       dataIndex: 'rating',
       key: 'rating',
-      width: '5%',
+      width: '7%',
       render: text => <>{
         loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />
@@ -283,7 +283,7 @@ const AdminReviewComponent: React.FC = () => {
       title: 'Action',
       dataIndex: 'key',
       key: 'key',
-      width: '8%',
+      width: '5%',
       render: (text) => <>
         {loadingSkeleton ?
           <SkeletonButton active size='small' className='!w-[80%]' />

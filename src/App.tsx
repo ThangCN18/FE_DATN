@@ -28,6 +28,7 @@ import AdminPaymentPage from "./pages/AdminPaymentPage";
 import MyCartPage from "./pages/MyCartPage";
 import MeetingPage from "./pages/MeetingPage";
 import store from "./store";
+import AdminCategoriesPage from "./pages/AdminCategoriesPage";
 
 
 
@@ -73,6 +74,7 @@ const App = () => {
                   auth.user.role == "admin" ? <>
                     <Route path='/admin/user' element={<AdminUserPage />} />
                     <Route path='/admin/payment' element={<AdminPaymentPage />} />
+                    <Route path='/admin/categories' element={<AdminCategoriesPage />} />
 
                   </>
                     : null}
