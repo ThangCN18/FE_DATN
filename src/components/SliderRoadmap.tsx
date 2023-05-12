@@ -21,7 +21,7 @@ const responsive = {
     },
     mobile: {
         breakpoint: { max: 589, min: 0 },
-        items: 2,
+        items: 1,
         slidesToSlide: 1 // optional, default to 1.
     }
 };
@@ -60,7 +60,7 @@ const SliderRoadmap: React.FC = () => {
                 dataroadmap.length != 0 ? <>
                     <h2 className="text-3xl py-5 max-sm:text-xl font-bold text-center bg-clip-text text-transparent bg-blue-600 ">Training Roadmaps</h2>
                     <p className="text-lg max-sm:text-sm max-sm:px-[5%] max-md:text-base font-semibold text-center leading-8 px-[17%]"><strong>Wizcove IT </strong>provides students with the skills and knowledge to work in the information technology industry, including courses from basic to advanced, to help students understand the theory and application of technologies. information in a real environment.</p>
-                    <Carousel responsive={responsive} className="max-w-[900px] mx-auto my-14 max-sm:my-5 !justify-center">
+                    <Carousel responsive={responsive} className="max-w-[980px] w-[90%] mx-auto !pl-0 ">
 
                         {dataroadmap.map(roadmap => {
                             return <div key={roadmap.id} className=" py-10 px-5 pb-10 max-sm:px-2 text-center cursor-pointer ">

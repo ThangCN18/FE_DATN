@@ -93,7 +93,9 @@ function NotifyDropdown({ item }) {
     ).then((response: any) => {
       if (response.status === 200) {
         hangdelgetnotify()
-        setnotifynotread(notifynotread - 1)
+        if (notifynotread != 0) {
+          setnotifynotread(notifynotread - 1)
+        }
       }
     }).catch((error: any) => {
       console.log(error)

@@ -188,3 +188,59 @@
 #videofrom-youtubebe{
    @apply !w-[100%] !h-[470px] max-md:!h-[275px] 
 }
+
+.ant-dropdown-placement-bottomLeft .ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.css-dev-only-do-not-override-htwhyh{
+    width: 250px;
+    min-height: 300px!important;
+    margin-top: 25px;
+}
+.ant-dropdown-menu-submenu-popup.ant-dropdown-menu.ant-dropdown-menu-light .ant-dropdown-menu.ant-dropdown-menu-sub.ant-dropdown-menu-vertical{
+    width: 250px!important;
+    min-height: 300px;
+    margin-top: 20px;
+    position: fixed;
+    top: 50px!important; 
+}
+.ant-dropdown-placement-bottomLeft .ant-dropdown-menu-submenu-title{
+    color: black;
+    display: flex;
+    width: 245px;
+    align-items: center!important;
+    padding: 10px 5px!important;
+    font-weight: 500!important;
+}
+.ant-dropdown-menu-submenu-popup.ant-dropdown-menu.ant-dropdown-menu-light .ant-dropdown-menu-submenu-title{
+    color: black;
+    display: flex;
+    width: 245px;
+    align-items: center!important;
+    padding: 10px 5px!important;
+    font-weight: 500!important;
+}
+.ant-dropdown-menu-submenu-popup.ant-dropdown-menu.ant-dropdown-menu-light .ant-dropdown-menu-title-content{
+    color: black;
+    display: flex;
+    width: 245px;
+    align-items: center!important;
+    /* ma: 8px 5px!important; */
+    font-weight: 500!important;
+}
+.custom-class.ant-dropdown-menu-submenu {
+    top: unset !important;
+  }
+
+.ant-dropdown-menu-submenu-popup.ant-dropdown-menu.ant-dropdown-menu-light .ant-dropdown-menu.ant-dropdown-menu-sub{
+    position: fixed;
+    top: 0;
+}
+.ant-dropdown-menu-submenu-popup.ant-dropdown-menu.ant-dropdown-menu-light .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child span.ant-dropdown-menu-title-content{
+    padding: 11px 2px;
+    border-radius: 4px;
+}
+.ant-dropdown-menu-submenu-popup.ant-dropdown-menu.ant-dropdown-menu-light .ant-dropdown-menu-item.ant-dropdown-menu-item-only-child span.ant-dropdown-menu-title-content:hover{
+    background: #f5f5f5;
+}
+.ant-dropdown-menu-submenu {
+    top: unset !important;
+  }
+

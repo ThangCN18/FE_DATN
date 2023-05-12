@@ -124,13 +124,16 @@ const AdminDetailCourseComponent: React.FC = () => {
                 </>
             }
 
-            <Modal open={showmodalcreatnew} onCancel={() => { setshowmodalcreatnew(false) }} footer={null}>
+            <Modal open={showmodalcreatnew} onCancel={() => {
+                form.resetFields()
+                setshowmodalcreatnew(false)
+            }} footer={null}>
                 <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create new section</h4>
                 <hr className='my-3'></hr>
 
 
                 <Form
-                    name="basic"
+                    form={form}
                     layout="vertical"
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}

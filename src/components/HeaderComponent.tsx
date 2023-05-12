@@ -30,6 +30,8 @@ const { Search } = Input;
 
 
 import type { SelectProps } from 'antd/es/select';
+import CategoriesDropdown from "./CategoriesDropdown";
+import { optionTreeData } from "../App";
 
 
 const HeaderComponent: React.FC<{ item: string }> = ({ item }) => {
@@ -43,6 +45,7 @@ const HeaderComponent: React.FC<{ item: string }> = ({ item }) => {
 
   const [options, setOptions] = useState([]);
   const [dataCourses, setDataCourses] = useState([]);
+
 
 
   const handelLogout = async () => {
@@ -125,12 +128,18 @@ const HeaderComponent: React.FC<{ item: string }> = ({ item }) => {
   return (
     <Header className="w-[100%]  !bg-[#ffffff] shadow-md !px-0 !py-0 fixed top-0 left-0 right-0 z-50">
       <div className="max-w-[1400px] md:!w-[100%] h-[100%] flex justify-between items-center mx-auto px-4 max-sm:px-1 space-x-2">
-        <Link to="/">
-          <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
-            <img className="w-[30px] max-sm:w-[25px]" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png" alt="logo" />
-            <h4 className="text-black text-lg !leading-4 font-bold !py-0 max-lg:hidden ">Wizcove IT</h4>
+        <div className="flex justify-start items-center space-x-4">
+          <Link to="/">
+            <div className="logo flex justify-start items-center space-x-3 max-sm:space-x-1">
+              <img className="w-[30px] max-sm:w-[25px]" src="https://coursesbe.s3.ap-southeast-1.amazonaws.com/c572dcfd-998f-4d93-b40f-6d105dcbdb49-logo-learning.png" alt="logo" />
+              <h4 className="text-black text-lg !leading-4 font-bold !py-0 max-lg:hidden ">Wizcove IT</h4>
+            </div>
+          </Link>
+          <div id="category-id-dro" className="max-lg:hidden">
+            <CategoriesDropdown />
           </div>
-        </Link>
+        </div>
+
         <div className="flex justify-between items-center w-auto space-x-4 max-lg:space-x-2  max-sm:space-x-1">
           <div className="relative">
 

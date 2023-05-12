@@ -1,6 +1,6 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState, createContext } from "react";
 import { Col, DatePicker } from "antd";
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Link } from 'react-router-dom'
 
 import AdminHomePage from "./pages/AdminHomePage";
 import HomePage from "./pages/HomePage";
@@ -29,10 +29,74 @@ import MyCartPage from "./pages/MyCartPage";
 import MeetingPage from "./pages/MeetingPage";
 import store from "./store";
 import AdminCategoriesPage from "./pages/AdminCategoriesPage";
+import api from "./configs/axiosConfig";
+import CategoriesPage from "./pages/CategoriesPage";
 
+export const optionTreeData = createContext([])
 
 
 const App = () => {
+
+
+  //goij oiwt 
+
+  const [treeData, settreeData] = useState([])
+
+
+  const generateListOption = (data) => {
+    const datares = [];
+    for (let i = 0; i < data.length; i++) {
+      const node = data[i];
+      const { id, name, children, slug } = node;
+      let addnode = {}
+      if (children) {
+        addnode = {
+          key: id,
+          label: <Link to={`/category/${slug}`} >{name}</Link>,
+          children: children.length > 0 ? generateListOption(children) : [],
+        };
+        datares.push(addnode);
+      } else {
+        addnode = {
+          key: id,
+          label: <Link to={`/category/${slug}`} >{name}</Link>,
+
+        };
+        datares.push(addnode);
+      }
+
+
+    }
+    return datares;
+  };
+
+
+  const handelGetDataCategories = async () => {
+
+    await api
+      .get(`/categories`)
+      .then((response: any) => {
+        if (response.status === 200) {
+          console.log(generateListOption(response.data))
+          settreeData(generateListOption(response.data));
+
+        }
+      })
+      .catch((error: any) => {
+
+      });
+  };
+
+
+  useEffect(() => {
+    handelGetDataCategories()
+  }, [])
+
+
+
+  //toi
+
+
 
   const auth = useSelector((state: RootState) => state.root.auth)
   const location = useLocation();
@@ -52,49 +116,52 @@ const App = () => {
 
   return (
     // Set Up Routes for website.
-    <>
-      <Routes>
-        {
-          auth.user ? <>
-            <Route path='/profile' element={<ProfilePage />} />
-            <Route path='/learn/:id' element={<DetailCourseLearnPage />} />
-            <Route path='/my-courses' element={<MyCoursePage />} />
-            <Route path='/payment' element={<PaymentPage />} />
-            <Route path='/my-cart' element={<MyCartPage />} />
-            <Route path='/meet' element={<MeetingPage />} />
+    <div>
+      <optionTreeData.Provider value={treeData}>
+        <Routes>
+          {
+            auth.user ? <>
+              <Route path='/profile' element={<ProfilePage />} />
+              <Route path='/learn/:id' element={<DetailCourseLearnPage />} />
+              <Route path='/my-courses' element={<MyCoursePage />} />
+              <Route path='/payment' element={<PaymentPage />} />
+              <Route path='/my-cart' element={<MyCartPage />} />
+              <Route path='/meet' element={<MeetingPage />} />
 
-            {
-              auth.user.role != "user" ? <>
-                <Route path='/admin' element={<AdminHomePage />} />
-                <Route path='/admin/roadmap' element={<AdminRoadmapPage />} />
-                <Route path='/admin/course/:id' element={<AdminCourseDetailPage />} />
-                <Route path='/admin/course' element={<AdminCoursePage />} />
-                <Route path='/admin/review' element={<AdminReviewPage />} />
-                {
-                  auth.user.role == "admin" ? <>
-                    <Route path='/admin/user' element={<AdminUserPage />} />
-                    <Route path='/admin/payment' element={<AdminPaymentPage />} />
-                    <Route path='/admin/categories' element={<AdminCategoriesPage />} />
+              {
+                auth.user.role != "user" ? <>
+                  <Route path='/admin' element={<AdminHomePage />} />
+                  <Route path='/admin/roadmap' element={<AdminRoadmapPage />} />
+                  <Route path='/admin/course/:id' element={<AdminCourseDetailPage />} />
+                  <Route path='/admin/course' element={<AdminCoursePage />} />
+                  <Route path='/admin/review' element={<AdminReviewPage />} />
+                  {
+                    auth.user.role == "admin" ? <>
+                      <Route path='/admin/user' element={<AdminUserPage />} />
+                      <Route path='/admin/payment' element={<AdminPaymentPage />} />
+                      <Route path='/admin/categories' element={<AdminCategoriesPage />} />
 
-                  </>
-                    : null}
-              </>
-                : null}
-          </>
-            : null
-        }
-        <Route path='/about-us' element={<AboutUsPage />} />
-        <Route path='/roadmaps' element={<RoadmapsPages />} />
-        <Route path='/roadmap/:id' element={<DetailRoadmapsPages />} />
-        <Route path='/course/:id' element={<DetailCoursesPage />} />
-        <Route path='/courses' element={<CoursesPage />} />
-        <Route path='/verify-email' element={<VerifyEmailPage />} />
-        <Route path='/' element={<HomePage />} />
-        <Route path='/*' element={<ErrorPage />} />
+                    </>
+                      : null}
+                </>
+                  : null}
+            </>
+              : null
+          }
+          <Route path='/about-us' element={<AboutUsPage />} />
+          <Route path='/roadmaps' element={<RoadmapsPages />} />
+          <Route path='/roadmap/:id' element={<DetailRoadmapsPages />} />
+          <Route path='/course/:id' element={<DetailCoursesPage />} />
+          <Route path='/courses' element={<CoursesPage />} />
+          <Route path='/verify-email' element={<VerifyEmailPage />} />
+          <Route path="/category/:slug" element={<CategoriesPage />} />
+          <Route path='/' element={<HomePage />} />
+          <Route path='/*' element={<ErrorPage />} />
 
-      </Routes>
-      <NotificationComponent />
-    </>
+        </Routes>
+        <NotificationComponent />
+      </optionTreeData.Provider>
+    </div>
   );
 };
 

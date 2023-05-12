@@ -56,7 +56,9 @@ const AdminLectureComponent: React.FC<propstype> = ({ section, lecture, handelGe
                 handelGetDataCourse()
                 dispatch(setNotify({ typeNotify: "success", titleNotify: "Delete section successful!", messageNotify: 'You delete section successful' }))
                 dispatch(unsetLoading({}))
+                form.resetFields()
                 setshowmodaldelete(false)
+
             }
         }).catch((error: any) => {
             console.log(error)
@@ -152,13 +154,16 @@ const AdminLectureComponent: React.FC<propstype> = ({ section, lecture, handelGe
             </Modal>
 
 
-            <Modal open={showmodaledit} className='!w-[600px]' onCancel={() => { setshowmodaledit(false) }} footer={null}>
+            <Modal open={showmodaledit} className='!w-[600px]' onCancel={() => {
+                form.resetFields()
+                setshowmodaledit(false)
+            }} footer={null}>
                 <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create New Lecture</h4>
                 <hr className='my-3'></hr>
 
 
                 <Form
-                    name="basic"
+                    form={form}
                     layout="vertical"
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}

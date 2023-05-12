@@ -70,7 +70,7 @@ const UserDropdown: React.FC<typeprops> = ({ handelLogout }) => {
     {
       key: 'card5',
       label: (
-        <Link to={"/my-courcss"} className="!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
+        <Link to={"/my-courses"} className="!px-6 pt-4 w-[100%] max-sm:text-xs flex justify-start items-center text-sm space-x-2 !text-gray-600 font-medium user-list-action duration-450">
           <HiOutlineBookOpen className="w-[16px] h-[16px]" />
           <p>My Courses</p>
 

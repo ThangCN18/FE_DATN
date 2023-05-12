@@ -14,6 +14,7 @@ const { Option } = Select;
 
 const AdminCourseComponent: React.FC = () => {
     const [loadinga, setLoadinga] = useState(false);
+    const [optionData, setOptionData] = useState([])
     const [data, setData] = useState<any[]>([]);
     const [page, setpage] = useState(1);
     const [showmodalcreatnew, setshowmodalcreatnew] = useState(false)
@@ -21,25 +22,67 @@ const AdminCourseComponent: React.FC = () => {
     const auth = useSelector((state: RootState) => state.root.auth)
     const dispatch = useDispatch()
 
+    const generateListOption = (data) => {
+        const datares = [];
+        for (let i = 0; i < data.length; i++) {
+            const node = data[i];
+            const { id, name, children } = node;
+            let addnode = {}
+            if (children) {
+                addnode = {
+                    value: id,
+                    label: name,
+                    children: children.length > 0 ? generateListOption(children) : [],
+                };
+                datares.push(addnode);
+
+            } else {
+                addnode = {
+                    value: id,
+                    label: name
+                };
+                datares.push(addnode);
+
+            }
+
+        }
+        return datares;
+    };
+
+
+
+    const handelGetDataCategories = async () => {
+
+        await api
+            .get(`/categories`)
+            .then((response: any) => {
+                if (response.status === 200) {
+                    setData(response.data);
+
+                    console.log(response.data);
+                    const aaaa = generateListOption(response.data)
+                    setOptionData(aaaa);
+                }
+            })
+            .catch((error: any) => {
+
+            });
+    };
+
 
     const handelGetDataCourse = async (pagea: number) => {
         if (loadinga) {
             return;
         }
+
+        setLoadinga(true);
         await api.get(`/courses?perPage=80&page=1&sortField=courseKeyMetric.currentSubscribers&sortDirection=DESC`)
             .then((response: any) => {
                 console.log(response.data)
                 if (response.status === 200) {
                     const datares: any[] = response.data.items;
                     // assume datares is an array of any objects
-                    if (pagea == 1) {
-                        setData(datares);
-                    }
-                    else {
-                        setData([...data, ...datares]);
-                    }
-
-                    setpage(pagea + 1)
+                    setData(datares);
                     setLoadinga(false);
                 }
             }).catch((error: any) => {
@@ -104,6 +147,7 @@ const AdminCourseComponent: React.FC = () => {
     useEffect(() => {
         setLoadinga(true)
         handelGetDataCourse(page);
+        handelGetDataCategories()
     }, []);
 
     return (
@@ -164,7 +208,7 @@ const AdminCourseComponent: React.FC = () => {
 
                             {
                                 data.map((course) => {
-                                    return <AdminCourseItemComponent course={course} handelGetDataCourse={handelGetDataCourse} />
+                                    return <AdminCourseItemComponent course={course} handelGetDataCourse={handelGetDataCourse} optionData={optionData} />
 
                                 })
                             }
@@ -177,13 +221,16 @@ const AdminCourseComponent: React.FC = () => {
 
 
 
-            <Modal open={showmodalcreatnew} width={700} onCancel={() => { setshowmodalcreatnew(false) }} footer={null}>
+            <Modal open={showmodalcreatnew} width={700} onCancel={() => {
+                form.resetFields()
+                setshowmodalcreatnew(false)
+            }} footer={null}>
                 <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create new course</h4>
                 <hr className='my-3'></hr>
 
                 <UploadImageComponent url_image={url_image} seturl_image={seturl_image} />
                 <Form
-                    name="basic"
+                    form={form}
                     layout="vertical"
                     style={{ maxWidth: 1000 }}
                     initialValues={{ remember: true }}
@@ -246,6 +293,7 @@ const AdminCourseComponent: React.FC = () => {
                     >
                         <Input className='font-normal text-base' />
                     </Form.Item>
+
 
                     <div className='!justify-between flex'>
                         <Form.Item

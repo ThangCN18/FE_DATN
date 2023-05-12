@@ -254,6 +254,7 @@ const AdminCategoriesComponent: React.FC = () => {
                                                 expandTrigger="hover"
                                                 className='!w-[400px]'
                                                 changeOnSelect={true}
+
                                             />
                                         </Form.Item>
                                         <div className='flex justify-end space-x-2'>

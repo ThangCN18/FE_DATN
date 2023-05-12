@@ -139,7 +139,7 @@ function CoursesPage() {
         await api.get('/roadmaps',
 
         ).then(async (response: any) => {
-            const adshba = response.data.reverse()
+            const adshba = response.data
             console.log(adshba)
             for (const index in adshba) {
                 const caca = {

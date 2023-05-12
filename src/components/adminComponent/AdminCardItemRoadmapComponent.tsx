@@ -206,7 +206,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                         <div className='flex justify-around mt-2'>
                             <div>
                                 <h6 className='font-semibold text-blue-500 w-[100px]'>Requirements:</h6>
-                               
+
                                 {roadmap.requirements == null ? null
                                     : roadmap.requirements.map(requi => {
                                         return <p className='text-xs truncate text-red-400' key={requi}>{requi} { }</p>
@@ -232,17 +232,17 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
 
                 </div>
                 <h5 className='font-bold mb-2'>List courses:</h5>
-            <div className='flex justify-start items-center space-x-2 flex-nowrap' style={{overflowX: "auto"}}>
+                <div className='flex justify-start items-center space-x-2 flex-nowrap' style={{ overflowX: "auto" }}>
 
-            {
-                     roadmap.courseRoadmaps[0] !=undefined? <>{
-                        roadmap.courseRoadmaps.map((course)=>{
-                            return <img className='rounded-sm !w-[100px] shadow-md' key={course.id} src={course.course.image}/>
-                        })
-                     }</>: <div>...</div>
-                }
+                    {
+                        roadmap.courseRoadmaps[0] != undefined ? <>{
+                            roadmap.courseRoadmaps.map((course) => {
+                                return <img className='rounded-sm !w-[100px] shadow-md' key={course.id} src={course.course.image} />
+                            })
+                        }</> : <div>...</div>
+                    }
 
-            </div>
+                </div>
 
 
 
@@ -257,18 +257,24 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                 <p className='text-base font-bold my-2 text-center text-red-500'> <span>Make sure you delete the roadmap</span></p>
                 <p className='text-sm my-2 text-center truncate'> <span>Delete roadmap: </span> <span className="font-medium">{roadmap.name} </span></p>
                 <div className='flex justify-end px-3 pt-4'>
-                    <Button danger onClick={() => { handleDeleteRoadmap() }} >Delete</Button>
+                    <Button danger onClick={() => {
+
+                        handleDeleteRoadmap()
+                    }} >Delete</Button>
                 </div>
             </Modal>
 
 
-            <Modal open={showmodalupdate} onCancel={() => { setshowmodalupdate(false) }} footer={null}>
+            <Modal open={showmodalupdate} onCancel={() => {
+                form.resetFields();
+                setshowmodalupdate(false)
+            }} footer={null}>
                 <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Edit roadmap</h4>
                 <hr className='my-3'></hr>
 
                 <UploadImageComponent url_image={url_image} seturl_image={seturl_image} />
                 <Form
-                    name="basic"
+                    form={form}
                     layout="vertical"
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}
