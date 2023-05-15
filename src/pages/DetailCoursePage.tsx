@@ -378,7 +378,7 @@ function DetailCoursesPage() {
                                                             courses.sections.map((section, index) => {
                                                                 return <Panel className="bg-slate-50" header={
                                                                     <div className='flex justify-between items-center '>
-                                                                        <h5 className='text-base font-semibold truncate w-[1200px] max-md:w-[400px] max-lg:w-[900px] max-sm:w-[200px]'>{section.name}</h5>
+                                                                        <h5 className='text-base font-semibold truncate w-[1200px] max-md:w-[400px] max-lg:w-[900px] max-sm:w-[200px]'>Section {(index + 1) + ": " + section.name}</h5>
                                                                     </div>}
 
                                                                     key={index}>

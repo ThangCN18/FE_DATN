@@ -247,7 +247,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
 
 
             </Modal>
-
+            {/* modal delete */}
             <Modal title={""} width={400} open={showmodaldelete} footer={false}
                 onCancel={() => {
                     setshowmodaldelete(false)
@@ -264,8 +264,8 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                 </div>
             </Modal>
 
-
-            <Modal open={showmodalupdate} onCancel={() => {
+            {/* Modal edit */}
+            <Modal open={showmodalupdate} width={600} onCancel={() => {
                 form.resetFields();
                 setshowmodalupdate(false)
             }} footer={null}>
@@ -301,12 +301,12 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                         <Input className='font-normal text-base' />
                     </Form.Item>
 
-                    <Space className='flex !justify-between'>
+                    <div className='flex !justify-between'>
                         <Form.Item
                             label="Requirements"
                             name="requirements"
                             initialValue={roadmap.requirements ? roadmap.requirements.join("\n") : ""}
-                            className='mb-4'
+                            className='mb-4 !w-[48%]'
                             rules={[{ required: true, message: 'Please input requirements!', type: "string" }]}
                         >
                             <TextArea rows={4} className='font-normal text-base' />
@@ -314,50 +314,59 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                         <Form.Item
                             label="Benefits"
                             name="benefits"
-                            className='mb-4'
+                            className='mb-4 !w-[48%]'
                             initialValue={roadmap.benefits ? roadmap.benefits.join("\n") : ""}
                             rules={[{ required: true, message: 'Please input benefits!', type: "string" }]}
                         >
                             <TextArea rows={4} className='font-normal text-base' />
                         </Form.Item>
-                    </Space>
+                    </div>
                     <Form.List name="courses" initialValue={roadmap.courseRoadmaps}>
                         {(fields, { add, remove }) => (
 
                             <div>
+                                <p className='font-semibold'>List Courses:</p>
                                 {fields.map(({ key, name, ...restField }) => (
-                                    <div className='flex justify-between space-x-2 bg-gray-50 py-4 px-3 my-3 rounded-md'>
-                                        <div className='!w-[95%] '>
-                                            <Form.Item
-                                                {...restField}
-                                                name={[name, 'courseId']}
-                                                rules={[{ required: true, message: 'Missing course name' }]}
-                                            >
-                                                <Select
-                                                    style={{ width: '100%' }}
-                                                    options={options}
-                                                />
-                                            </Form.Item>
+                                    <>
+                                        <div className='flex justify-between space-x-2 bg-gray-50 py-4 px-3 my-3 rounded-md'>
+                                            <p className='font-semibold '>{key + 1}</p>
+                                            <div className='!w-[95%] '>
+                                                <Form.Item
+                                                    {...restField}
+                                                    name={[name, 'courseId']}
+                                                    label="Course"
+                                                    rules={[{ required: true, message: 'Missing course name' }]}
+                                                >
+                                                    <Select
+                                                        style={{ width: '100%' }}
+                                                        options={options}
+                                                    />
+                                                </Form.Item>
 
-                                            <Form.Item
-                                                {...restField}
-                                                name={[name, 'title']}
-                                                rules={[{ required: true, message: 'Missing title' }]}
-                                            >
-                                                <Input placeholder="Title" />
-                                            </Form.Item>
-                                            <Form.Item
-                                                {...restField}
-                                                name={[name, 'description']}
-                                                className='!pb-0 !mb-0'
-                                                rules={[{ required: true, message: 'Missing description' }]}
-                                            >
-                                                <TextArea placeholder="Description" />
-                                            </Form.Item>
+                                                <Form.Item
+                                                    {...restField}
+                                                    label="Title"
+                                                    name={[name, 'title']}
+                                                    rules={[{ required: true, message: 'Missing title' }]}
+                                                >
+                                                    <Input placeholder="Title" />
+                                                </Form.Item>
+                                                <Form.Item
+                                                    {...restField}
+                                                    name={[name, 'description']}
+                                                    label="Description"
+                                                    className='!pb-0 !mb-0'
+                                                    rules={[{ required: true, message: 'Missing description' }]}
+                                                >
+                                                    <TextArea placeholder="Description" />
+                                                </Form.Item>
+                                            </div>
+                                            <MinusCircleOutlined onClick={() => remove(name)} />
+
                                         </div>
-                                        <MinusCircleOutlined onClick={() => remove(name)} />
+                                    </>
 
-                                    </div>
+
                                 ))}
                                 <Form.Item>
                                     <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>

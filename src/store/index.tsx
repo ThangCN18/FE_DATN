@@ -20,6 +20,7 @@ const persistedReducer = persistReducer(persistConfig, combineReducers({
   status: statusReducer
 }))
 
+
 const store = configureStore({
   reducer: {
     root: persistedReducer

@@ -8,6 +8,7 @@ import { FaRegTrashAlt } from "react-icons/fa"
 import { useSelector } from "react-redux";
 import { RootState } from "../store/types";
 import api from "../configs/axiosConfig";
+import { MdDeleteForever } from "react-icons/md";
 
 const { Meta } = Card;
 
@@ -25,6 +26,15 @@ function NotifyDropdown({ item }) {
     Authorization: 'Bearer ' + auth.user?.accessToken,
   };
 
+  const hangdeldeletenotify = async (idNotify: string) => {
+    await api.delete("/notifications/" + idNotify, {
+      headers
+    }).then(() => {
+      hangdelgetnotify()
+    }
+    )
+  }
+
   const hangdelgetnotify = async () => {
 
     await api.get('/notifications',
@@ -34,7 +44,7 @@ function NotifyDropdown({ item }) {
 
     ).then((response: any) => {
       if (response.status === 200) {
-        if (response.data) {
+        if (response.data.length > 0) {
           adxe = response.data.map(notify => {
             if (!notify.isRead) {
               setnotifynotread(notifynotread + 1)
@@ -46,7 +56,11 @@ function NotifyDropdown({ item }) {
                   <Meta className="!py-0"
                     avatar={<Avatar className="!rounded-full w-[40px] h-[40px] max-sm:w-[30px] max-sm:h-[30px]" src="https://play-lh.googleusercontent.com/RslBy1o2NEBYUdRjQtUqLbN-ZM2hpks1mHPMiHMrpAuLqxeBPcFSAjo65nQHbTA53YYn" />}
 
-                    description={<p className="truncate w-[230px] max-sm:w-[150px] max-sm:text-xs text-gray-900">{notify.content}</p>}
+                    description={<div className="flex justify-between items-center">
+                      <p className="truncate w-[200px] max-sm:w-[120px] max-sm:text-xs text-gray-900">{notify.content}</p>
+                      <MdDeleteForever onClick={() => { hangdeldeletenotify(notify.id) }} className="text-base hover:text-black" />
+                    </div>}
+
                   />
                 </Card>
               ),

@@ -17,9 +17,9 @@ import Meta from "antd/es/card/Meta";
 import { RiVipCrownFill } from "react-icons/ri";
 import { FiArrowLeft } from "react-icons/fi";
 import { AiFillLike, AiOutlineCheckCircle, AiOutlineFieldTime } from "react-icons/ai";
-import { BsCheck2Circle, BsSendFill } from "react-icons/bs";
+import { BsCheck2Circle, BsSendFill, BsUnlockFill } from "react-icons/bs";
 import { SiYoutubemusic } from "react-icons/si";
-import { BiUser } from "react-icons/bi";
+import { BiLockOpenAlt, BiUser } from "react-icons/bi";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { setNotify } from "../store/notifycationSlide";
 const { Header, Content, Footer } = Layout;
@@ -28,6 +28,8 @@ import YouTube from 'react-youtube';
 import { HiLockClosed } from "react-icons/hi";
 import { FcCheckmark } from "react-icons/fc";
 import { IoVideocam } from "react-icons/io5";
+import { FaUnlock } from "react-icons/fa";
+import { GrNext } from "react-icons/gr";
 
 
 function DetailCourseLearnPage() {
@@ -255,7 +257,18 @@ function DetailCourseLearnPage() {
 
                                                                 {/* <iframe width='100%' height="100%" className="mx-auto" src={"https://www.youtube.com/embed/" + courses.sections[s].lectures[l].videoUrl} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe> */}
                                                             </div>
-                                                            <h5 className="mt-5 font-bold text-2xl ">{courses.sections[s].lectures[l].name}</h5>
+                                                            <div className="flex justify-between items-end">
+                                                                <h5 className="mt-5 font-bold text-2xl ">{courses.sections[s].lectures[l].name}</h5>
+                                                                <Button onClick={() => {
+                                                                    if (scs != null || lcl != null) {
+                                                                        getlearncompleted(null)
+                                                                    } else {
+
+                                                                    }
+
+                                                                }} className="flex justify-center items-center space-x-2 text-black border-spacing-1 border-black shadow-none hover:!bg-gray-50  max-sm:text-sm max-sm:space-x-1 max-sm:px-2 hover:!text-gray-800 " type="primary">Next <GrNext /></Button>
+
+                                                            </div>
                                                             <p className="mt-5  text-md">{courses.sections[s].lectures[l].description}</p>
 
                                                         </> : <></>
@@ -264,7 +277,7 @@ function DetailCourseLearnPage() {
 
                                             </Col>
 
-                                            <Col xs={24} sm={24} md={24} lg={6} xl={6} className="mt-10">
+                                            <Col xs={24} sm={24} md={24} lg={6} xl={6} className="mt-10 max-h-[80vh] overflow-y-auto">
 
                                                 {
                                                     courses.sections[0] ?
@@ -272,7 +285,7 @@ function DetailCourseLearnPage() {
                                                             courses.sections.map((section, index) => {
                                                                 return <Panel className="bg-slate-50" header={
                                                                     <div className='flex justify-between items-center '>
-                                                                        <h5 className='text-base font-semibold truncate w-[260px] max-md:w-[400px] max-lg:w-[500px] max-sm:w-[200px]'>{section.name}</h5>
+                                                                        <h5 className='text-base font-semibold truncate w-[260px] max-md:w-[400px] max-lg:w-[500px] max-sm:w-[200px]'>Section {(index + 1) + ": " + section.name}</h5>
                                                                     </div>}
 
                                                                     key={index}>
@@ -287,7 +300,7 @@ function DetailCourseLearnPage() {
 
                                                                                                 navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs)
 
-                                                                                            }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
+                                                                                            }} className={s == index && l == indexs ? 'flex bg-gray-200 !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 ' : 'flex  !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '}>
                                                                                                 <div className='justify-start items-center space-x-3 flex'>
                                                                                                     {
                                                                                                         lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
@@ -299,7 +312,7 @@ function DetailCourseLearnPage() {
 
                                                                                                 <div>
 
-                                                                                                    <FcCheckmark className="text-green-500" />
+                                                                                                    <BsUnlockFill className="text-green-500" />
 
 
                                                                                                 </div>
@@ -328,7 +341,7 @@ function DetailCourseLearnPage() {
 
                                                                                             navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs)
 
-                                                                                        }} className='flex !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '>
+                                                                                        }} className={s == index && l == indexs ? 'flex bg-gray-200 !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 ' : 'flex  !justify-between items-center py-4 border-2 px-3 rounded-sm border-gray-200 cursor-pointer hover:bg-slate-200 '}>
                                                                                             <div className='justify-start items-center space-x-3 flex'>
                                                                                                 {
                                                                                                     lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
@@ -341,7 +354,7 @@ function DetailCourseLearnPage() {
 
                                                                                             <div>
 
-                                                                                                <FcCheckmark className="text-green-500" />
+                                                                                                <BsUnlockFill className="text-green-500" />
 
 
                                                                                             </div>

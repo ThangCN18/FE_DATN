@@ -13,10 +13,7 @@ const CategoriesDropdown: React.FC = () => {
     const treeData = useContext(optionTreeData)
     var items: MenuProps['items'] = treeData
 
-    const getPopupContainer = (triggerNode) => {
-        return triggerNode.parentNode;
-    }
-
+    
 
 
     return (
@@ -25,14 +22,14 @@ const CategoriesDropdown: React.FC = () => {
         <div id="dropdowncategories">
             {
                 treeData ?
-                    <Dropdown menu={{ items }} getPopupContainer={getPopupContainer} className='aassadsdadsa'>
+                    <Dropdown menu={{ items }} className='aassadsdadsa'>
                         <a onClick={(e) => e.preventDefault()}>
                             <Button className='hover:!bg-none border-none shadow-none font-normal text-base text-black hover:!text-black'>Categories</Button>
                         </a>
                     </Dropdown>
 
                     :
-                    <Dropdown menu={{ items }} getPopupContainer={getPopupContainer}>
+                    <Dropdown menu={{ items }}>
                         <a onClick={(e) => e.preventDefault()}>
                             <Button className='hover:!bg-none border-none shadow-none font-normal text-base text-black hover:!text-black'>Categories</Button>
                         </a>

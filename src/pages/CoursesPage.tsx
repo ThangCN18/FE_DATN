@@ -66,7 +66,7 @@ function CoursesPage() {
         }
         await hangdlegetdataroadmap()
 
-        await api.get('/courses?perPage=100&page=' + pagenum,
+        await api.get('/courses?perPage=8&page=' + pagenum,
 
         ).then((response: any) => {
             setdatacourses(response.data.items)
@@ -216,7 +216,7 @@ function CoursesPage() {
                 next={hangdlegetdatacourses}
                 hasMore={datada.length >= 8}
                 loader={loadspin ? <div className="mx-auto w-[100%] flex justify-center mb-10"><Spin></Spin></div> : null}
-                endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+                endMessage={loaddingas ? null : <Divider plain>It is all, nothing more 🤐</Divider>}
                 scrollableTarget="scrollableDiv"
             >
                 <Content className="pt-[70px]">
@@ -314,6 +314,7 @@ function CoursesPage() {
                         </div>
                     </div>
                 </Content>
+
             </InfiniteScroll>
 
             <FooterComponent />

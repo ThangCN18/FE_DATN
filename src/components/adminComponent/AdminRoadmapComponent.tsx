@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../configs/axiosConfig'
-import { Avatar, Button, Card, Col, Form, Input, Modal, Row, Skeleton, Space, Tooltip } from 'antd'
+import { Avatar, Button, Card, Col, Form, Input, Modal, Row, Select, Skeleton, Space, Tooltip } from 'antd'
 import { BsFillEyeFill } from 'react-icons/bs'
 import { BiEdit } from 'react-icons/bi'
 import { MdDeleteForever } from 'react-icons/md'
@@ -26,6 +26,8 @@ interface typeRoadmap {
     courseRoadmaps: any
 
 }
+import { MinusCircleOutlined, PlusOutlined } from '@ant-design/icons';
+import type { SelectProps } from 'antd';
 
 
 const AdminRoadmapComponent: React.FC = () => {
@@ -36,6 +38,13 @@ const AdminRoadmapComponent: React.FC = () => {
     const [url_image, seturl_image] = useState("")
     const auth = useSelector((state: RootState) => state.root.auth)
     const dispatch = useDispatch()
+    const arrayNameCourse = dataCourse.map(course => {
+        return {
+            value: course.id,
+            label: course.name
+        }
+    })
+    const options: SelectProps['options'] = arrayNameCourse;
 
 
     const getDataRoadmap = async () => {
@@ -109,7 +118,8 @@ const AdminRoadmapComponent: React.FC = () => {
                 description: values.description,
                 image: url_image,
                 requirements: requirements,
-                benefits: benefits
+                benefits: benefits,
+                courses: values.courses
             }
             handleCreateNewRoadmap(inputData)
 
@@ -226,7 +236,7 @@ const AdminRoadmapComponent: React.FC = () => {
             }
 
             <>
-                <Modal open={showmodalcreatnew} onCancel={() => {
+                <Modal open={showmodalcreatnew} width={600} onCancel={() => {
                     form.resetFields()
                     setshowmodalcreatnew(false)
                 }} footer={null}>
@@ -260,11 +270,11 @@ const AdminRoadmapComponent: React.FC = () => {
                             <TextArea rows={3} className='font-normal text-base' />
                         </Form.Item>
 
-                        <Space className='flex !justify-between'>
+                        <div className='flex !justify-between'>
                             <Form.Item
                                 label="Requirements"
                                 name="requirements"
-                                className='mb-4 !w-[100%]'
+                                className='mb-4 !w-[48%]'
                                 rules={[{ required: true, message: 'Please input requirements!', type: "string" }]}
                             >
                                 <TextArea rows={4} className='font-normal text-base !w-[100%]' />
@@ -272,12 +282,66 @@ const AdminRoadmapComponent: React.FC = () => {
                             <Form.Item
                                 label="Benefits"
                                 name="benefits"
-                                className='mb-4 '
+                                className='mb-4 w-[48%]'
                                 rules={[{ required: true, message: 'Please input benefits!', type: "string" }]}
                             >
                                 <TextArea rows={4} className='font-normal text-base !w-[100%]' />
                             </Form.Item>
-                        </Space>
+                        </div>
+                        <Form.List name="courses" >
+                            {(fields, { add, remove }) => (
+                                <div>
+                                    <p className='font-semibold'>List Courses:</p>
+                                    {fields.map(({ key, name, ...restField }) => (
+                                        <>
+                                            <div className='flex justify-between space-x-2 bg-gray-50 py-4 px-3 my-3 rounded-md'>
+                                                <p className='font-semibold '>{key + 1}</p>
+                                                <div className='!w-[95%] '>
+                                                    <Form.Item
+                                                        {...restField}
+                                                        name={[name, 'courseId']}
+                                                        label="Course"
+                                                        rules={[{ required: true, message: 'Missing course name' }]}
+                                                    >
+                                                        <Select
+                                                            style={{ width: '100%' }}
+                                                            options={options}
+                                                        />
+                                                    </Form.Item>
+
+                                                    <Form.Item
+                                                        {...restField}
+                                                        label="Title"
+                                                        name={[name, 'title']}
+                                                        rules={[{ required: true, message: 'Missing title' }]}
+                                                    >
+                                                        <Input placeholder="Title" />
+                                                    </Form.Item>
+                                                    <Form.Item
+                                                        {...restField}
+                                                        name={[name, 'description']}
+                                                        label="Description"
+                                                        className='!pb-0 !mb-0'
+                                                        rules={[{ required: true, message: 'Missing description' }]}
+                                                    >
+                                                        <TextArea placeholder="Description" />
+                                                    </Form.Item>
+                                                </div>
+                                                <MinusCircleOutlined onClick={() => remove(name)} />
+
+                                            </div>
+                                        </>
+
+
+                                    ))}
+                                    <Form.Item>
+                                        <Button type="dashed" onClick={() => add()} block icon={<PlusOutlined />}>
+                                            Add Course
+                                        </Button>
+                                    </Form.Item>
+                                </div>
+                            )}
+                        </Form.List>
 
 
                         <Form.Item className='mb-4 mt-7 text-center' >

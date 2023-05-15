@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from "../store/types";
 import AboutUsHomeComponent from "../components/AboutUsHomeComponent";
 import FooterComponent from "../components/FooterComponent";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { setLoading, unsetLoading } from "../store/loadSlice";
 import api from "../configs/axiosConfig";
 import { logout } from "../store/authSlice";
@@ -37,6 +37,8 @@ function CategoriesPage() {
     const auth = useSelector((state: RootState) => state.root.auth)
     const dispatch = useDispatch()
     const navigate = useNavigate();
+    const location = useLocation()
+
     const [title, settitle] = useState("Category")
 
 
@@ -95,7 +97,8 @@ function CategoriesPage() {
         if (auth.isAuthenticated) {
             await getCourseSubscribe()
         }
-        await api.get('courses?category=development',
+        const parama = location.pathname.split("/")[2]
+        await api.get(`courses?category=${parama}`,
 
         ).then((response: any) => {
             const data = response.data.items
@@ -227,7 +230,7 @@ function CategoriesPage() {
     useEffect(() => {
         hangdlegetdatacourses()
 
-    }, [])
+    }, [location])
 
 
 

@@ -18,7 +18,7 @@ const responsive = {
     desktop: {
         breakpoint: { max: 3000, min: 1024 },
         items: 4,
-        slidesToSlide: 3 // optional, default to 1.
+        slidesToSlide: 2 // optional, default to 1.
     },
     tablet: {
         breakpoint: { max: 1024, min: 590 },
@@ -80,7 +80,7 @@ const PopularCourseComponent: React.FC = () => {
         if (auth.isAuthenticated) {
             await getCourseSubscribe()
         }
-        await api.get('/courses?perPage=80&page=1&sortField=courseKeyMetric.currentSubscribers&sortDirection=DESC',
+        await api.get('/courses?perPage=6&page=1&sortField=courseKeyMetric.currentSubscribers&sortDirection=DESC',
 
         ).then((response: any) => {
             const data = response.data.items

@@ -80,7 +80,13 @@ function CartDropdown() {
             {
               key: 'kakakaadadsa',
               label: (
-                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                // <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                <Card style={{ width: 300 }} loading={loading} className="cart-item-menu my-1 max-sm:!w-[200px]">
+                  <Meta className="!py-0"
+                    description={<h5 className="truncate w-[220px] max-sm:w-[190px] max-sm:text-xs !mb-0">You don't have any courses in cart</h5>}
+
+                  />
+                </Card>
               ),
             },
           )

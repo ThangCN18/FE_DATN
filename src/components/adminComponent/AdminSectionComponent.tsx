@@ -27,9 +27,10 @@ interface propstype {
     section: any
     course: any
     handelGetDataCourse: () => Promise<void>
+    index: any
 }
 
-const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGetDataCourse }) => {
+const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGetDataCourse, index }) => {
     const [showmodalcreatel, setshowmodalcreatel] = useState(false)
     const [showmodaledit, setshowmodaledit] = useState(false)
     const [showmodaldelete, setshowmodaldelete] = useState(false)
@@ -126,6 +127,7 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
 
         const inputData = {
             name: values.name,
+            numSection: Number(values.numSection)
         }
         handleeditsection(inputData)
     };
@@ -148,7 +150,7 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
         <>
             <Collapse accordion>
                 <Panel header={<div className='flex justify-between items-center'>
-                    <h5 className='text-base font-semibold truncate'>{section.name}</h5>
+                    <h5 className='text-base font-semibold truncate'>Section {String(index + 1) + ": " + section.name}</h5>
                     <div>
                         <Button size="small" onClick={() => { setshowmodaledit(true) }} className='text-blue-600 border-blue-600 '><BiEdit /></Button>
                         <Button size="small" onClick={() => { setshowmodaldelete(true) }} className='text-red-600 border-red-600 mx-2'><MdDeleteForever /></Button>
@@ -183,13 +185,13 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                 </div>
             </Modal>
 
-            <Modal open={showmodaledit} onCancel={() => { setshowmodaledit(false) }} footer={null}>
+            <Modal open={showmodaledit} onCancel={() => { form.resetFields(); setshowmodaledit(false) }} footer={null}>
                 <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create new section</h4>
                 <hr className='my-3'></hr>
 
 
                 <Form
-                    name="basic"
+                    form={form}
                     layout="vertical"
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}
@@ -205,6 +207,16 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                     >
                         <Input className='font-normal text-base' />
                     </Form.Item>
+                    <Form.Item
+                        label="Section number"
+                        name="numSection"
+                        className='mb-4'
+                        initialValue={section.numSection}
+                        rules={[{ required: true, message: 'Please input section number!' }]}
+                    >
+                        <Input type='number' min={1} className='font-normal text-base' />
+                    </Form.Item>
+
 
                     <Form.Item className='mb-4 mt-7 text-center' >
                         <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
@@ -216,13 +228,12 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
             </Modal>
 
 
-            <Modal open={showmodalcreatel} className='!w-[600px]' onCancel={() => { setshowmodalcreatel(false) }} footer={null}>
+            <Modal open={showmodalcreatel} className='!w-[600px]' onCancel={() => { form.resetFields(); setshowmodalcreatel(false) }} footer={null}>
                 <h4 className='text-xl font-bold  bg-clip-text text-transparent bg-gradient-to-r from-[#024cac] to-[#0492ff]'>Create New Lecture</h4>
                 <hr className='my-3'></hr>
 
-
                 <Form
-                    name="basic"
+                    form={form}
                     layout="vertical"
                     style={{ maxWidth: 600 }}
                     initialValues={{ remember: true }}

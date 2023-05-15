@@ -33,7 +33,7 @@ const StudentReviewHomePageComponent: React.FC = () => {
 
     const getdatareview = async () => {
 
-        await api.get('/review?sortField=rating',
+        await api.get('/review?perPage=6&page=1&sortField=rating&sortDirection=DESC',
 
 
         ).then(async (response: any) => {

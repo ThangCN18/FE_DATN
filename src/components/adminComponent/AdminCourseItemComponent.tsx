@@ -355,7 +355,7 @@ const AdminCourseItemComponent: React.FC<propstype> = ({ course, handelGetDataCo
                             label="Requirements"
                             name="requirements"
                             className='mb-4 !w-[48%]'
-                            initialValue={course.requirements.join('\n')}
+                            initialValue={course.requirements ? course.requirements.join('\n') : ""}
                             rules={[{ required: true, message: 'Please input requirements!', type: "string" }]}
                         >
                             <TextArea rows={4} className='font-normal text-base' />
@@ -364,7 +364,7 @@ const AdminCourseItemComponent: React.FC<propstype> = ({ course, handelGetDataCo
                             label="Benefits"
                             name="benefits"
                             className='mb-4 !w-[48%]'
-                            initialValue={course.benefits.join('\n')}
+                            initialValue={course.benefits ? course.benefits.join('\n') : ""}
                             rules={[{ required: true, message: 'Please input benefits!', type: "string" }]}
                         >
                             <TextArea rows={4} className='font-normal text-base' />

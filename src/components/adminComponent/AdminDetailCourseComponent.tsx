@@ -52,7 +52,6 @@ const AdminDetailCourseComponent: React.FC = () => {
             {
                 headers
             },
-
         ).then((response: any) => {
             if (response.status === 201) {
                 form.resetFields()
@@ -74,7 +73,7 @@ const AdminDetailCourseComponent: React.FC = () => {
 
         const inputData = {
             name: values.name,
-            numSection: course.sections ? course.sections.length + 1 : 1
+            numSection: Number(values.numSection)
         }
         handleCreateNewCourse(inputData)
 
@@ -100,8 +99,8 @@ const AdminDetailCourseComponent: React.FC = () => {
                         {
                             course.sections ? <>
                                 {
-                                    course.sections.map(section => {
-                                        return <AdminSectionComponent section={section} course={course} handelGetDataCourse={handelGetDataCourse} />
+                                    course.sections.map((section, index) => {
+                                        return <AdminSectionComponent section={section} index={index} course={course} handelGetDataCourse={handelGetDataCourse} />
                                     })
                                 }
                             </> : null
@@ -148,6 +147,15 @@ const AdminDetailCourseComponent: React.FC = () => {
                     >
                         <Input className='font-normal text-base' />
                     </Form.Item>
+                    <Form.Item
+                        label="Section number"
+                        name="numSection"
+                        className='mb-4'
+                        rules={[{ required: true, message: 'Please input section number!' }]}
+                    >
+                        <Input type='number' min={1} className='font-normal text-base' />
+                    </Form.Item>
+
 
                     <Form.Item className='mb-4 mt-7 text-center' >
                         <Button className='w-[150px] h-9 bg-gradient-to-r from-[#024cac] to-[#0492ff] hover:opacity-75 !font-medium !text-base' type="primary" htmlType="submit">
