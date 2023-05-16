@@ -429,11 +429,67 @@ function DetailCoursesPage() {
 
                                                             </div>
 
+
                                                         </> :
                                                             <Button onClick={() => { setshowmodalviewvd(true) }} className="mt-5 w-[250px] mx-auto text-md bg-blue-600" type="primary">There are no reviews yet</Button>
                                                     }
 
                                                 </div>
+                                                <>
+                                                    {
+                                                        datareview ?
+                                                            <div
+                                                                // id="scrollableDiv"
+                                                                style={{
+                                                                    // height: 400,
+                                                                    overflow: 'auto',
+                                                                    padding: '0 16px',
+                                                                    border: '1px solid rgba(140, 140, 140, 0.35)',
+                                                                }}
+                                                            >
+                                                                <InfiniteScroll
+                                                                    dataLength={datareview.length}
+                                                                    next={hangdlegetdatareviews}
+                                                                    hasMore={datareview.length > 100}
+                                                                    loader={<Skeleton avatar paragraph={{ rows: 1 }} active />}
+                                                                    // endMessage={<Divider plain>It is all, nothing more 🤐</Divider>}
+                                                                    scrollableTarget="scrollableDiv"
+                                                                >
+                                                                    <List
+                                                                        dataSource={datareview.length > 4 ? datareview.slide(0, 3) : datareview}
+                                                                        renderItem={(item) => (
+                                                                            <List.Item key={item?.id} className="bg-gray-50 my-2 rounded-md !px-2">
+                                                                                <List.Item.Meta
+                                                                                    avatar={<Avatar src={item.user.avatar ? item.user.avatar : "https://live.staticflickr.com/65535/52813965210_ca9d9cd3a9_w.jpg"} />}
+                                                                                    title={<p className="font-semibold">{item.user.lastName + " " + item.user.firstName + " "}
+
+                                                                                        <span>{item.user.role == "admin" ? <Tag color="cyan">Admin</Tag> : <>
+                                                                                            {
+                                                                                                item.user.role == "user" ? <Tag>Student</Tag> : <Tag>Teacher</Tag>
+                                                                                            }
+                                                                                        </>}</span></p>}
+                                                                                    description={item.content}
+                                                                                />
+                                                                                <div><Rate disabled defaultValue={item.rating} className="text-xs space-x-0" /></div>
+                                                                            </List.Item>
+                                                                        )}
+                                                                    />
+                                                                </InfiniteScroll>
+                                                            </div> :
+                                                            <div
+                                                                id="scrollableDiv"
+                                                                style={{
+                                                                    height: 400,
+                                                                    overflow: 'auto',
+                                                                    padding: '0 16px',
+                                                                    border: '1px solid rgba(140, 140, 140, 0.35)',
+                                                                }}
+                                                            >
+                                                                <Divider plain>It is all, nothing more 🤐</Divider>
+
+                                                            </div>
+                                                    }
+                                                </>
 
 
                                             </Col>

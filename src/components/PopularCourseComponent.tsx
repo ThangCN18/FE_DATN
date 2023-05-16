@@ -184,7 +184,7 @@ const PopularCourseComponent: React.FC = () => {
                                         <Button type="primary" className="bg-gray-400 hover:!bg-gray-400 font-bold mt-3 max-sm:text-xs h-[40px] w-[100%] cursor-default">Not started yet</Button> :
                                         <>
                                             {course.discount <= 0 ?
-                                                <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Learn Now</Button> :
+                                                <Button type="primary" className="bg-gradient-to-r from-blue-600 to-cyan-600 h-[40px] hover:bg-blue-600 font-bold mt-3 max-sm:text-xs w-[100%] ">Learn Now</Button> :
                                                 <Button type="primary" className="bg-gradient-to-r w-[100%] h-[40px] from-blue-600 to-cyan-600 hover:bg-blue-600 font-bold mt-3 max-sm:text-xs ">Buy Now</Button>
                                             }
                                         </>
@@ -211,7 +211,7 @@ const PopularCourseComponent: React.FC = () => {
     useEffect(() => {
         hangdlegetdatacourses()
 
-    }, [])
+    }, [auth.isAuthenticated])
 
 
 

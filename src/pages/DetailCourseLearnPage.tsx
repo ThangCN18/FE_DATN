@@ -235,10 +235,11 @@ function DetailCourseLearnPage() {
                                                             <div className="!w-[100%] !h-[470px] max-md:!h-[275px] overflow-hidden rounded-md text-center ">
                                                                 {
                                                                     courses.sections[s].lectures[l].videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
-                                                                        <div className="w-[100%] h-[100%] flex justify-center items-center">
+                                                                        <div className="w-[100%] h-[100%] flex justify-center max-sm:flex-col-reverse max-sm:space-y-2 items-center">
                                                                             <Button onClick={() => {
                                                                                 if (scs != null || lcl != null) {
                                                                                     getlearncompleted(courses.sections[s].lectures[l].videoUrl)
+
                                                                                 } else {
                                                                                     window.open(courses.sections[s].lectures[l].videoUrl, "_blank")
                                                                                 }
@@ -285,7 +286,7 @@ function DetailCourseLearnPage() {
                                                             courses.sections.map((section, index) => {
                                                                 return <Panel className="bg-slate-50" header={
                                                                     <div className='flex justify-between items-center '>
-                                                                        <h5 className='text-base font-semibold truncate w-[260px] max-md:w-[400px] max-lg:w-[500px] max-sm:w-[200px]'>Section {(index + 1) + ": " + section.name}</h5>
+                                                                        <h5 className='text-base font-semibold truncate w-[250px] max-md:w-[400px] max-lg:w-[500px] max-sm:w-[200px]'>Section {(index + 1) + ": " + section.name}</h5>
                                                                     </div>}
 
                                                                     key={index}>
@@ -313,7 +314,6 @@ function DetailCourseLearnPage() {
                                                                                                 <div>
 
                                                                                                     <BsUnlockFill className="text-green-500" />
-
 
                                                                                                 </div>
                                                                                             </div>

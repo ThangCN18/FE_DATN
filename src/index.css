@@ -189,7 +189,7 @@
    @apply !w-[100%] !h-[470px] max-md:!h-[275px] 
 }
 
-.ant-dropdown-placement-bottomLeft .ant-dropdown-menu.ant-dropdown-menu-root.ant-dropdown-menu-vertical.ant-dropdown-menu-light.css-dev-only-do-not-override-htwhyh{
+.ant-dropdown-placement-bottomLeft .ant-dropdown-menu.ant-dropdown-menu-root{
     width: 250px;
     min-height: 300px!important;
     margin-top: 25px;
