@@ -239,7 +239,6 @@ function DetailCourseLearnPage() {
                                                                             <Button onClick={() => {
                                                                                 if (scs != null || lcl != null) {
                                                                                     getlearncompleted(courses.sections[s].lectures[l].videoUrl)
-
                                                                                 } else {
                                                                                     window.open(courses.sections[s].lectures[l].videoUrl, "_blank")
                                                                                 }
