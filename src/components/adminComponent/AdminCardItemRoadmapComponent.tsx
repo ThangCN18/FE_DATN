@@ -159,7 +159,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
     return (
         <>
             <Col span={8}>
-                <Card bordered={false} onMouseOver={() => { setonshowaction(true) }} onMouseLeave={() => { setonshowaction(false) }} key={roadmap.id} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
+                <Card bordered={false} onClick={() => { setshowmodalview(true) }} onMouseOver={() => { setonshowaction(true) }} onMouseLeave={() => { setonshowaction(false) }} key={roadmap.id} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
                     <div className='flex justify-around items-start space-x-4'>
                         <Avatar src={roadmap.image} className='min-w-[80px] min-h-[80px] max-lg:min-w-[60px]  max-lg:min-h-[60px]' />
                         <div>
@@ -183,7 +183,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                     </div>
 
                     <div className='flex justify-end items-center space-x-4 h-0 relative'>
-                        {onshowaction ? <div className='flex justify-center px-5  absolute bottom-0 py-3 shadow-lg rounded-lg items-center space-x-4 bg-slate-50'>
+                        {onshowaction ? <div className='flex justify-center px-3  absolute bottom-0 py-3 shadow-lg rounded-lg items-center space-x-2 bg-slate-50'>
                             <Button size="small" onClick={() => { setshowmodalview(true) }} className='text-blue-600 border-blue-600 '><BsFillEyeFill /></Button>
                             <Button size="small" onClick={() => { setshowmodalupdate(true) }} className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
                             <Button size="small" onClick={() => { setshowmodaldelete(true) }} className='text-red-600 border-red-600'><MdDeleteForever /></Button>

@@ -221,6 +221,8 @@ function CategoriesPage() {
                 </div></Col>
             })
             setdatacourses(adex)
+            setloaddingas(false)
+
         }).catch((error: any) => {
             console.log(error)
             setloaddingas(false)
@@ -228,6 +230,7 @@ function CategoriesPage() {
 
     }
     useEffect(() => {
+        setloaddingas(true)
         hangdlegetdatacourses()
 
     }, [location])
@@ -241,18 +244,31 @@ function CategoriesPage() {
                 <div className="site-layout-content w-[100%] pb-10 max-w-[1400px] mx-auto" style={{ background: colorBgContainer }}>
                     <div className="mx-auto mt-14  max-sm:mt-[20px] max-sm:px-1 max-w-[1400px] ">
 
+
+
                         {
-                            datacourses.length > 0 ?
+                            !loaddingas ?
                                 <>
                                     <h2 className="text-3xl pt-4 max-sm:text-xl font-bold text-center bg-clip-text text-transparent bg-gray-900 ">{title}</h2>
 
-                                    <Row gutter={[24, 24]} className="!w-[100%]  max-w-[1400px]  max-md:w-[85%] mx-auto my-10 max-sm:my-5">
 
-                                        {
-                                            datacourses.length > 0 ? datacourses
-                                                : null
+                                    <>
+                                        {datacourses.length == 0 ?
+                                            <div className="w-[100%] min-h-[350px] flex justify-center items-center">
+                                                <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+                                            </div>
+                                            :
+                                            <Row gutter={[24, 24]} className="!w-[100%]  max-w-[1400px]  max-md:w-[85%] mx-auto my-10 max-sm:my-5">
+
+                                                {
+                                                    datacourses.length > 0 ? datacourses
+                                                        : null
+                                                }
+                                            </Row>
                                         }
-                                    </Row>
+                                    </>
+
+
                                     {/* <Carousel responsive={responsive} className="max-w-[1400px] max-md:w-[85%] mx-auto my-14 max-sm:my-5">
 
 
