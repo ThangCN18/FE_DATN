@@ -191,33 +191,35 @@ const AdminCourseItemComponent: React.FC<propstype> = ({ course, handelGetDataCo
     return (
         <>
             <Col span={8}>
-                <Link to={`/admin/course/${course.id}`}>
-                    <Badge.Ribbon text={course.discount == 0 ? "Free" : "$" + course.discount} color={course.discount == 0 ? "green" : ""}>
-                        <Card bordered={false} onMouseOver={() => { setonshowaction(true) }} onMouseLeave={() => { setonshowaction(false) }} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
-                            <div className='flex justify-around items-start space-x-4'>
-                                <Image src={course.image} className='!w-[100px] !h-[70px] max-lg:!w-[80px] rounded-md shadow-md max-lg:!h-[40px]' />
-                                <div>
+                {/*  */}
+                <Badge.Ribbon text={course.discount == 0 ? "Free" : "$" + course.discount} color={course.discount == 0 ? "green" : ""}>
+                    <Card bordered={false} onMouseOver={() => { setonshowaction(true) }} onMouseLeave={() => { setonshowaction(false) }} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
+                        <div className='flex justify-around items-start space-x-4'>
+                            <Image src={course.image} className='!w-[100px] !h-[70px] max-lg:!w-[80px] rounded-md shadow-md max-lg:!h-[40px]' />
+                            <div>
+                                <Link to={`/admin/course/${course.id}`}>
                                     <h4 className='truncate text-lg font-bold mb-2 '>{course.name}</h4>
-                                    <p className='text-webkit-line-clamp-3 '>{course.description}</p>
-                                    <div className='flex justify-end mt-2'>
+                                </Link>
+                                <p className='text-webkit-line-clamp-3 '>{course.description}</p>
+                                <div className='flex justify-end mt-2'>
 
-                                    </div>
                                 </div>
                             </div>
+                        </div>
 
-                            <div className='flex justify-end items-center space-x-4 h-0 relative '>
-                                {onshowaction ? <div className='flex justify-center px-3  absolute bottom-0 py-3 shadow-lg rounded-lg items-center space-x-2 bg-slate-50'>
-                                    <Button size="small" onClick={() => { navigate(`/admin/course/${course.id}`) }} className='text-blue-600 border-blue-600 '><BsFillEyeFill /></Button>
-                                    <Button size="small" onClick={() => { setshowmodaledit(true) }} className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
-                                    <Button size="small" onClick={() => { setshowmodaldelete(true) }} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
-                                </div> : null}
+                        <div className='flex justify-end items-center space-x-4 h-0 relative '>
+                            {onshowaction ? <div className='flex justify-center px-3  absolute bottom-0 py-3 shadow-lg rounded-lg items-center space-x-2 bg-slate-50'>
+                                <Button size="small" onClick={() => { navigate(`/admin/course/${course.id}`) }} className='text-blue-600 border-blue-600 '><BsFillEyeFill /></Button>
+                                <Button size="small" onClick={() => { setshowmodaledit(true) }} className='text-yellow-600 border-yellow-600 mx-2'><BiEdit /></Button>
+                                <Button size="small" onClick={() => { setshowmodaldelete(true) }} className='text-red-600 border-red-600'><MdDeleteForever /></Button>
+                            </div> : null}
 
-                            </div>
+                        </div>
 
-                        </Card>
-                    </Badge.Ribbon>
+                    </Card>
+                </Badge.Ribbon>
 
-                </Link>
+                {/* </Link> */}
 
             </Col>
 

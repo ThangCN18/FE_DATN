@@ -11,6 +11,7 @@ import AboutUsHomeComponent from "../components/AboutUsHomeComponent";
 import FooterComponent from "../components/FooterComponent";
 import StudentReviewHomePageComponent from "../components/StudentReviewHomePageComponent";
 import PopularCourseComponent from "../components/PopularCourseComponent";
+import KommunicateChat from "../components/ChatboxComponent";
 // import ChatBoxCommonent from "../components/ChatBoxCommonent";
 const { Header, Content, Footer } = Layout;
 

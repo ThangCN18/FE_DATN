@@ -31,6 +31,7 @@ import store from "./store";
 import AdminCategoriesPage from "./pages/AdminCategoriesPage";
 import api from "./configs/axiosConfig";
 import CategoriesPage from "./pages/CategoriesPage";
+import KommunicateChat from "./components/ChatboxComponent";
 
 export const optionTreeData = createContext([])
 
@@ -161,6 +162,8 @@ const App = () => {
         </Routes>
         <NotificationComponent />
       </optionTreeData.Provider>
+      <KommunicateChat />
+
     </div>
   );
 };

@@ -44,6 +44,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
     const [showmodalupdate, setshowmodalupdate] = useState(false)
     const [datacoursechange, setdatacoursechange] = useState([])
     const [url_image, seturl_image] = useState(roadmap.image)
+    const [roadmapcourse, setroadmapcourse] = useState([])
     const arrayNameCourse = dataCourse.map(course => {
         return {
             value: course.id,
@@ -53,6 +54,18 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
     const options: SelectProps['options'] = arrayNameCourse;
 
     const [form] = Form.useForm();
+
+
+    const hangdelsetroadmap = () => {
+        const aaa = roadmap.courseRoadmaps.map((con) => {
+            return {
+                courseId: con.courseId,
+                title: con.title,
+                description: con.description
+            }
+        })
+        setroadmapcourse(aaa)
+    }
 
 
     const headers = {
@@ -150,6 +163,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
     };
 
     useEffect(() => {
+        hangdelsetroadmap()
 
     }, [])
 
@@ -159,11 +173,11 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
     return (
         <>
             <Col span={8}>
-                <Card bordered={false} onClick={() => { setshowmodalview(true) }} onMouseOver={() => { setonshowaction(true) }} onMouseLeave={() => { setonshowaction(false) }} key={roadmap.id} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
+                <Card bordered={false} onMouseOver={() => { setonshowaction(true) }} onMouseLeave={() => { setonshowaction(false) }} key={roadmap.id} className='!shadow-lg cursor-pointer hover:bg-sky-100 bg-sky-50'>
                     <div className='flex justify-around items-start space-x-4'>
                         <Avatar src={roadmap.image} className='min-w-[80px] min-h-[80px] max-lg:min-w-[60px]  max-lg:min-h-[60px]' />
                         <div>
-                            <h4 className='truncate text-lg font-bold mb-2 '>{roadmap.name}</h4>
+                            <h4 className='truncate text-lg font-bold mb-2 ' onClick={() => { setshowmodalview(true) }}>{roadmap.name}</h4>
                             <p className='text-webkit-line-clamp-3 '>{roadmap.description}</p>
                             <div className='flex justify-end mt-2'>
                                 <Avatar.Group maxCount={2} size={"small"} maxStyle={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>
@@ -321,7 +335,7 @@ const AdminCardItemRoadmapComponent: React.FC<propstype> = ({ roadmap, getDataRo
                             <TextArea rows={4} className='font-normal text-base' />
                         </Form.Item>
                     </div>
-                    <Form.List name="courses" initialValue={roadmap.courseRoadmaps}>
+                    <Form.List name="courses" initialValue={roadmapcourse}>
                         {(fields, { add, remove }) => (
 
                             <div>

@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+.ant-upload-list-item-error{
+    @apply !border-blue-400
+}
+
+.ant-upload-list-item-error span{
+    @apply !text-blue-400
+}
 
 .ant-menu-light {
     @apply !bg-[#00000000] text-zinc-700

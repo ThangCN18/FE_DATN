@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom'
 import { SiYoutubemusic } from 'react-icons/si';
 import { AiOutlineMore } from 'react-icons/ai';
 import { IoVideocam } from 'react-icons/io5';
+import UploadFileComponent from '../UploadFileComponent';
 
 interface propstype {
     section: any
@@ -36,6 +37,9 @@ const AdminLectureComponent: React.FC<propstype> = ({ section, lecture, handelGe
     const auth = useSelector((state: RootState) => state.root.auth)
     const [videoUrl, setvideoUrl] = useState(lecture.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ? lecture.videoUrl : 'https://youtu.be/' + lecture.videoUrl)
     const dispatch = useDispatch()
+    const [url_image, seturl_image] = useState("")
+    // const [videoUrl, setvideoUrl] = useState('')
+    const [fileUploadUrl, setfileUploadUrl] = useState("")
 
     const navigate = useNavigate()
     const headers = {
@@ -104,15 +108,17 @@ const AdminLectureComponent: React.FC<propstype> = ({ section, lecture, handelGe
 
     const onFinish = (values: any) => {
 
-
-        const inputData = {
+        let inputData2 = {
             name: values.name,
             description: values.description,
             duration: Number(values.duration),
             numLecture: Number(values.numLecture),
             videoUrl: values.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ? values.videoUrl : values.videoUrl.split("/")[3],
+
         }
-        handleeditLecture(inputData)
+        handleeditLecture(inputData2)
+
+
 
     };
 
@@ -182,12 +188,12 @@ const AdminLectureComponent: React.FC<propstype> = ({ section, lecture, handelGe
                             >
                                 <Input onChange={e => { setvideoUrl(e.target.value) }} className='font-normal text-base' />
                             </Form.Item>
-                            <div className='bg-gray-200 rounded-md w-100% h-[200px]'>
+                            <div className='bg-gray-200 rounded-md w-100% h-[245px]'>
                                 {videoUrl ? <>{videoUrl.split("/")[3] ? <>
                                     {videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                         <img className='w-270 h-200' src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/4d63594d-e135-41b3-947a-53d7c9d46119-01-google-workspace.jpg' />
                                         :
-                                        <iframe width="270" height="200" src={"https://www.youtube.com/embed/" + videoUrl.split("/")[3]} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+                                        <iframe width="270" height="245" src={"https://www.youtube.com/embed/" + videoUrl.split("/")[3]} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
 
                                     }
                                 </> : null}</> : null}
@@ -238,7 +244,11 @@ const AdminLectureComponent: React.FC<propstype> = ({ section, lecture, handelGe
 
                             </Space>
 
+                            <p className='pb-2'>Lecture document</p>
+                            <UploadFileComponent seturl_image={seturl_image} url_image={url_image} setfileUploadUrl={setfileUploadUrl} />
+
                         </Col>
+
                     </Row>
 
 

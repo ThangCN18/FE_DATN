@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom'
 import { SiYoutubemusic } from 'react-icons/si';
 import { AiOutlineMore } from 'react-icons/ai';
 import AdminLectureComponent from './AdminLectureComponent';
+import UploadFileComponent from '../UploadFileComponent';
 
 interface propstype {
     section: any
@@ -35,7 +36,9 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
     const [showmodaledit, setshowmodaledit] = useState(false)
     const [showmodaldelete, setshowmodaldelete] = useState(false)
     const auth = useSelector((state: RootState) => state.root.auth)
+    const [url_image, seturl_image] = useState("")
     const [videoUrl, setvideoUrl] = useState('')
+    const [fileUploadUrl, setfileUploadUrl] = useState("")
     const dispatch = useDispatch()
 
     const navigate = useNavigate()
@@ -141,6 +144,10 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
             duration: Number(values.duration),
             numLecture: Number(values.numLecture),
             videoUrl: values.videoUrl.split("/")[2] == "wizcoveit.netlify.app" ? values.videoUrl : values.videoUrl.split("/")[3],
+            fileUploads: fileUploadUrl != '' && url_image != '' ? [{
+                fileUploadUrl: fileUploadUrl,
+                fileUploadId: url_image
+            }] : []
         }
         handleaddLecture(inputData)
     };
@@ -251,12 +258,12 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                             >
                                 <Input onChange={e => { setvideoUrl(e.target.value) }} className='font-normal text-base' />
                             </Form.Item>
-                            <div className='bg-gray-200 rounded-md w-100% h-[200px]'>
+                            <div className='bg-gray-200 rounded-md w-100% h-[245px] overflow-hidden'>
                                 {videoUrl ? <>{videoUrl.split("/")[3] ? <>
                                     {videoUrl.split("/")[2] == "wizcoveit.netlify.app" ?
                                         <img className='w-270 h-200' src='https://coursesbe.s3.ap-southeast-1.amazonaws.com/4d63594d-e135-41b3-947a-53d7c9d46119-01-google-workspace.jpg' />
                                         :
-                                        <iframe width="270" height="200" src={"https://www.youtube.com/embed/" + videoUrl.split("/")[3]} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
+                                        <iframe width="270" height="245" src={"https://www.youtube.com/embed/" + videoUrl.split("/")[3]} title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
 
                                     }
                                 </> : null}</> : null}
@@ -282,9 +289,6 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                                 <TextArea className='font-normal text-base' />
                             </Form.Item>
 
-
-
-
                             <Space >
                                 <Form.Item
                                     label="Duration"
@@ -292,7 +296,7 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                                     className='mb-4'
                                     rules={[{ required: true, message: 'Please input duration!', type: "number" }]}
                                 >
-                                    <InputNumber min={1} className='font-normal text-base !w-[100%]' />
+                                    <InputNumber type='number' min={1} className='font-normal text-base !w-[100%]' />
                                 </Form.Item>
                                 <Form.Item
                                     label="Number Lecture"
@@ -300,10 +304,12 @@ const AdminSectionComponent: React.FC<propstype> = ({ section, course, handelGet
                                     className='mb-4'
                                     rules={[{ required: true, message: 'Please input numLecture!', type: "number" }]}
                                 >
-                                    <InputNumber min={1} className='font-normal text-base !w-[100%]' />
+                                    <InputNumber type='number' min={1} className='font-normal text-base !w-[100%]' />
                                 </Form.Item>
 
                             </Space>
+                            <p className='pb-2'>Lecture document</p>
+                            <UploadFileComponent seturl_image={seturl_image} url_image={url_image} setfileUploadUrl={setfileUploadUrl} />
 
                         </Col>
                     </Row>

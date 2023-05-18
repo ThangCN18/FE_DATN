@@ -16,7 +16,7 @@ import { logout } from "../store/authSlice";
 import Meta from "antd/es/card/Meta";
 import { RiVipCrownFill } from "react-icons/ri";
 import { FiArrowLeft } from "react-icons/fi";
-import { AiFillLike, AiOutlineCheckCircle, AiOutlineFieldTime } from "react-icons/ai";
+import { AiFillFolderOpen, AiFillLike, AiOutlineCheckCircle, AiOutlineFieldTime } from "react-icons/ai";
 import { BsCheck2Circle, BsSendFill, BsUnlockFill } from "react-icons/bs";
 import { SiYoutubemusic } from "react-icons/si";
 import { BiLockOpenAlt, BiUser } from "react-icons/bi";
@@ -240,6 +240,7 @@ function DetailCourseLearnPage() {
                                                                                 if (scs != null || lcl != null) {
                                                                                     getlearncompleted(courses.sections[s].lectures[l].videoUrl)
                                                                                 } else {
+                                                                                    console.log(12321321)
                                                                                     window.open(courses.sections[s].lectures[l].videoUrl, "_blank")
                                                                                 }
 
@@ -296,7 +297,9 @@ function DetailCourseLearnPage() {
 
                                                                                     section.lectures.map((lecture, indexs) => {
                                                                                         if (index == 0 && indexs == 0) {
-                                                                                            return <div onClick={() => {
+
+
+                                                                                            return <> <div onClick={() => {
 
                                                                                                 navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs)
 
@@ -317,6 +320,19 @@ function DetailCourseLearnPage() {
                                                                                                 </div>
                                                                                             </div>
 
+                                                                                                {lecture.resources.length > 0 ?
+                                                                                                    <a href={lecture.resources[0].fileUploadUrl} target="_ blank">
+                                                                                                        <div className="border-[1px] px-3 py-2 flex justify-start items-center space-x-2">
+                                                                                                            <AiFillFolderOpen className="text-2xl" />
+                                                                                                            <p className="truncate !text-xs">{lecture.resources[0].fileUpload.fileName}</p>
+                                                                                                        </div>
+
+                                                                                                    </a>
+                                                                                                    :
+                                                                                                    null
+                                                                                                }
+                                                                                            </>
+
                                                                                         }
                                                                                         if (!apor.includes(lecture.id)) {
                                                                                             return <div className='flex justify-between items-center py-4 border-2 px-3 rounded-sm  border-gray-200 cursor-default '>
@@ -336,7 +352,7 @@ function DetailCourseLearnPage() {
                                                                                             </div>
 
                                                                                         }
-                                                                                        return <div onClick={() => {
+                                                                                        return <> <div onClick={() => {
 
                                                                                             navigate('/learn/' + location.pathname.split("/")[2] + "?s=" + index + "&l=" + indexs)
 
@@ -358,6 +374,18 @@ function DetailCourseLearnPage() {
 
                                                                                             </div>
                                                                                         </div>
+                                                                                            {lecture.resources.length > 0 ?
+                                                                                                <a href={lecture.resources[0].fileUploadUrl} target="_ blank">
+                                                                                                    <div className="border-[1px] px-3 py-2 flex justify-start items-center space-x-2">
+                                                                                                        <AiFillFolderOpen className="text-2xl" />
+                                                                                                        <p className="truncate !text-xs">{lecture.resources[0].fileUpload.fileName}</p>
+                                                                                                    </div>
+
+                                                                                                </a>
+                                                                                                :
+                                                                                                null
+                                                                                            }
+                                                                                        </>
                                                                                     })
                                                                                 }
 
