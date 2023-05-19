@@ -40,7 +40,7 @@ const AdminDashboardComponent: React.FC = () => {
 
     const handelGetDataUsers = async () => {
         setLoadinga(true);
-        await api.get(`/users?perPage=10&page=1`,
+        await api.get(`/users?perPage=1000&page=1`,
             {
                 headers
             },
