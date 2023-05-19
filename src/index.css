@@ -6,6 +6,13 @@
     @apply !border-blue-400
 }
 
+.lecture-scroll-class-style::-webkit-scrollbar {
+    @apply w-[8px] bg-gray-100 rounded-lg
+  }
+  .lecture-scroll-class-style::-webkit-scrollbar-thumb  {
+    @apply w-[8px] bg-gray-400 rounded-lg
+  }
+
 .ant-upload-list-item-error span{
     @apply !text-blue-400
 }

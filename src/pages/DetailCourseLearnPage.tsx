@@ -278,7 +278,7 @@ function DetailCourseLearnPage() {
 
                                             </Col>
 
-                                            <Col xs={24} sm={24} md={24} lg={6} xl={6} className="mt-10 max-h-[80vh] overflow-y-auto">
+                                            <Col xs={24} sm={24} md={24} lg={6} xl={6} className="mt-10 max-h-[80vh] overflow-y-auto lecture-scroll-class-style">
 
                                                 {
                                                     courses.sections[0] ?
